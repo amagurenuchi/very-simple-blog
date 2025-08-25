@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/ced4c4a7f8.js"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      body {
+        font-family: "Mochiy Pop One", sans-serif;
+        /* background-image: url("./bg.jpg"); */
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-color: #000000;
+        margin: 0;
+        padding: 0;
+        color: #ffffff;
+      }
+      body::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        background-repeat: repeat;
+        background-color: #000000;
+        opacity: 0.8;
+        backdrop-filter: blur(10px);
+        z-index: -1;
+      }
+      .title {
+        font-size: 2rem;
+        color: #ffffff;
+        text-align: center;
+        padding: 20px;
+        margin-top: 10px;
+      }
+      .timebar {
+        background-color: #434343;
+        padding: 15px;
+        color: #ffffff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .item a {
+        text-decoration: none;
+        color: #ffffff;
+        margin-left: 10px;
+        padding: 10px;
+        transition: 0.3s;
+      }
+      .item a:hover {
+        background-color: #7a7a7a;
+        border-radius: 5px;
+        transition: 0.3s;
+      }
+      .blog-post {
+        margin: 20px;
+        padding: 15px;
+        background-color: #ffffff0e;
+        border-radius: 8px;
+        border-left: 5px solid rgb(61, 255, 245);
+        color: #ffffff;
+      }
+      .bio {
+        margin: 20px;
+        padding: 15px;
+        background-color: #ffffff0e;
+        border-radius: 8px;
+        border-left: 5px solid rgb(255, 61, 61);
+        color: #ffffff;
+      }
+      .bio h2 {
+        color: rgb(255, 61, 61);
+      }
+      .footer {
+        margin: 20px;
+        padding: 15px;
+        background-color: #ffffff0e;
+        border-radius: 8px;
+        border-left: 5px solid rgb(118, 255, 187);
+        border-right: 5px solid rgb(118, 255, 187);
+        display: flex;
+      }
+      .footer i {
+        margin-right: 10px;
+        font-size: 1.78rem;
+      }
+    </style>
+    <title>3173's blog</title>
+  </head>
+  <body>
+    <div class="timebar">
+      <div class="item">
+        <div class="name" style="font-size: 1.25rem; color: rgb(61, 255, 245)">
+          Saichi Nanami
+        </div>
+      </div>
+      <div class="datetime"></div>
+    </div>
+    <div class="title">Saichi Nanami's (3173) Blog</div>
+    <div class="bio">
+      <div class="text" style="margin-left: 10px">
+        <h2>About me</h2>
+        <ul>
+          <li>17 years old, trans girl</li>
+          <li>Dying to get out of high school by next year</li>
+          <li>
+            <span style="color: rgb(255, 61, 61)">NOT</span> from Japan. (I wish
+            i was)
+          </li>
+          <li style="color: rgb(251, 145, 255)">Akiyama Mizuki my beloved</li>
+          <li>Yes i sleep after 25:00</li>
+          <li>I'm a bit of a nerd (the good kind)</li>
+          <li>Huge rhythm game fanatic</li>
+          <li>Think offsets are just unnecessary to adjust most of the time</li>
+          <li>Hate people who are being assholes (a lot of them)</li>
+          <li>Despises transphobia and homophobia</li>
+          <li>
+            Had to speedrun creating Prownie in 2 weeks just bcause i got the
+            deadline messed up
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="blogcontainer"></div>
+    <div class="footer">
+      <div class="section">
+        Some of my stuff i guess
+        <div class="item">
+          <a href="https://www.youtube.com/@fumilette_omelette" target="_blank"
+            ><i class="fa-brands fa-youtube"></i> Youtube</a
+          >
+        </div>
+        <div class="item">
+          <a href="https://github.com/yumemizook" target="_blank"
+            ><i class="fa-brands fa-github"></i> GitHub</a
+          >
+        </div>
+        <div class="item">
+          <a href="https://www.facebook.com/queenofheartbms" target="_blank"
+            ><i class="fa-brands fa-facebook"></i> Facebook</a
+          >
+        </div>
+        <div class="item">
+          <a href="https://youtu.be/N6DMXNyvAxs" target="_blank"
+            ><i class="fa-solid fa-music"></i> The song that is stuck in my head
+            right now</a
+          >
+        </div>
+      </div>
+      <div class="section">
+        Stuff I made
+        <div class="item">
+          <a href="https://prownieir.vercel.app" target="_blank"
+            ><i class="fa-solid fa-code"></i>Prownie IR</a
+          >
+        </div>
+        <div class="item">
+          <a href="https://lr2skinhelp.vercel.app" target="_blank"
+            ><i class="fa-solid fa-code"></i> LR2 Skin Help (English Version)</a
+          >
+        </div>
+        <div class="item">
+          <a href="https://yumemizook.github.io/suometeo/" target="_blank"
+            ><i class="fa-solid fa-code"></i> Suometeo (weather app)</a
+          >
+        </div>
+        <div class="item">
+          <a href="https://yumemizook.github.io/sample-quiz/" target="_blank"
+            ><i class="fa-solid fa-code"></i> Very simple quiz site</a
+          >
+        </div>
+      </div>
+    </div>
+  </body>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+    import {
+      getFirestore,
+      collection,
+      getDocs,
+      query,
+      orderBy,
+    } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+    // Fix: Properly import and use formatDistanceToNow
+    import { formatDistanceToNow } from "https://unpkg.com/date-fns@3.6.0/formatDistanceToNow.mjs";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCcyR-VW3hFroVrG0164QwVO8WYSliGZQA",
+      authDomain: "testrun-b565e.firebaseapp.com",
+      databaseURL:
+        "https://testrun-b565e-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "testrun-b565e",
+      storageBucket: "testrun-b565e.firebasestorage.app",
+      messagingSenderId: "786542410028",
+      appId: "1:786542410028:web:7898349ee8c158e96e9489",
+    };
+
+    // Initialize Firebase first
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const blogRef = collection(db, "blog");
+
+    async function loadBlogs() {
+      try {
+        const blogContainer = document.querySelector(".blogcontainer");
+        if (!blogContainer) {
+          console.error("Blog container element not found");
+          return;
+        }
+
+        const blogQuery = query(blogRef, orderBy("createdAt", "desc"));
+        const blogSnapshot = await getDocs(blogQuery);
+        const blogList = blogSnapshot.docs.map((doc) => doc.data());
+
+        blogContainer.innerHTML = "";
+
+        if (blogList.length === 0) {
+          blogContainer.innerHTML =
+            "<p style='color:#888;'>No blog posts found.</p>";
+          return;
+        }
+
+        blogList.forEach((blog) => {
+          const blogElement = document.createElement("div");
+          blogElement.className = "blog-post";
+          let dateString = "";
+          try {
+            if (blog.createdAt && typeof blog.createdAt.toDate === "function") {
+              dateString = formatDistanceToNow(blog.createdAt.toDate(), {
+                addSuffix: true,
+              });
+            } else if (blog.createdAt instanceof Date) {
+              dateString = formatDistanceToNow(blog.createdAt, {
+                addSuffix: true,
+              });
+            } else if (
+              typeof blog.createdAt === "number" ||
+              typeof blog.createdAt === "string"
+            ) {
+              dateString = formatDistanceToNow(new Date(blog.createdAt), {
+                addSuffix: true,
+              });
+            } else {
+              dateString = "";
+            }
+          } catch (e) {
+            dateString = "";
+          }
+          blogElement.innerHTML = `
+          <span class="blog-date" style="font-size: 0.8rem; color: #888; margin-left: 10px;">${formatDistanceToNow(
+            blog.createdAt.toDate()
+          )} ago</span>
+            <h2 class="blog-title" style="font-size: 1.5rem; color: rgb(61, 255, 245); margin-left: 10px;">${
+              blog.title || "Untitled"
+            }</h2>
+            <p class="blog-content" style="font-size: 1rem; color: #ffffff; margin-left: 10px;">${
+              blog.content || "No content"
+            }</p>
+          `;
+          blogContainer.appendChild(blogElement);
+        });
+      } catch (error) {
+        console.error("Error loading blogs:", error);
+        const blogContainer = document.querySelector(".blogcontainer");
+        if (blogContainer) {
+          blogContainer.innerHTML =
+            "<p style='color:red;'>Failed to load blog posts. Please try again later.</p>";
+        }
+      }
+    }
+
+    function updateDateTime() {
+      try {
+        const now = new Date();
+        const datetimeElem = document.querySelector(".datetime");
+        if (datetimeElem) {
+          datetimeElem.innerHTML = `${now.toLocaleDateString()} ${now.toLocaleTimeString(
+            "en-GB",
+            {
+              hour: "2-digit",
+              minute: "2-digit",
+              second: "2-digit",
+              hour12: false,
+            }
+          )}`;
+        }
+      } catch (error) {
+        console.error("Error updating datetime:", error);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      updateDateTime();
+      loadBlogs();
+      setInterval(updateDateTime, 1000);
+    });
+  </script>
+</html>

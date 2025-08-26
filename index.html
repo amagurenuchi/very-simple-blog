@@ -46,7 +46,7 @@
         color: #ffffff;
         text-align: center;
         padding: 20px;
-        margin-top: 10px;
+        margin-top: 70px;
       }
       .timebar {
         background-color: #434343;
@@ -55,6 +55,11 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 100;
       }
       .item {
         display: flex;
@@ -88,6 +93,7 @@
         border-radius: 8px;
         border-left: 5px solid rgb(255, 61, 61);
         color: #ffffff;
+        margin-bottom: 50px;
       }
       .bio h2 {
         color: rgb(255, 61, 61);
@@ -115,7 +121,7 @@
           Saichi Nanami
         </div>
       </div>
-      <div class="datetime"></div>
+      <div class="datetime" style="margin-right: 30px"></div>
     </div>
     <div class="title">Saichi Nanami's (3173) Blog</div>
     <div class="bio">
@@ -143,7 +149,7 @@
       </div>
     </div>
     <div class="blogcontainer"></div>
-    <div class="footer">
+    <div class="footer" style="margin-top: 50px">
       <div class="section">
         Some of my stuff i guess
         <div class="item">
@@ -268,13 +274,22 @@
           } catch (e) {
             dateString = "";
           }
+          let timestr = "";
+          if (blog.createdAt && typeof blog.createdAt.toDate === "function") {
+            timestr = blog.createdAt.toDate().getTime();
+          }
+          const luminous =
+            ((Number(new Date()) - Number(timestr)) /
+              (1000 * 60 * 60 * 24 * 30)) *
+            36;
+          console.log(luminous);
           blogElement.innerHTML = `
           <span class="blog-date" style="font-size: 0.8rem; color: #888; margin-left: 10px;">${formatDistanceToNow(
             blog.createdAt.toDate()
           )} ago</span>
-            <h2 class="blog-title" style="font-size: 1.5rem; color: rgb(61, 255, 245); margin-left: 10px;">${
-              blog.title || "Untitled"
-            }</h2>
+            <h2 class="blog-title" style="font-size: 1.5rem; color: hsl(187, 100%, ${
+              62 + luminous
+            }%); margin-left: 10px;">${blog.title || "Untitled"}</h2>
             <p class="blog-content" style="font-size: 1rem; color: #ffffff; margin-left: 10px;">${
               blog.content || "No content"
             }</p>

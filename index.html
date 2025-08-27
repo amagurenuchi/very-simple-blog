@@ -228,6 +228,124 @@
     const db = getFirestore(app);
     const blogRef = collection(db, "blog");
 
+    // Secure HTML sanitizer function
+    function sanitizeHTML(html) {
+      // Create a temporary div to parse HTML
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = html;
+      
+      // Define allowed tags and attributes
+      const allowedTags = {
+        'p': ['style'],
+        'br': [],
+        'strong': ['style'],
+        'em': ['style'],
+        'u': ['style'],
+        'h1': ['style'],
+        'h2': ['style'],
+        'h3': ['style'],
+        'h4': ['style'],
+        'h5': ['style'],
+        'h6': ['style'],
+        'ul': ['style'],
+        'ol': ['style'],
+        'li': ['style'],
+        'blockquote': ['style'],
+        'code': ['style'],
+        'pre': ['style'],
+        'img': ['src', 'alt', 'title', 'width', 'height', 'style'],
+        'video': ['src', 'controls', 'width', 'height', 'style', 'autoplay', 'muted', 'loop'],
+        'audio': ['src', 'controls', 'style', 'autoplay', 'muted', 'loop'],
+        'source': ['src', 'type'],
+        'a': ['href', 'target', 'rel', 'style'],
+        'span': ['style'],
+        'div': ['style']
+      };
+      
+      // Define allowed CSS properties for style attributes
+      const allowedCSSProps = [
+        'color', 'background-color', 'font-size', 'font-weight', 'font-style',
+        'text-align', 'margin', 'padding', 'border', 'border-radius',
+        'width', 'height', 'max-width', 'max-height', 'display', 'float',
+        'clear', 'position', 'top', 'left', 'right', 'bottom', 'z-index'
+      ];
+      
+      // Function to sanitize style attribute
+      function sanitizeStyle(styleValue) {
+        if (!styleValue) return '';
+        
+        // Remove any script-like content
+        if (styleValue.includes('javascript:') || styleValue.includes('expression(')) {
+          return '';
+        }
+        
+        // Only allow safe CSS properties
+        const styles = styleValue.split(';');
+        const sanitizedStyles = styles
+          .map(style => {
+            const [property, value] = style.split(':').map(s => s.trim());
+            if (allowedCSSProps.includes(property) && value) {
+              return `${property}: ${value}`;
+            }
+            return '';
+          })
+          .filter(style => style.length > 0);
+        
+        return sanitizedStyles.join('; ');
+      }
+      
+      // Function to sanitize attributes
+      function sanitizeAttributes(element, allowedAttrs) {
+        const attributes = Array.from(element.attributes);
+        attributes.forEach(attr => {
+          if (!allowedAttrs.includes(attr.name)) {
+            element.removeAttribute(attr.name);
+          } else if (attr.name === 'style') {
+            const sanitizedStyle = sanitizeStyle(attr.value);
+            if (sanitizedStyle) {
+              element.setAttribute('style', sanitizedStyle);
+            } else {
+              element.removeAttribute('style');
+            }
+          } else if (attr.name === 'href') {
+            // Ensure href is safe (no javascript:)
+            if (attr.value.startsWith('javascript:') || attr.value.startsWith('data:')) {
+              element.removeAttribute('href');
+            }
+          } else if (attr.name === 'src') {
+            // Ensure src is safe (no javascript: or data: for non-images)
+            if (attr.value.startsWith('javascript:') || 
+                (attr.value.startsWith('data:') && !element.tagName.toLowerCase().match(/^(img|video|audio)$/))) {
+              element.removeAttribute('src');
+            }
+          }
+        });
+      }
+      
+      // Function to recursively sanitize DOM elements
+      function sanitizeElement(element) {
+        const tagName = element.tagName.toLowerCase();
+        
+        // Remove disallowed tags
+        if (!allowedTags[tagName]) {
+          element.remove();
+          return;
+        }
+        
+        // Sanitize attributes
+        sanitizeAttributes(element, allowedTags[tagName]);
+        
+        // Recursively sanitize child elements
+        const children = Array.from(element.children);
+        children.forEach(child => sanitizeElement(child));
+      }
+      
+      // Sanitize the entire content
+      sanitizeElement(tempDiv);
+      
+      return tempDiv.innerHTML;
+    }
+
     async function loadBlogs() {
       try {
         const blogContainer = document.querySelector(".blogcontainer");
@@ -283,16 +401,18 @@
               (1000 * 60 * 60 * 24 * 30)) *
             36;
           console.log(luminous);
+          
+          // Sanitize the blog content before inserting
+          const sanitizedContent = sanitizeHTML(blog.content || "No content");
+          
           blogElement.innerHTML = `
           <span class="blog-date" style="font-size: 0.8rem; color: #888; margin-left: 10px;">${formatDistanceToNow(
             blog.createdAt.toDate()
           )} ago</span>
             <h2 class="blog-title" style="font-size: 1.5rem; color: hsl(187, 100%, ${
               62 + luminous
-            }%); margin-left: 10px;">${blog.title || "Untitled"}</h2>
-            <p class="blog-content" style="font-size: 1rem; color: #ffffff; margin-left: 10px;">${
-              blog.content || "No content"
-            }</p>
+            }%); margin-left: 10px;">${sanitizeHTML(blog.title || "Untitled")}</h2>
+            <div class="blog-content" style="font-size: 1rem; color: #ffffff; margin-left: 10px;">${sanitizedContent}</div>
           `;
           blogContainer.appendChild(blogElement);
         });

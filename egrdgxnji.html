@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Write a blog</title>
+    <style>
+        body {
+            font-family: "Mochiy Pop One", sans-serif;
+            background-color: #000000;
+            margin: 0;
+            padding: 0;
+            color: #ffffff;
+        }
+        .title {
+            font-size: 2rem;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+        }
+        .form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ffffff;
+            border-radius: 5px;
+            background-color: #000000;
+            color: #ffffff;
+            box-sizing: border-box;
+        }
+        .form textarea {
+            width: 100%;
+            height: 200px;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ffffff;
+            border-radius: 5px;
+            background-color: #000000;
+            color: #ffffff;
+            resize: vertical;
+            box-sizing: border-box;
+        }
+        .form button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: 1px solid #ffffff;
+            border-radius: 5px;
+            background-color: #000000;
+            color: #ffffff;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .form button:hover {
+            background-color: #7a7a7a;
+            transition: 0.3s;
+        }
+        .form button:disabled {
+            background-color: #444;
+            cursor: not-allowed;
+        }
+        .preview-section {
+            margin-top: 20px;
+            width: 100%;
+        }
+        .preview-title {
+            color: #ffffff;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .preview-content {
+            background-color: #ffffff0e;
+            border: 1px solid #ffffff;
+            border-radius: 5px;
+            padding: 15px;
+            min-height: 100px;
+            color: #ffffff;
+        }
+        .help-text {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .button-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="title">Write a blog</div>
+    <div class="form">
+        <div class="help-text">
+            The inputs are sanitized to prevent XSS attacks. HTML tags are allowed.
+        </div>
+        <input type="text" placeholder="Title" id="titleInput" onInput="previewBtn.click()" autocomplete="off">
+        <textarea placeholder="Content" id="contentInput" onInput="previewBtn.click()" autocomplete="off"></textarea>
+        <div class="button-group">
+            <button type="button" id="previewBtn">Preview</button>
+            <button type="submit" id="submit">Submit</button>
+        </div>
+        
+        <div class="preview-section" id="previewSection" style="display: none;">
+            <div class="preview-title">Preview:</div>
+            <div class="preview-content" id="previewContent"></div>
+        </div>
+    </div>
+</body>
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+    
+    const firebaseConfig = {
+        apiKey: "AIzaSyCcyR-VW3hFroVrG0164QwVO8WYSliGZQA",
+        authDomain: "testrun-b565e.firebaseapp.com",
+        databaseURL: "https://testrun-b565e-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "testrun-b565e",
+        storageBucket: "testrun-b565e.firebasestorage.app",
+        messagingSenderId: "786542410028",
+        appId: "1:786542410028:web:7898349ee8c158e96e9489"
+    };
+    
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const blogRef = collection(db, "blog");
+    
+    // Secure HTML sanitizer function (same as in index.html)
+    function sanitizeHTML(html) {
+        // Create a temporary div to parse HTML
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = html;
+        
+        // Define allowed tags and attributes
+        const allowedTags = {
+            'p': ['style'],
+            'br': [],
+            'strong': ['style'],
+            'em': ['style'],
+            'u': ['style'],
+            'h1': ['style'],
+            'h2': ['style'],
+            'h3': ['style'],
+            'h4': ['style'],
+            'h5': ['style'],
+            'h6': ['style'],
+            'ul': ['style'],
+            'ol': ['style'],
+            'li': ['style'],
+            'blockquote': ['style'],
+            'code': ['style'],
+            'pre': ['style'],
+            'img': ['src', 'alt', 'title', 'width', 'height', 'style'],
+            'video': ['src', 'controls', 'width', 'height', 'style', 'autoplay', 'muted', 'loop'],
+            'audio': ['src', 'controls', 'style', 'autoplay', 'muted', 'loop'],
+            'source': ['src', 'type'],
+            'a': ['href', 'target', 'rel', 'style'],
+            'span': ['style'],
+            'div': ['style']
+        };
+        
+        // Define allowed CSS properties for style attributes
+        const allowedCSSProps = [
+            'color', 'background-color', 'font-size', 'font-weight', 'font-style',
+            'text-align', 'margin', 'padding', 'border', 'border-radius',
+            'width', 'height', 'max-width', 'max-height', 'display', 'float',
+            'clear', 'position', 'top', 'left', 'right', 'bottom', 'z-index'
+        ];
+        
+        // Function to sanitize style attribute
+        function sanitizeStyle(styleValue) {
+            if (!styleValue) return '';
+            
+            // Remove any script-like content
+            if (styleValue.includes('javascript:') || styleValue.includes('expression(')) {
+                return '';
+            }
+            
+            // Only allow safe CSS properties
+            const styles = styleValue.split(';');
+            const sanitizedStyles = styles
+                .map(style => {
+                    const [property, value] = style.split(':').map(s => s.trim());
+                    if (allowedCSSProps.includes(property) && value) {
+                        return `${property}: ${value}`;
+                    }
+                    return '';
+                })
+                .filter(style => style.length > 0);
+            
+            return sanitizedStyles.join('; ');
+        }
+        
+        // Function to sanitize attributes
+        function sanitizeAttributes(element, allowedAttrs) {
+            const attributes = Array.from(element.attributes);
+            attributes.forEach(attr => {
+                if (!allowedAttrs.includes(attr.name)) {
+                    element.removeAttribute(attr.name);
+                } else if (attr.name === 'style') {
+                    const sanitizedStyle = sanitizeStyle(attr.value);
+                    if (sanitizedStyle) {
+                        element.setAttribute('style', sanitizedStyle);
+                    } else {
+                        element.removeAttribute('style');
+                    }
+                } else if (attr.name === 'href') {
+                    // Ensure href is safe (no javascript:)
+                    if (attr.value.startsWith('javascript:') || attr.value.startsWith('data:')) {
+                        element.removeAttribute('href');
+                    }
+                } else if (attr.name === 'src') {
+                    // Ensure src is safe (no javascript: or data: for non-images)
+                    if (attr.value.startsWith('javascript:') || 
+                        (attr.value.startsWith('data:') && !element.tagName.toLowerCase().match(/^(img|video|audio)$/))) {
+                        element.removeAttribute('src');
+                    }
+                }
+            });
+        }
+        
+        // Function to recursively sanitize DOM elements
+        function sanitizeElement(element) {
+            const tagName = element.tagName.toLowerCase();
+            
+            // Remove disallowed tags
+            if (!allowedTags[tagName]) {
+                element.remove();
+                return;
+            }
+            
+            // Sanitize attributes
+            sanitizeAttributes(element, allowedTags[tagName]);
+            
+            // Recursively sanitize child elements
+            const children = Array.from(element.children);
+            children.forEach(child => sanitizeElement(child));
+        }
+        
+        // Sanitize the entire content
+        sanitizeElement(tempDiv);
+        
+        return tempDiv.innerHTML;
+    }
+    
+    const titleInput = document.getElementById('titleInput');
+    const contentInput = document.getElementById('contentInput');
+    const submitBtn = document.getElementById('submit');
+    const previewBtn = document.getElementById('previewBtn');
+    const previewSection = document.getElementById('previewSection');
+    const previewContent = document.getElementById('previewContent');
+    
+    // Preview functionality
+    previewBtn.addEventListener('click', () => {
+        const title = titleInput.value.trim();
+        const content = contentInput.value.trim();
+        
+        if (!title && !content) {
+            previewSection.style.display = 'none';
+            return;
+        }
+        
+        let previewHTML = '';
+        if (title) {
+            previewHTML += `<h2 style="color: rgb(61, 255, 245);">${sanitizeHTML(title)}</h2>`;
+        }
+        if (content) {
+            previewHTML += `<div>${sanitizeHTML(content)}</div>`;
+        }
+        
+        previewContent.innerHTML = previewHTML;
+        previewSection.style.display = 'block';
+    });
+    
+    // Submit functionality
+    submitBtn.addEventListener('click', async (e) => {
+        e.preventDefault();
+        const title = titleInput.value.trim();
+        const content = contentInput.value.trim();
+        
+        if (!title || !content) {
+            alert("Please fill in both the title and content.");
+            return;
+        }
+        
+        try {
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = "Submitting...";
+            
+            // Sanitize content before sending to Firebase
+            const sanitizedTitle = sanitizeHTML(title);
+            const sanitizedContent = sanitizeHTML(content);
+            
+            await addDoc(blogRef, {
+                title: sanitizedTitle,
+                content: sanitizedContent,
+                createdAt: new Date()
+            });
+            
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = "Submit";
+            alert("Blog post submitted!");
+            
+            // Clear form
+            titleInput.value = "";
+            contentInput.value = "";
+            previewSection.style.display = 'none';
+            
+        } catch (error) {
+            console.error("Error adding document: ", error);
+            alert("Failed to submit blog post. Please try again.");
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = "Submit";
+        }
+    });
+</script>
+</html>

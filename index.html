@@ -291,13 +291,14 @@ function continueBtn() {
     try {
       localStorage.setItem("warning-agreed", "false");
       const warningElem = document.querySelector(".warning");
-      if (warningElem) warningElem.style.display = "none";
-      // Attempt to close the window, fallback to redirect if not allowed
-      if (window.close) {
-        window.close();
-      } else {
-        window.location.href = "about:blank";
-      }
+      warningElem.style.display = "none";
+      document.querySelector(".main").innerHTML = "It is now safe to close this webpage.";
+      document.querySelector(".main").style.display = "block";
+      document.querySelector(".main").style.color = "rgb(255, 117, 48)";
+      document.querySelector(".main").style.position = "absolute";
+      document.querySelector(".main").style.top = "30%";
+      document.querySelector(".main").style.left = "30%";
+      document.querySelector(".main").style.fontSize = "3rem";
     } catch (e) {
       console.error("Error in exitBtn:", e);
       window.location.href = "about:blank";
@@ -310,11 +311,11 @@ function continueBtn() {
       const warningElem = document.querySelector(".warning");
       const mainElem = document.querySelector(".main");
       if (agreed === "true") {
-        if (warningElem) warningElem.style.display = "none";
-        if (mainElem) mainElem.style.display = "block";
+        warningElem.style.display = "none";
+        mainElem.style.display = "block";
       } else {
-        if (mainElem) mainElem.style.display = "none";
-        if (warningElem) warningElem.style.display = "block";
+        mainElem.style.display = "none";
+        warningElem.style.display = "block";
         if (agreed === "false") localStorage.removeItem("warning-agreed");
       }
     } catch (e) {

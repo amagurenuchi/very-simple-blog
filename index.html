@@ -117,6 +117,7 @@
       margin-right: 10px;
       font-size: 1.78rem;
     }
+
     .warning {
       display: none;
       z-index: 1000;
@@ -127,24 +128,29 @@
       left: 50%;
       transform: translate(-50%, -50%);
     }
+
     .main {
       display: none;
     }
+
     .warning h1 {
       color: #ff4d4d;
       text-align: center;
       margin-bottom: 20px;
     }
+
     .warning ul {
       margin-left: 20px;
     }
+
     .buttonswarning {
       margin-top: 20px;
       display: flex;
       justify-content: center;
       gap: 10px;
     }
-    .buttonswarning button { 
+
+    .buttonswarning button {
       padding: 10px 20px;
       border: 1px solid #ffffff;
       border-radius: 5px;
@@ -153,13 +159,16 @@
       cursor: pointer;
       transition: 0.3s;
     }
+
     .buttonswarning button:disabled {
       background-color: #444;
       cursor: not-allowed;
     }
+
     .warning p {
       margin-left: 20px;
     }
+
     .warning ul {
       margin-left: 20px;
     }
@@ -185,16 +194,20 @@
     </ul>
     <span class="textwarning">If you are sensitive to any of the above, please exit this website and don't look
       back.</span>
-      <br>
+    <br>
     <span class="textwarning">All responsibility for any consequences related to the content of this blog lies with the
       reader, especially the owner of this website.</span>
-      <br>
+    <br>
     <span class="textwarning">By continuing to browse this website, you acknowledge that you have read and agreed to the
       terms of this disclaimer.</span>
-      <br>
-      <div class="buttonswarning">
-    <button type="button" onclick="continueBtn()" style="margin-right: 10px; background-color: #434343; color: #fff; font-size: 2rem;">Yes, I agree, let me see the blog!</button>
-    <button type="button" onclick="exitBtn()" style="background-color: #ff4d4d; color: #fff; font-size: 2rem;">Nope. I'm out.</button>
+    <br>
+    <div class="buttonswarning">
+      <button type="button" onclick="continueBtn()"
+        style="margin-right: 10px; background-color: #434343; color: #fff; font-size: 2rem;">Yes, I agree, let me see
+        the blog!</button>
+      <button type="button" onclick="exitBtn()" style="background-color: #ff4d4d; color: #fff; font-size: 2rem;">Nope.
+        I'm out.</button>
+    </div>
   </div>
   </div>
   <div class="main">
@@ -275,7 +288,7 @@
 </body>
 <script>
 
-function continueBtn() {
+  function continueBtn() {
     try {
       localStorage.setItem("warning-agreed", "true");
       const warningElem = document.querySelector(".warning");
@@ -604,4 +617,5 @@ function continueBtn() {
     setInterval(updateDateTime, 1000);
   });
 </script>
+
 </html>

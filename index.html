@@ -206,12 +206,6 @@
       terms of this disclaimer.</span>
     <br>
     <div class="buttonswarning">
-      <div class="checker">
-        <input type="checkbox" name="saveChoice" id="saveChoice" /> <span
-          style="color: #888; font-size: 0.8rem; margin-right: 20px;">Ok ok I get it, don't ask me this every time i
-          open
-          this page!</span>
-      </div>
       <div class="button">
         <button type="button" onclick="continueBtn()"
           style="margin-right: 10px; background-color: #434343; color: #fff; font-size: 2rem;">Yes, I agree, let me see
@@ -651,6 +645,46 @@
       console.log(
         "%c(づ ◕‿◕ )づ %cGood evening! Don't stay up too late like me!",
         "color: #ff7ac6; font-size: 2rem; font-weight: bold;",
+        "color: white; font-size: 1.2rem; font-weight: bold;"
+      );
+    }
+    if (now.getMonth() === 0 && now.getDate() === 1) {
+      console.log(
+        "%c(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ %cHappy New Year! Wishing you a fantastic year ahead!",
+        "color: #ff5e5e; font-size: 2rem; font-weight: bold;",
+        "color: white; font-size: 1.2rem; font-weight: bold;"
+      );
+    } else if (now.getMonth() === 11 && now.getDate() === 25) {
+      console.log(
+        "%c＼(＾▽＾)／ %cMerry Christmas! Hope you have a joyful holiday season!",
+        "color: #ff5e5e; font-size: 2rem; font-weight: bold;",
+        "color: #79e65e; font-size: 1.2rem; font-weight: bold;"
+      );
+    } else if (now.getMonth === 4 && now.getDate() === 6){
+      console.log(
+        "%c\(★ω★)/ %cHappy Birthday to me! Another year older, another year wiser!",
+        "color: #dc94b4; font-size: 2rem; font-weight: bold;",
+        "color: white; font-size: 1.2rem; font-weight: bold;"
+      );
+      document.title = "3173's blog - It's my birthday today!";
+      document.querySelector(".title").innerHTML = "<p>It's my birthday today! 🎉🎂🎈</p>";
+      document.querySelector(".title").style.color = "#ff5e5e";
+    } else if (now.getMonth() === 9 && now.getDate() === 31) {
+      console.log(
+        "%c(ﾉ≧ڡ≦) %cHappy Halloween! Hope you have a spooktacular day!",
+        "color: #ff7930; font-size: 2rem; font-weight: bold;",
+        "color: white; font-size: 1.2rem; font-weight: bold;"
+      );
+    } if (now.getMonth() === 5) {
+      console.log(
+        "%c(ง'̀-'́)ง %cHappy Pride Month! Celebrate love and diversity! 🏳️‍🌈🏳️‍⚧️",
+        "color: #ffb0fd; font-size: 2rem; font-weight: bold;",
+        "color: white; font-size: 1.2rem; font-weight: bold;"
+      );
+    } if (now.getMonth() === 1 && now.getDate() === 14) {
+      console.log(
+        "%c(ღ˘⌣˘ღ) %cHappy Valentine's Day! Wishing you a day filled with love and joy!",
+        "color: #ff82e6; font-size: 2rem; font-weight: bold;",
         "color: white; font-size: 1.2rem; font-weight: bold;"
       );
     }

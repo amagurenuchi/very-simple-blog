@@ -121,12 +121,25 @@
     .warning {
       display: none;
       z-index: 1000;
-      margin-left: 20px;
-      margin-right: 20px;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(10px);
+      overflow-y: auto;
+    }
+
+    .warning-content {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 40px;
+      background-color: #1a1a1a;
+      border: 2px solid #ff4d4d;
+      border-radius: 15px;
+      box-shadow: 0 0 30px rgba(255, 77, 77, 0.3);
+      color: #ffffff;
     }
 
     .main {
@@ -136,45 +149,132 @@
     .warning h1 {
       color: #ff4d4d;
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
+      font-size: 2.5rem;
+      text-shadow: 0 0 10px rgba(255, 77, 77, 0.5);
+      border-bottom: 2px solid #ff4d4d;
+      padding-bottom: 15px;
+    }
+
+    .warning-intro {
+      background-color: rgba(255, 77, 77, 0.1);
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 25px;
+      border-left: 4px solid #ff4d4d;
+      font-size: 1.1rem;
+      font-weight: bold;
     }
 
     .warning ul {
-      margin-left: 20px;
+      background-color: rgba(255, 77, 77, 0.05);
+      padding: 25px 40px;
+      border-radius: 10px;
+      margin: 20px 0;
+      border: 1px solid rgba(255, 77, 77, 0.2);
+    }
+
+    .warning li {
+      margin-bottom: 12px;
+      padding-left: 10px;
+      position: relative;
+    }
+
+    .warning li::before {
+      content: "⚠️";
+      position: absolute;
+      left: -25px;
+      top: 0;
+      
+    }
+
+    .warning-disclaimer {
+      background-color: rgba(255, 77, 77, 0.1);
+      padding: 20px;
+      border-radius: 10px;
+      margin: 25px 0;
+      border-left: 4px solid #ff4d4d;
+      font-style: italic;
     }
 
     .buttonswarning {
-      margin-top: 20px;
+      margin-top: 30px;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 10px;
+      gap: 15px;
+    }
+
+    .button {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
     }
 
     .buttonswarning button {
-      padding: 10px 20px;
-      border: 1px solid #ffffff;
-      border-radius: 5px;
-      background-color: #000000;
+      padding: 15px 25px;
+      border: 2px solid;
+      border-radius: 10px;
+      background-color: transparent;
       color: #ffffff;
       cursor: pointer;
-      transition: 0.3s;
+      transition: all 0.3s ease;
+      font-size: 1.1rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
-    .button{
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
+
+    .buttonswarning button:first-child {
+      border-color: #434343;
+      background-color: #434343;
     }
+
+    .buttonswarning button:first-child:hover {
+      background-color: #555;
+      border-color: #555;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(67, 67, 67, 0.4);
+    }
+
+    .buttonswarning button:last-child {
+      border-color: #ff4d4d;
+      background-color: #ff4d4d;
+    }
+
+    .buttonswarning button:last-child:hover {
+      background-color: #ff3333;
+      border-color: #ff3333;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 77, 77, 0.4);
+    }
+
     .buttonswarning button:disabled {
       background-color: #444;
+      border-color: #444;
       cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
     }
 
     .warning p {
-      margin-left: 20px;
+      margin: 15px 0;
+      line-height: 1.6;
     }
 
-    .warning ul {
-      margin-left: 20px;
+    @media (max-width: 768px) {
+      .warning-content {
+        margin: 20px;
+        padding: 25px;
+      }
+      
+      .button {
+        grid-template-columns: 1fr;
+      }
+      
+      .warning h1 {
+        font-size: 2rem;
+      }
     }
   </style>
   <title>3173's blog</title>
@@ -182,36 +282,43 @@
 
 <body>
   <div class="warning">
-    <h1 class="title">!-- WARNING --!</h1>
-    <span class="textwarning">This blog contains the following, but not limited to:</span>
-    <ul>
-      <li>Occasional sexual content</li>
-      <li>Violent content</li>
-      <li>Mature language</li>
-      <li>Triggering content such as suicidal thoughts and/or attempts and self-destructive behavior</li>
-      <li>Slight cyberbullying and/or harassment to indended targets (to an extent)</li>
-      <li>Hate speech towards selected targets or people in general, part satire part serious.</li>
-      <li>Mentions of homophobia and/or transphobia (quoted from others, not the writer's beliefs)</li>
-      <li>Huge OOC moments</li>
-      <li>Stuff that could infuriate you</li>
-      <li>Very long posts (There is no TL:DR here)</li>
-    </ul>
-    <span class="textwarning">If you are sensitive to any of the above, please exit this website and don't look
-      back.</span>
-    <br>
-    <span class="textwarning">All responsibility for any consequences related to the content of this blog lies with the
-      reader, especially the owner of this website.</span>
-    <br>
-    <span class="textwarning">By continuing to browse this website, you acknowledge that you have read and agreed to the
-      terms of this disclaimer.</span>
-    <br>
-    <div class="buttonswarning">
-      <div class="button">
-        <button type="button" onclick="continueBtn()"
-          style="margin-right: 10px; background-color: #434343; color: #fff; font-size: 2rem;">Yes, I agree, let me see
-          the blog!</button>
-        <button type="button" onclick="exitBtn()" style="background-color: #ff4d4d; color: #fff; font-size: 2rem;">Nope.
-          I'm out.</button>
+    <div class="warning-content">
+      <h1>⚠️ WARNING ⚠️</h1>
+      
+      <div class="warning-intro">
+        This blog contains the following content, but is not limited to:
+      </div>
+      
+      <ul>
+        <li>Occasional sexual content</li>
+        <li>Violent content</li>
+        <li>Mature language</li>
+        <li>Triggering content such as suicidal thoughts and/or attempts and self-destructive behavior</li>
+        <li>Slight cyberbullying and/or harassment to intended targets (to an extent)</li>
+        <li>Hate speech towards selected targets or people in general, part satire part serious</li>
+        <li>Mentions of homophobia and/or transphobia (quoted from others, not the writer's beliefs)</li>
+        <li>Huge OOC moments</li>
+        <li>Content that could infuriate you</li>
+        <li>Very long posts (There is no TL;DR here)</li>
+      </ul>
+      
+      <div class="warning-disclaimer">
+        <p><strong>⚠️ Important:</strong> If you are sensitive to any of the above content, please exit this website and don't look back.</p>
+        
+        <p> All responsibility for any consequences related to the content of this blog lies with the reader, especially the owner of this website.</p>
+        
+        <p>By continuing to browse this website, you acknowledge that you have read and agreed to the terms of this disclaimer.</p>
+      </div>
+      
+      <div class="buttonswarning">
+        <div class="button">
+          <button type="button" onclick="continueBtn()">
+            ✅ Yes, I agree, let me see the blog!
+          </button>
+          <button type="button" onclick="exitBtn()">
+            ❌ Nope, I'm out
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -310,14 +417,46 @@
     try {
       localStorage.setItem("warning-agreed", "false");
       const warningElem = document.querySelector(".warning");
+      const mainElem = document.querySelector(".main");
+      
       warningElem.style.display = "none";
-      document.querySelector(".main").innerHTML = "It is now safe to close this webpage.";
-      document.querySelector(".main").style.display = "block";
-      document.querySelector(".main").style.color = "rgb(255, 117, 48)";
-      document.querySelector(".main").style.position = "absolute";
-      document.querySelector(".main").style.top = "30%";
-      document.querySelector(".main").style.left = "30%";
-      document.querySelector(".main").style.fontSize = "3rem";
+      
+      // Create a better styled exit message
+      mainElem.innerHTML = `
+        <div style="
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0);
+          backdrop-filter: blur(10px);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          z-index: 1000;
+        ">
+          <div style="
+            max-width: 600px;
+            padding: 40px;
+            background-color: #1a1a1a00;
+            border: 2px solid #aaaaaa00;
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0);
+            text-align: center;
+            color: #ffffff;
+          ">
+            <p style="
+              font-size: 3rem;
+              line-height: 1.6;
+              margin-bottom: 30px;
+              color: #fc7703;
+            ">It is now safe to close this webpage.</p>
+          </div>
+        </div>
+      `;
+      
+      mainElem.style.display = "block";
     } catch (e) {
       console.error("Error in exitBtn:", e);
       window.location.href = "about:blank";

@@ -408,6 +408,7 @@
       const saveChoice = document.querySelector("#saveChoice")
       if (warningElem) warningElem.style.display = "none";
       if (mainElem) mainElem.style.display = "block";
+      console.log("Other than the cute kaomoji, there is little use here so...")
     } catch (e) {
       console.error("Error in continueBtn:", e);
     }
@@ -420,6 +421,7 @@
       const mainElem = document.querySelector(".main");
       
       warningElem.style.display = "none";
+      console.log("%cPOOR!", "color: red; font-size: 5rem");
       
       // Create a better styled exit message
       mainElem.innerHTML = `
@@ -764,7 +766,7 @@
     // Example: Show a message if it's after midnight
     if (now.getHours() >= 0 && now.getHours() < 6) {
       console.log(
-        "%c	(∪｡∪)｡｡｡zzZ %cTime to go bed?",
+        "%c	(∪｡∪)｡｡｡zzZ %cTime to go to bed?",
         "color: cyan; font-size: 2rem; font-weight: bold;",
         "color: white; font-size: 1.2rem; font-weight: bold;"
       );

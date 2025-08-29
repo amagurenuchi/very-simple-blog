@@ -146,6 +146,7 @@
     .buttonswarning {
       margin-top: 20px;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       gap: 10px;
     }
@@ -159,7 +160,10 @@
       cursor: pointer;
       transition: 0.3s;
     }
-
+    .button{
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
     .buttonswarning button:disabled {
       background-color: #444;
       cursor: not-allowed;
@@ -202,13 +206,20 @@
       terms of this disclaimer.</span>
     <br>
     <div class="buttonswarning">
-      <button type="button" onclick="continueBtn()"
-        style="margin-right: 10px; background-color: #434343; color: #fff; font-size: 2rem;">Yes, I agree, let me see
-        the blog!</button>
-      <button type="button" onclick="exitBtn()" style="background-color: #ff4d4d; color: #fff; font-size: 2rem;">Nope.
-        I'm out.</button>
+      <div class="checker">
+        <input type="checkbox" name="saveChoice" id="saveChoice" /> <span
+          style="color: #888; font-size: 0.8rem; margin-right: 20px;">Ok ok I get it, don't ask me this every time i
+          open
+          this page!</span>
+      </div>
+      <div class="button">
+        <button type="button" onclick="continueBtn()"
+          style="margin-right: 10px; background-color: #434343; color: #fff; font-size: 2rem;">Yes, I agree, let me see
+          the blog!</button>
+        <button type="button" onclick="exitBtn()" style="background-color: #ff4d4d; color: #fff; font-size: 2rem;">Nope.
+          I'm out.</button>
+      </div>
     </div>
-  </div>
   </div>
   <div class="main">
     <div class="timebar">
@@ -293,6 +304,7 @@
       localStorage.setItem("warning-agreed", "true");
       const warningElem = document.querySelector(".warning");
       const mainElem = document.querySelector(".main");
+      const saveChoice = document.querySelector("#saveChoice")
       if (warningElem) warningElem.style.display = "none";
       if (mainElem) mainElem.style.display = "block";
     } catch (e) {
@@ -323,6 +335,7 @@
       const agreed = localStorage.getItem("warning-agreed");
       const warningElem = document.querySelector(".warning");
       const mainElem = document.querySelector(".main");
+      const dontRemind = localStorage.getItem("dont-remind-again")
       if (agreed === "true") {
         warningElem.style.display = "none";
         mainElem.style.display = "block";
@@ -614,6 +627,33 @@
   document.addEventListener("DOMContentLoaded", () => {
     updateDateTime();
     loadBlogs();
+    const now = new Date();
+    // Example: Show a message if it's after midnight
+    if (now.getHours() >= 0 && now.getHours() < 6) {
+      console.log(
+        "%c	(∪｡∪)｡｡｡zzZ %cTime to go bed?",
+        "color: cyan; font-size: 2rem; font-weight: bold;",
+        "color: white; font-size: 1.2rem; font-weight: bold;"
+      );
+    } else if (now.getHours() >= 6 && now.getHours() < 12) {
+      console.log(
+        "%c(*・ω・)ﾉ %cGood morning! Hope you have a good day!",
+        "color: #bfff47; font-size: 2rem; font-weight: bold;",
+        "color: white; font-size: 1.2rem; font-weight: bold;"
+      );
+    } else if (now.getHours() >= 12 && now.getHours() < 18) {
+      console.log(
+        "%c(´• ω •`) ♡ %cGood afternoon! Hoping for a great rest of your day!",
+        "color: #47fcff; font-size: 2rem; font-weight: bold;",
+        "color: white; font-size: 1.2rem; font-weight: bold;"
+      );
+    } else {
+      console.log(
+        "%c(づ ◕‿◕ )づ %cGood evening! Don't stay up too late like me!",
+        "color: #ff7ac6; font-size: 2rem; font-weight: bold;",
+        "color: white; font-size: 1.2rem; font-weight: bold;"
+      );
+    }
     setInterval(updateDateTime, 1000);
   });
 </script>

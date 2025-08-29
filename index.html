@@ -1,120 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap"
-      rel="stylesheet"
-    />
-    <script
-      src="https://kit.fontawesome.com/ced4c4a7f8.js"
-      crossorigin="anonymous"
-    ></script>
-    <style>
-      body {
-        font-family: "Mochiy Pop One", sans-serif;
-        /* background-image: url("./bg.jpg"); */
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-color: #000000;
-        margin: 0;
-        padding: 0;
-        color: #ffffff;
-      }
-      body::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-size: cover;
-        background-position: center;
-        background-repeat: repeat;
-        background-color: #000000;
-        opacity: 0.8;
-        backdrop-filter: blur(10px);
-        z-index: -1;
-      }
-      .title {
-        font-size: 2rem;
-        color: #ffffff;
-        text-align: center;
-        padding: 20px;
-        margin-top: 70px;
-      }
-      .timebar {
-        background-color: #434343;
-        padding: 15px;
-        color: #ffffff;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        z-index: 100;
-      }
-      .item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-      .item a {
-        text-decoration: none;
-        color: #ffffff;
-        margin-left: 10px;
-        padding: 10px;
-        transition: 0.3s;
-      }
-      .item a:hover {
-        background-color: #7a7a7a;
-        border-radius: 5px;
-        transition: 0.3s;
-      }
-      .blog-post {
-        margin: 20px;
-        padding: 15px;
-        background-color: #ffffff0e;
-        border-radius: 8px;
-        border-left: 5px solid rgb(61, 255, 245);
-        color: #ffffff;
-      }
-      .bio {
-        margin: 20px;
-        padding: 15px;
-        background-color: #ffffff0e;
-        border-radius: 8px;
-        border-left: 5px solid rgb(255, 61, 61);
-        color: #ffffff;
-        margin-bottom: 50px;
-      }
-      .bio h2 {
-        color: rgb(255, 61, 61);
-      }
-      .footer {
-        margin: 20px;
-        padding: 15px;
-        background-color: #ffffff0e;
-        border-radius: 8px;
-        border-left: 5px solid rgb(118, 255, 187);
-        border-right: 5px solid rgb(118, 255, 187);
-        display: flex;
-      }
-      .footer i {
-        margin-right: 10px;
-        font-size: 1.78rem;
-      }
-    </style>
-    <title>3173's blog</title>
-  </head>
-  <body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/ced4c4a7f8.js" crossorigin="anonymous"></script>
+  <style>
+    body {
+      font-family: "Mochiy Pop One", sans-serif;
+      /* background-image: url("./bg.jpg"); */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-color: #000000;
+      margin: 0;
+      padding: 0;
+      color: #ffffff;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      background-repeat: repeat;
+      background-color: #000000;
+      opacity: 0.8;
+      backdrop-filter: blur(10px);
+      z-index: -1;
+    }
+
+    .title {
+      font-size: 2rem;
+      color: #ffffff;
+      text-align: center;
+      padding: 20px;
+      margin-top: 70px;
+    }
+
+    .timebar {
+      background-color: #434343;
+      padding: 15px;
+      color: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+    }
+
+    .item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .item a {
+      text-decoration: none;
+      color: #ffffff;
+      margin-left: 10px;
+      padding: 10px;
+      transition: 0.3s;
+    }
+
+    .item a:hover {
+      background-color: #7a7a7a;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+
+    .blog-post {
+      margin: 20px;
+      padding: 15px;
+      background-color: #ffffff0e;
+      border-radius: 8px;
+      border-left: 5px solid rgb(61, 255, 245);
+      color: #ffffff;
+    }
+
+    .bio {
+      margin: 20px;
+      padding: 15px;
+      background-color: #ffffff0e;
+      border-radius: 8px;
+      border-left: 5px solid rgb(255, 61, 61);
+      color: #ffffff;
+      margin-bottom: 50px;
+    }
+
+    .bio h2 {
+      color: rgb(255, 61, 61);
+    }
+
+    .footer {
+      margin: 20px;
+      padding: 15px;
+      background-color: #ffffff0e;
+      border-radius: 8px;
+      border-left: 5px solid rgb(118, 255, 187);
+      border-right: 5px solid rgb(118, 255, 187);
+      display: flex;
+    }
+
+    .footer i {
+      margin-right: 10px;
+      font-size: 1.78rem;
+    }
+    .warning {
+      display: none;
+      z-index: 1000;
+      margin-left: 20px;
+      margin-right: 20px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .main {
+      display: none;
+    }
+    .warning h1 {
+      color: #ff4d4d;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .warning ul {
+      margin-left: 20px;
+    }
+    .buttonswarning {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+    .buttonswarning button { 
+      padding: 10px 20px;
+      border: 1px solid #ffffff;
+      border-radius: 5px;
+      background-color: #000000;
+      color: #ffffff;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .buttonswarning button:disabled {
+      background-color: #444;
+      cursor: not-allowed;
+    }
+    .warning p {
+      margin-left: 20px;
+    }
+    .warning ul {
+      margin-left: 20px;
+    }
+  </style>
+  <title>3173's blog</title>
+</head>
+
+<body>
+  <div class="warning">
+    <h1 class="title">!-- WARNING --!</h1>
+    <span class="textwarning">This blog contains the following, but not limited to:</span>
+    <ul>
+      <li>Occasional sexual content</li>
+      <li>Violent content</li>
+      <li>Mature language</li>
+      <li>Triggering content such as suicidal thoughts and/or attempts and self-destructive behavior</li>
+      <li>Slight cyberbullying and/or harassment to indended targets (to an extent)</li>
+      <li>Hate speech towards selected targets or people in general, part satire part serious.</li>
+      <li>Mentions of homophobia and/or transphobia (quoted from others, not the writer's beliefs)</li>
+      <li>Huge OOC moments</li>
+      <li>Stuff that could infuriate you</li>
+      <li>Very long posts (There is no TL:DR here)</li>
+    </ul>
+    <span class="textwarning">If you are sensitive to any of the above, please exit this website and don't look
+      back.</span>
+      <br>
+    <span class="textwarning">All responsibility for any consequences related to the content of this blog lies with the
+      reader, especially the owner of this website.</span>
+      <br>
+    <span class="textwarning">By continuing to browse this website, you acknowledge that you have read and agreed to the
+      terms of this disclaimer.</span>
+      <br>
+      <div class="buttonswarning">
+    <button type="button" onclick="continueBtn()" style="margin-right: 10px; background-color: #434343; color: #fff; font-size: 2rem;">Yes, I agree, let me see the blog!</button>
+    <button type="button" onclick="exitBtn()" style="background-color: #ff4d4d; color: #fff; font-size: 2rem;">Nope. I'm out.</button>
+  </div>
+  </div>
+  <div class="main">
     <div class="timebar">
       <div class="item">
         <div class="name" style="font-size: 1.25rem; color: rgb(61, 255, 245)">
@@ -153,323 +236,359 @@
       <div class="section">
         Some of my stuff i guess
         <div class="item">
-          <a href="https://www.youtube.com/@fumilette_omelette" target="_blank"
-            ><i class="fa-brands fa-youtube"></i> Youtube</a
-          >
+          <a href="https://www.youtube.com/@fumilette_omelette" target="_blank"><i class="fa-brands fa-youtube"></i>
+            Youtube</a>
         </div>
         <div class="item">
-          <a href="https://github.com/yumemizook" target="_blank"
-            ><i class="fa-brands fa-github"></i> GitHub</a
-          >
+          <a href="https://github.com/yumemizook" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
         </div>
         <div class="item">
-          <a href="https://www.facebook.com/queenofheartbms" target="_blank"
-            ><i class="fa-brands fa-facebook"></i> Facebook</a
-          >
+          <a href="https://www.facebook.com/queenofheartbms" target="_blank"><i class="fa-brands fa-facebook"></i>
+            Facebook</a>
         </div>
         <div class="item">
-          <a href="https://youtu.be/N6DMXNyvAxs" target="_blank"
-            ><i class="fa-solid fa-music"></i> The song that is stuck in my head
-            right now</a
-          >
+          <a href="https://youtu.be/N6DMXNyvAxs" target="_blank"><i class="fa-solid fa-music"></i> The song that is
+            stuck in my head
+            right now</a>
         </div>
       </div>
       <div class="section">
         Stuff I made
         <div class="item">
-          <a href="https://prownieir.vercel.app" target="_blank"
-            ><i class="fa-solid fa-code"></i>Prownie IR</a
-          >
+          <a href="https://prownieir.vercel.app" target="_blank"><i class="fa-solid fa-code"></i>Prownie IR</a>
         </div>
         <div class="item">
-          <a href="https://lr2skinhelp.vercel.app" target="_blank"
-            ><i class="fa-solid fa-code"></i> LR2 Skin Help (English Version)</a
-          >
+          <a href="https://lr2skinhelp.vercel.app" target="_blank"><i class="fa-solid fa-code"></i> LR2 Skin Help
+            (English Version)</a>
         </div>
         <div class="item">
-          <a href="https://yumemizook.github.io/suometeo/" target="_blank"
-            ><i class="fa-solid fa-code"></i> Suometeo (weather app)</a
-          >
+          <a href="https://yumemizook.github.io/suometeo/" target="_blank"><i class="fa-solid fa-code"></i> Suometeo
+            (weather app)</a>
         </div>
         <div class="item">
-          <a href="https://yumemizook.github.io/sample-quiz/" target="_blank"
-            ><i class="fa-solid fa-code"></i> Very simple quiz site</a
-          >
+          <a href="https://yumemizook.github.io/sample-quiz/" target="_blank"><i class="fa-solid fa-code"></i> Very
+            simple quiz site</a>
         </div>
       </div>
     </div>
-  </body>
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-    import {
-      getFirestore,
-      collection,
-      getDocs,
-      query,
-      orderBy,
-    } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+  </div>
+</body>
+<script>
 
-    // Custom date formatting function to avoid CORS issues
-    function formatDistanceToNow(date, options = {}) {
-      const now = new Date();
-      const diffInMs = now - date;
-      const diffInSeconds = Math.floor(diffInMs / 1000);
-      const diffInMinutes = Math.floor(diffInSeconds / 60);
-      const diffInHours = Math.floor(diffInMinutes / 60);
-      const diffInDays = Math.floor(diffInHours / 24);
-      const diffInWeeks = Math.floor(diffInDays / 7);
-      const diffInMonths = Math.floor(diffInDays / 30);
-      const diffInYears = Math.floor(diffInDays / 365);
-
-      if (diffInSeconds < 60) {
-        return 'just now';
-      } else if (diffInMinutes < 60) {
-        return `${diffInMinutes} minute${diffInMinutes !== 1 ? 's' : ''} ago`;
-      } else if (diffInHours < 24) {
-        return `${diffInHours} hour${diffInHours !== 1 ? 's' : ''} ago`;
-      } else if (diffInDays < 7) {
-        return `${diffInDays} day${diffInDays !== 1 ? 's' : ''} ago`;
-      } else if (diffInWeeks < 4) {
-        return `${diffInWeeks} week${diffInWeeks !== 1 ? 's' : ''} ago`;
-      } else if (diffInMonths < 12) {
-        return `${diffInMonths} month${diffInMonths !== 1 ? 's' : ''} ago`;
-      } else {
-        return `${diffInYears} year${diffInYears !== 1 ? 's' : ''} ago`;
-      }
+function continueBtn() {
+    try {
+      localStorage.setItem("warning-agreed", "true");
+      const warningElem = document.querySelector(".warning");
+      const mainElem = document.querySelector(".main");
+      if (warningElem) warningElem.style.display = "none";
+      if (mainElem) mainElem.style.display = "block";
+    } catch (e) {
+      console.error("Error in continueBtn:", e);
     }
+  }
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyCcyR-VW3hFroVrG0164QwVO8WYSliGZQA",
-      authDomain: "testrun-b565e.firebaseapp.com",
-      databaseURL:
-        "https://testrun-b565e-default-rtdb.asia-southeast1.firebasedatabase.app",
-      projectId: "testrun-b565e",
-      storageBucket: "testrun-b565e.firebasestorage.app",
-      messagingSenderId: "786542410028",
-      appId: "1:786542410028:web:7898349ee8c158e96e9489",
+  function exitBtn() {
+    try {
+      localStorage.setItem("warning-agreed", "false");
+      const warningElem = document.querySelector(".warning");
+      if (warningElem) warningElem.style.display = "none";
+      // Attempt to close the window, fallback to redirect if not allowed
+      if (window.close) {
+        window.close();
+      } else {
+        window.location.href = "about:blank";
+      }
+    } catch (e) {
+      console.error("Error in exitBtn:", e);
+      window.location.href = "about:blank";
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    if (!localStorage.getItem("warning-agreed")) {
+      document.querySelector(".warning").style.display = "block";
+    }
+    if (localStorage.getItem("warning-agreed") === "false") {
+      localStorage.removeItem("warning-agreed");
+      document.querySelector(".main").style.display = "none";
+      document.querySelector(".warning").style.display = "block";
+    }
+  });
+</script>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+  import {
+    getFirestore,
+    collection,
+    getDocs,
+    query,
+    orderBy,
+  } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+  // Custom date formatting function to avoid CORS issues
+  function formatDistanceToNow(date, options = {}) {
+    const now = new Date();
+    const diffInMs = now - date;
+    const diffInSeconds = Math.floor(diffInMs / 1000);
+    const diffInMinutes = Math.floor(diffInSeconds / 60);
+    const diffInHours = Math.floor(diffInMinutes / 60);
+    const diffInDays = Math.floor(diffInHours / 24);
+    const diffInWeeks = Math.floor(diffInDays / 7);
+    const diffInMonths = Math.floor(diffInDays / 30);
+    const diffInYears = Math.floor(diffInDays / 365);
+
+    if (diffInSeconds < 60) {
+      return 'just now';
+    } else if (diffInMinutes < 60) {
+      return `${diffInMinutes} minute${diffInMinutes !== 1 ? 's' : ''} ago`;
+    } else if (diffInHours < 24) {
+      return `${diffInHours} hour${diffInHours !== 1 ? 's' : ''} ago`;
+    } else if (diffInDays < 7) {
+      return `${diffInDays} day${diffInDays !== 1 ? 's' : ''} ago`;
+    } else if (diffInWeeks < 4) {
+      return `${diffInWeeks} week${diffInWeeks !== 1 ? 's' : ''} ago`;
+    } else if (diffInMonths < 12) {
+      return `${diffInMonths} month${diffInMonths !== 1 ? 's' : ''} ago`;
+    } else {
+      return `${diffInYears} year${diffInYears !== 1 ? 's' : ''} ago`;
+    }
+  }
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyCcyR-VW3hFroVrG0164QwVO8WYSliGZQA",
+    authDomain: "testrun-b565e.firebaseapp.com",
+    databaseURL:
+      "https://testrun-b565e-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "testrun-b565e",
+    storageBucket: "testrun-b565e.firebasestorage.app",
+    messagingSenderId: "786542410028",
+    appId: "1:786542410028:web:7898349ee8c158e96e9489",
+  };
+
+  // Initialize Firebase first
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  const blogRef = collection(db, "blog");
+
+  // Secure HTML sanitizer function
+  function sanitizeHTML(html) {
+    // Create a temporary div to parse HTML
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = html;
+
+    // Define allowed tags and attributes
+    const allowedTags = {
+      'p': ['style'],
+      'br': [],
+      'strong': ['style'],
+      'em': ['style'],
+      'u': ['style'],
+      'h1': ['style'],
+      'h2': ['style'],
+      'h3': ['style'],
+      'h4': ['style'],
+      'h5': ['style'],
+      'h6': ['style'],
+      'ul': ['style'],
+      'ol': ['style'],
+      'li': ['style'],
+      'blockquote': ['style'],
+      'code': ['style'],
+      'pre': ['style'],
+      'img': ['src', 'alt', 'title', 'width', 'height', 'style'],
+      'video': ['src', 'controls', 'width', 'height', 'style', 'autoplay', 'muted', 'loop'],
+      'audio': ['src', 'controls', 'style', 'autoplay', 'muted', 'loop'],
+      'source': ['src', 'type'],
+      'a': ['href', 'target', 'rel', 'style'],
+      'span': ['style'],
+      'div': ['style']
     };
 
-    // Initialize Firebase first
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-    const blogRef = collection(db, "blog");
+    // Define allowed CSS properties for style attributes
+    const allowedCSSProps = [
+      'color', 'background-color', 'font-size', 'font-weight', 'font-style',
+      'text-align', 'margin', 'padding', 'border', 'border-radius',
+      'width', 'height', 'max-width', 'max-height', 'display', 'float',
+      'clear', 'position', 'top', 'left', 'right', 'bottom', 'z-index'
+    ];
 
-    // Secure HTML sanitizer function
-    function sanitizeHTML(html) {
-      // Create a temporary div to parse HTML
-      const tempDiv = document.createElement('div');
-      tempDiv.innerHTML = html;
-      
-      // Define allowed tags and attributes
-      const allowedTags = {
-        'p': ['style'],
-        'br': [],
-        'strong': ['style'],
-        'em': ['style'],
-        'u': ['style'],
-        'h1': ['style'],
-        'h2': ['style'],
-        'h3': ['style'],
-        'h4': ['style'],
-        'h5': ['style'],
-        'h6': ['style'],
-        'ul': ['style'],
-        'ol': ['style'],
-        'li': ['style'],
-        'blockquote': ['style'],
-        'code': ['style'],
-        'pre': ['style'],
-        'img': ['src', 'alt', 'title', 'width', 'height', 'style'],
-        'video': ['src', 'controls', 'width', 'height', 'style', 'autoplay', 'muted', 'loop'],
-        'audio': ['src', 'controls', 'style', 'autoplay', 'muted', 'loop'],
-        'source': ['src', 'type'],
-        'a': ['href', 'target', 'rel', 'style'],
-        'span': ['style'],
-        'div': ['style']
-      };
-      
-      // Define allowed CSS properties for style attributes
-      const allowedCSSProps = [
-        'color', 'background-color', 'font-size', 'font-weight', 'font-style',
-        'text-align', 'margin', 'padding', 'border', 'border-radius',
-        'width', 'height', 'max-width', 'max-height', 'display', 'float',
-        'clear', 'position', 'top', 'left', 'right', 'bottom', 'z-index'
-      ];
-      
-      // Function to sanitize style attribute
-      function sanitizeStyle(styleValue) {
-        if (!styleValue) return '';
-        
-        // Remove any script-like content
-        if (styleValue.includes('javascript:') || styleValue.includes('expression(')) {
-          return '';
-        }
-        
-        // Only allow safe CSS properties
-        const styles = styleValue.split(';');
-        const sanitizedStyles = styles
-          .map(style => {
-            const [property, value] = style.split(':').map(s => s.trim());
-            if (allowedCSSProps.includes(property) && value) {
-              return `${property}: ${value}`;
-            }
-            return '';
-          })
-          .filter(style => style.length > 0);
-        
-        return sanitizedStyles.join('; ');
+    // Function to sanitize style attribute
+    function sanitizeStyle(styleValue) {
+      if (!styleValue) return '';
+
+      // Remove any script-like content
+      if (styleValue.includes('javascript:') || styleValue.includes('expression(')) {
+        return '';
       }
-      
-      // Function to sanitize attributes
-      function sanitizeAttributes(element, allowedAttrs) {
-        const attributes = Array.from(element.attributes);
-        attributes.forEach(attr => {
-          if (!allowedAttrs.includes(attr.name)) {
-            element.removeAttribute(attr.name);
-          } else if (attr.name === 'style') {
-            const sanitizedStyle = sanitizeStyle(attr.value);
-            if (sanitizedStyle) {
-              element.setAttribute('style', sanitizedStyle);
-            } else {
-              element.removeAttribute('style');
-            }
-          } else if (attr.name === 'href') {
-            // Ensure href is safe (no javascript:)
-            if (attr.value.startsWith('javascript:') || attr.value.startsWith('data:')) {
-              element.removeAttribute('href');
-            }
-          } else if (attr.name === 'src') {
-            // Ensure src is safe (no javascript: or data: for non-images)
-            if (attr.value.startsWith('javascript:') || 
-                (attr.value.startsWith('data:') && !element.tagName.toLowerCase().match(/^(img|video|audio)$/))) {
-              element.removeAttribute('src');
-            }
+
+      // Only allow safe CSS properties
+      const styles = styleValue.split(';');
+      const sanitizedStyles = styles
+        .map(style => {
+          const [property, value] = style.split(':').map(s => s.trim());
+          if (allowedCSSProps.includes(property) && value) {
+            return `${property}: ${value}`;
           }
-        });
-      }
-      
-      // Function to recursively sanitize DOM elements
-      function sanitizeElement(element) {
-        const tagName = element.tagName.toLowerCase();
-        
-        // Remove disallowed tags
-        if (!allowedTags[tagName]) {
-          element.remove();
-          return;
-        }
-        
-        // Sanitize attributes
-        sanitizeAttributes(element, allowedTags[tagName]);
-        
-        // Recursively sanitize child elements
-        const children = Array.from(element.children);
-        children.forEach(child => sanitizeElement(child));
-      }
-      
-      // Sanitize the entire content
-      sanitizeElement(tempDiv);
-      
-      return tempDiv.innerHTML;
+          return '';
+        })
+        .filter(style => style.length > 0);
+
+      return sanitizedStyles.join('; ');
     }
 
-    async function loadBlogs() {
-      try {
-        const blogContainer = document.querySelector(".blogcontainer");
-        if (!blogContainer) {
-          console.error("Blog container element not found");
-          return;
+    // Function to sanitize attributes
+    function sanitizeAttributes(element, allowedAttrs) {
+      const attributes = Array.from(element.attributes);
+      attributes.forEach(attr => {
+        if (!allowedAttrs.includes(attr.name)) {
+          element.removeAttribute(attr.name);
+        } else if (attr.name === 'style') {
+          const sanitizedStyle = sanitizeStyle(attr.value);
+          if (sanitizedStyle) {
+            element.setAttribute('style', sanitizedStyle);
+          } else {
+            element.removeAttribute('style');
+          }
+        } else if (attr.name === 'href') {
+          // Ensure href is safe (no javascript:)
+          if (attr.value.startsWith('javascript:') || attr.value.startsWith('data:')) {
+            element.removeAttribute('href');
+          }
+        } else if (attr.name === 'src') {
+          // Ensure src is safe (no javascript: or data: for non-images)
+          if (attr.value.startsWith('javascript:') ||
+            (attr.value.startsWith('data:') && !element.tagName.toLowerCase().match(/^(img|video|audio)$/))) {
+            element.removeAttribute('src');
+          }
         }
+      });
+    }
 
-        const blogQuery = query(blogRef, orderBy("createdAt", "desc"));
-        const blogSnapshot = await getDocs(blogQuery);
-        const blogList = blogSnapshot.docs.map((doc) => doc.data());
+    // Function to recursively sanitize DOM elements
+    function sanitizeElement(element) {
+      const tagName = element.tagName.toLowerCase();
 
-        blogContainer.innerHTML = "";
+      // Remove disallowed tags
+      if (!allowedTags[tagName]) {
+        element.remove();
+        return;
+      }
 
-        if (blogList.length === 0) {
-          blogContainer.innerHTML =
-            "<p style='color:#888;'>No blog posts found.</p>";
-          return;
-        }
+      // Sanitize attributes
+      sanitizeAttributes(element, allowedTags[tagName]);
 
-        blogList.forEach((blog) => {
-          const blogElement = document.createElement("div");
-          blogElement.className = "blog-post";
-          let dateString = "";
-          try {
-            if (blog.createdAt && typeof blog.createdAt.toDate === "function") {
-              dateString = formatDistanceToNow(blog.createdAt.toDate());
-            } else if (blog.createdAt instanceof Date) {
-              dateString = formatDistanceToNow(blog.createdAt);
-            } else if (
-              typeof blog.createdAt === "number" ||
-              typeof blog.createdAt === "string"
-            ) {
-              dateString = formatDistanceToNow(new Date(blog.createdAt));
-            } else {
-              dateString = "";
-            }
-          } catch (e) {
+      // Recursively sanitize child elements
+      const children = Array.from(element.children);
+      children.forEach(child => sanitizeElement(child));
+    }
+
+    // Sanitize the entire content
+    sanitizeElement(tempDiv);
+
+    return tempDiv.innerHTML;
+  }
+
+  async function loadBlogs() {
+    try {
+      const blogContainer = document.querySelector(".blogcontainer");
+      if (!blogContainer) {
+        console.error("Blog container element not found");
+        return;
+      }
+
+      const blogQuery = query(blogRef, orderBy("createdAt", "desc"));
+      const blogSnapshot = await getDocs(blogQuery);
+      const blogList = blogSnapshot.docs.map((doc) => doc.data());
+
+      blogContainer.innerHTML = "";
+
+      if (blogList.length === 0) {
+        blogContainer.innerHTML =
+          "<p style='color:#888;'>No blog posts found.</p>";
+        return;
+      }
+
+      blogList.forEach((blog) => {
+        const blogElement = document.createElement("div");
+        blogElement.className = "blog-post";
+        let dateString = "";
+        try {
+          if (blog.createdAt && typeof blog.createdAt.toDate === "function") {
+            dateString = formatDistanceToNow(blog.createdAt.toDate());
+          } else if (blog.createdAt instanceof Date) {
+            dateString = formatDistanceToNow(blog.createdAt);
+          } else if (
+            typeof blog.createdAt === "number" ||
+            typeof blog.createdAt === "string"
+          ) {
+            dateString = formatDistanceToNow(new Date(blog.createdAt));
+          } else {
             dateString = "";
           }
-          let timestr = "";
-          if (blog.createdAt && typeof blog.createdAt.toDate === "function") {
-            timestr = blog.createdAt.toDate().getTime();
-          }
-          const luminous =
-            ((Number(new Date()) - Number(timestr)) /
-              (1000 * 60 * 60 * 24 * 30)) *
-            36;
-          console.log(luminous);
-          
-          // Sanitize the blog content before inserting
-          const sanitizedContent = sanitizeHTML(blog.content || "No content");
-          
-          blogElement.innerHTML = `
+        } catch (e) {
+          dateString = "";
+        }
+        let timestr = "";
+        if (blog.createdAt && typeof blog.createdAt.toDate === "function") {
+          timestr = blog.createdAt.toDate().getTime();
+        }
+        const luminous =
+          ((Number(new Date()) - Number(timestr)) /
+            (1000 * 60 * 60 * 24 * 30)) *
+          36;
+        console.log(luminous);
+
+        // Sanitize the blog content before inserting
+        const sanitizedContent = sanitizeHTML(blog.content || "No content");
+
+        blogElement.innerHTML = `
           <span class="blog-date" style="font-size: 0.8rem; color: #888; margin-left: 10px;">${formatDistanceToNow(
-            blog.createdAt.toDate()
-          )}</span>
-            <h2 class="blog-title" style="font-size: 1.5rem; color: hsl(187, 100%, ${
-              62 + luminous
-            }%); margin-left: 10px;">${sanitizeHTML(blog.title || "Untitled")}</h2>
+          blog.createdAt.toDate()
+        )}</span>
+              <h2 class="blog-title" style="font-size: 1.5rem; margin-left: 10px; color: hsl(187, 100%, ${62 + luminous
+          }%)">${sanitizeHTML(blog.title || "Untitled")}</h2>
             <div class="blog-content" style="font-size: 1rem; color: #ffffff; margin-left: 10px;">${sanitizedContent}</div>
           `;
-          blogContainer.appendChild(blogElement);
-        });
-      } catch (error) {
-        console.error("Error loading blogs:", error);
-        const blogContainer = document.querySelector(".blogcontainer");
-        if (blogContainer) {
-          blogContainer.innerHTML =
-            "<p style='color:red;'>Failed to load blog posts. Please try again later.</p>";
-        }
+        blogContainer.appendChild(blogElement);
+      });
+    } catch (error) {
+      console.error("Error loading blogs:", error);
+      const blogContainer = document.querySelector(".blogcontainer");
+      if (blogContainer) {
+        blogContainer.innerHTML =
+          "<p style='color:red;'>Failed to load blog posts. Please try again later.</p>";
       }
     }
+  }
 
-    function updateDateTime() {
-      try {
-        const now = new Date();
-        const datetimeElem = document.querySelector(".datetime");
-        if (datetimeElem) {
-          datetimeElem.innerHTML = `${now.toLocaleDateString()} ${now.toLocaleTimeString(
-            "en-GB",
-            {
-              hour: "2-digit",
-              minute: "2-digit",
-              second: "2-digit",
-              hour12: false,
-            }
-          )}`;
-        }
-      } catch (error) {
-        console.error("Error updating datetime:", error);
+  function updateDateTime() {
+    try {
+      const now = new Date();
+      const datetimeElem = document.querySelector(".datetime");
+      if (datetimeElem) {
+        datetimeElem.innerHTML = `${now.toLocaleDateString()} ${now.toLocaleTimeString(
+          "en-GB",
+          {
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+            hour12: false,
+          }
+        )}`;
       }
+    } catch (error) {
+      console.error("Error updating datetime:", error);
     }
+  }
 
-    document.addEventListener("DOMContentLoaded", () => {
-      updateDateTime();
-      loadBlogs();
-      setInterval(updateDateTime, 1000);
-    });
-  </script>
+
+  document.addEventListener("DOMContentLoaded", () => {
+    updateDateTime();
+    loadBlogs();
+    setInterval(updateDateTime, 1000);
+    if (!localStorage.getItem("warning-agreed")) {
+      document.querySelector(".warning").style.display = "block";
+    }
+  });
+</script>
 </html>

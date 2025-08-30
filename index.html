@@ -343,7 +343,7 @@
       <div class="text" style="margin-left: 10px">
         <h2>About me</h2>
         <ul>
-          <li>17 years old, trans girl</li>
+          <li><span class="age"></span> years old, trans girl</li>
           <li>Dying to get out of high school by next year</li>
           <li>
             <span style="color: rgb(255, 61, 61)">NOT</span> from Japan. (I wish
@@ -485,7 +485,12 @@
       window.location.href = "about:blank";
     }
   }
-
+  const age = document.querySelector(".age");
+  const now = new Date();
+  const birthDate = new Date("2008-06-05");
+  const ageInMilliseconds = now - birthDate;
+  const ageInYears = Math.floor(ageInMilliseconds / (1000 * 60 * 60 * 24 * 365.25));
+  age.innerHTML = ageInYears;
   document.addEventListener("DOMContentLoaded", () => {
     try {
       const agreed = localStorage.getItem("warning-agreed");

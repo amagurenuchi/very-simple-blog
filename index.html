@@ -751,10 +751,10 @@
               bordercolor = `hsl(240, 100%, 100%)`;
               break;
               case "balloonposting":
-              luminous = ((Number(new Date()) - Number(timestampMs)) / (1000 * 60 * 60 * 24 * 30)) * 28;
+              luminous = ((Number(new Date()) - Number(timestampMs)) / (1000 * 60 * 60 * 24 * 30)) * 16;
               lightnessPercent = Math.max(0, Math.min(100, 51 + luminous));
-              color = `hsl(333, 51%, ${lightnessPercent}%)`;
-              bordercolor = `hsl(333, 51%, 72%)`;
+              color = `hsl(333, 100%, ${lightnessPercent}%)`;
+              bordercolor = `hsl(333, 100%, 84%)`;
               break;
             case "other":
               luminous = ((Number(new Date()) - Number(timestampMs)) / (1000 * 60 * 60 * 24 * 30)) * 50;

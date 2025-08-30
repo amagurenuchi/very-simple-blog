@@ -85,7 +85,6 @@
       padding: 15px;
       background-color: #ffffff0e;
       border-radius: 8px;
-      border-left: 5px solid rgb(61, 255, 245);
       color: #ffffff;
     }
 
@@ -685,6 +684,15 @@
         const blogElement = document.createElement("div");
         blogElement.className = "blog-post";
         let dateString = "";
+        const imptags = blog.importantValue;
+        const importantText = {
+          "delta force": "Delta Force",
+          "other games": "Other games",
+          "development": "Development",
+          "life": "Life",
+          "other": "Other / Shitposts",
+          "balloonposting": "Balloon Posting"
+        };
         try {
           if (blog.createdAt && typeof blog.createdAt.toDate === "function") {
             dateString = formatDistanceToNow(blog.createdAt.toDate());
@@ -713,19 +721,80 @@
           if (!Number.isNaN(parsed)) timestampMs = parsed;
         }
         let luminous = 0;
+        let lightnessPercent = 0;
+        let color = "";
+        let bordercolor = "";
         if (typeof timestampMs === 'number' && !Number.isNaN(timestampMs)) {
-          luminous = ((Number(new Date()) - Number(timestampMs)) / (1000 * 60 * 60 * 24 * 30)) * 36;
+          switch (imptags) {
+            case "delta force":
+              luminous = ((Number(new Date()) - Number(timestampMs)) / (1000 * 60 * 60 * 24 * 30)) * 30;
+              lightnessPercent = Math.max(0, Math.min(100, 70 + luminous));
+              color = `hsl(138,85%,${lightnessPercent}%)`;
+              bordercolor = `hsl(138,85%,70%)`;
+              break;
+            case "other games":
+              luminous = ((Number(new Date()) - Number(timestampMs)) / (1000 * 60 * 60 * 24 * 30)) * 17;
+              lightnessPercent = Math.max(0, Math.min(100, 83 + luminous));
+              color = `hsl(188, 100%, ${lightnessPercent}%)`;
+              bordercolor = `hsl(188, 100%, 83%)`;
+              break;
+            case "development":
+              luminous = ((Number(new Date()) - Number(timestampMs)) / (1000 * 60 * 60 * 24 * 30)) * 20;
+              lightnessPercent = Math.max(0, Math.min(100, 80 + luminous));
+              color = `hsl(256, 100%, ${lightnessPercent}%)`;
+              bordercolor = `hsl(256, 100%, 80%)`;
+              break;
+            case "life":
+              luminous = 100;
+              lightnessPercent = 100;
+              color = `hsl(240, 100%, 100%)`;
+              bordercolor = `hsl(240, 100%, 100%)`;
+              break;
+              case "balloonposting":
+              luminous = ((Number(new Date()) - Number(timestampMs)) / (1000 * 60 * 60 * 24 * 30)) * 28;
+              lightnessPercent = Math.max(0, Math.min(100, 51 + luminous));
+              color = `hsl(333, 51%, ${lightnessPercent}%)`;
+              bordercolor = `hsl(333, 51%, 72%)`;
+              break;
+            case "other":
+              luminous = ((Number(new Date()) - Number(timestampMs)) / (1000 * 60 * 60 * 24 * 30)) * 50;
+              lightnessPercent = Math.max(0, Math.min(100, 50 + luminous));
+              color = `hsl(0, 0%, ${lightnessPercent}%)`;
+              bordercolor = `hsl(0, 0%, 50%)`;
+              break;
+          }
         }
-        const lightnessPercent = Math.max(0, Math.min(100, 62 + luminous));
-
+        const blogtags = blog.tags;
+        const blogtagColors = [
+                "#ff6b6b", // red
+                "#6bc1ff", // blue
+                "#6bffb0", // green
+                "#ffe66b", // yellow
+                "#b36bff", // purple
+                "#ffb36b", // orange
+                "#6bffd6", // teal
+                "#ff6be6", // pink
+                "#aaff6b", // lime
+                "#6b8cff"  // indigo
+            ];
+            const tagList = blogtags.split(',')
+                .map(tag => tag.trim())
+                .filter(tag => tag.length > 0)
+                .map((tag, idx) => {
+                    const color = blogtagColors[idx % blogtagColors.length];
+                    return `<div class="tag" style="display:inline-block;padding:2px 3px 2px 3px;border-radius:8px;background:${color};color:#222;font-size:0.95em;">${sanitizeHTML(tag)}</div>`;
+                });
         // Sanitize the blog content before inserting
         const sanitizedContent = sanitizeHTML(blog.content || "No content");
 
         blogElement.innerHTML = `
           <span class="blog-date" style="font-size: 0.8rem; color: #888; margin-left: 10px;">${dateString}</span>
-              <h2 class="blog-title" style="font-size: 1.5rem; margin-left: 10px; color: hsl(187, 100%, ${lightnessPercent}%)">${sanitizeHTML(blog.title || "Untitled")}</h2>
+              <h2 class="blog-title" style="font-size: 1.5rem; margin-left: 10px; color: ${color}">${sanitizeHTML(blog.title || "Untitled")}</h2>
+              <div class="imptag" style="font-size: 0.8rem; color: #222; margin-left: 10px; background-color: ${color}; border-radius: 5px; padding: 3px 5px 3px 5px; width: fit-content;">${importantText[imptags]}</div>
+              <div class="blog-tags" style="font-size: 0.8rem; color: #888; margin-left: 10px; margin-top: 5px;">${tagList.join(", ")}</div>
             <div class="blog-content" style="font-size: 1rem; color: #ffffff; margin-left: 10px;">${sanitizedContent}</div>
           `;
+          blogElement.style.borderLeft = `5px solid ${bordercolor}`;
         blogContainer.appendChild(blogElement);
       });
     } catch (error) {

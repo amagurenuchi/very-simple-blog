@@ -260,7 +260,15 @@
       margin: 15px 0;
       line-height: 1.6;
     }
-
+    #blogfilter {
+      margin-left: 20px;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ffffff;
+      background-color: #000000;
+      color: #ffffff;
+      width: 25%;
+    }
     @media (max-width: 768px) {
       .warning-content {
         margin: 20px;
@@ -354,6 +362,17 @@
           </li>
         </ul>
       </div>
+    </div>
+    <div class="blogfilter">
+      <select name="blogfilter" id="blogfilter">
+        <option value="">All blogs</option>
+        <option value="delta force">Delta Force</option>
+        <option value="other games">Other Games</option>
+        <option value="development">Development</option>
+        <option value="life">Life</option>
+        <option value="balloonposting">Balloonposting</option>
+        <option value="other">Other</option>
+      </select>
     </div>
     <div class="blogcontainer"></div>
     <div class="footer" style="margin-top: 50px">
@@ -691,7 +710,7 @@
           "development": "Development",
           "life": "Life",
           "other": "Other / Shitposts",
-          "balloonposting": "Balloon Posting"
+          "balloonposting": "Balloonposting"
         };
         try {
           if (blog.createdAt && typeof blog.createdAt.toDate === "function") {
@@ -805,8 +824,24 @@
           "<p style='color:red;'>Failed to load blog posts. Please try again later.</p>";
       }
     }
-  }
+    // Fix blog filter: show/hide blog posts by category
+    document.getElementById('blogfilter').addEventListener('change', () => {
+      const blogfilter = document.getElementById('blogfilter');
+      const bloglist = document.querySelectorAll('.blog-post');
+      const selected = blogfilter.value;
 
+      bloglist.forEach(blog => {
+        // Get the category from the imptag div inside the blog post
+        const imptagDiv = blog.querySelector('.imptag');
+        const category = imptagDiv ? imptagDiv.textContent.trim().toLowerCase() : '';
+        if (!selected || selected === "" || category === selected) {
+          blog.style.display = 'block';
+        } else {
+          blog.style.display = 'none';
+        }
+      });
+    });
+  }
   function updateDateTime() {
     try {
       const now = new Date();
@@ -900,6 +935,7 @@
     }
     setInterval(updateDateTime, 1000);
   });
+
 </script>
 
 </html>

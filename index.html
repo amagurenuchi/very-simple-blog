@@ -867,7 +867,8 @@
       bloglist.forEach(blog => {
         // Get the category from the imptag div inside the blog post
         const imptagDiv = blog.querySelector('.imptag');
-        const category = imptagDiv ? imptagDiv.textContent.trim().toLowerCase() : '';
+        const dotFilter = imptagDiv ? imptagDiv.textContent.trim().match(/●\s*(.+)/) : '';
+        const category = dotFilter ? dotFilter[1].trim().toLowerCase() : '';
         if (!selected || selected === "" || category === selected) {
           blog.style.display = 'block';
         } else {

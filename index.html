@@ -838,6 +838,7 @@
         const sanitizedContent = sanitizeHTML(blog.content || "No content");
 
         blogElement.innerHTML = `
+        <span class="number" style="font-size: 0.6em; color: #666; margin-left: 11px;">post #${(blogList.length - blogList.indexOf(blog)).toString().padStart(3, '0')}</span> <br>
           <span class="blog-date" style="font-size: 0.8rem; color: #888; margin-left: 10px;">${dateString}</span>
               <h2 class="blog-title" style="font-size: 1.5rem; margin-left: 10px; color: ${color}">${sanitizeHTML(blog.title || "Untitled")}</h2>
               ${goreTagHTML}

@@ -460,7 +460,7 @@
       warningElem.style.display = "none";
       console.log("%cPOOR!", "color: red; font-size: 5rem");
       
-      // Create a better styled exit message
+      // Windows 95 exit message
       mainElem.innerHTML = `
         <div style="
           position: fixed;
@@ -503,10 +503,16 @@
   }
   const age = document.querySelector(".age");
   const now = new Date();
-  const birthDate = new Date("2008-06-05");
-  const ageInMilliseconds = now - birthDate;
-  const ageInYears = Math.floor(ageInMilliseconds / (1000 * 60 * 60 * 24 * 365.25));
+  const birthDate = new Date("2008-05-06");
+  let ageInYears = now.getYear() - birthDate.getYear();
+  if (now.getMonth() < birthDate.getMonth() || (now.getMonth() === birthDate.getMonth() && now.getDate() < birthDate.getDate())) {
+    ageInYears--;
+  }
+  if (ageInYears > 25){
+    ageInYears = `${ageInYears} (damn i'm old)`;
+  }
   age.innerHTML = ageInYears;
+  console.log(ageInYears, now.getMonth(), birthDate.getMonth(), now.getDate(), birthDate.getDate());
   document.addEventListener("DOMContentLoaded", () => {
     try {
       const agreed = localStorage.getItem("warning-agreed");
@@ -536,7 +542,7 @@
     orderBy,
   } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
-  // Custom date formatting function to avoid CORS issues
+  // Custom date formatting function to avoid CORS issues with Firebase
   function formatDistanceToNow(date, options = {}) {
     const now = new Date();
     const diffInMs = now - date;
@@ -581,7 +587,7 @@
   const db = getFirestore(app);
   const blogRef = collection(db, "blog");
 
-  // Secure HTML sanitizer function
+  // Secure HTML sanitizer function to avoid XSS attacks
   function sanitizeHTML(html) {
     // Create a temporary div to parse HTML
     const tempDiv = document.createElement('div');
@@ -617,7 +623,7 @@
       'div': ['style']
     };
 
-    // Define allowed CSS properties for style attributes
+    // Define allowed CSS properties for style attributes to avoid CSS injection
     const allowedCSSProps = [
       'color', 'background-color', 'font-size', 'font-weight', 'font-style',
       'text-align', 'margin', 'padding', 'border', 'border-radius',
@@ -625,7 +631,7 @@
       'clear', 'position', 'top', 'left', 'right', 'bottom', 'z-index'
     ];
 
-    // Function to sanitize style attribute
+    // Function to sanitize style attribute to avoid CSS injection
     function sanitizeStyle(styleValue) {
       if (!styleValue) return '';
 
@@ -649,7 +655,7 @@
       return sanitizedStyles.join('; ');
     }
 
-    // Function to sanitize attributes
+    // Function to sanitize attributes to avoid XSS attacks
     function sanitizeAttributes(element, allowedAttrs) {
       const attributes = Array.from(element.attributes);
       attributes.forEach(attr => {
@@ -663,12 +669,12 @@
             element.removeAttribute('style');
           }
         } else if (attr.name === 'href') {
-          // Ensure href is safe (no javascript:)
+          // Ensure href is safe (no javascript: or data:)
           if (attr.value.startsWith('javascript:') || attr.value.startsWith('data:')) {
             element.removeAttribute('href');
           }
         } else if (attr.name === 'src') {
-          // Ensure src is safe (no javascript: or data: for non-images)
+          // Ensure src is safe (no javascript: or data: for non-images to avoid XSS attacks)
           if (attr.value.startsWith('javascript:') ||
             (attr.value.startsWith('data:') && !element.tagName.toLowerCase().match(/^(img|video|audio)$/))) {
             element.removeAttribute('src');
@@ -681,7 +687,7 @@
       }
     }
 
-    // Function to recursively sanitize DOM elements
+    // Function to recursively sanitize DOM elements to avoid XSS attacks
     function sanitizeElement(element) {
       const tagName = element.tagName.toLowerCase();
 
@@ -691,7 +697,7 @@
         return;
       }
 
-      // Sanitize attributes
+      // Sanitize attributes to avoid XSS attacks
       sanitizeAttributes(element, allowedTags[tagName]);
 
       // Recursively sanitize child elements
@@ -906,20 +912,22 @@
     updateDateTime();
     loadBlogs();
     const now = new Date();
-    // Example: Show a message if it's after midnight
-    if (now.getHours() >= 0 && now.getHours() < 6) {
+
+    // Show messages based on the time of day
+    const hour = now.getHours();
+    if (hour >= 0 && hour < 6) {
       console.log(
-        "%c	(∪｡∪)｡｡｡zzZ %cTime to go to bed?",
+        "%c(∪｡∪)｡｡｡zzZ %cTime to go to bed?",
         "color: cyan; font-size: 2rem; font-weight: bold;",
         "color: white; font-size: 1.2rem; font-weight: bold;"
       );
-    } else if (now.getHours() >= 6 && now.getHours() < 12) {
+    } else if (hour >= 6 && hour < 12) {
       console.log(
         "%c(*・ω・)ﾉ %cGood morning! Hope you have a good day!",
         "color: #bfff47; font-size: 2rem; font-weight: bold;",
         "color: white; font-size: 1.2rem; font-weight: bold;"
       );
-    } else if (now.getHours() >= 12 && now.getHours() < 18) {
+    } else if (hour >= 12 && hour < 18) {
       console.log(
         "%c(´• ω •`) ♡ %cGood afternoon! Hoping for a great rest of your day!",
         "color: #47fcff; font-size: 2rem; font-weight: bold;",
@@ -932,46 +940,65 @@
         "color: white; font-size: 1.2rem; font-weight: bold;"
       );
     }
-    if (now.getMonth() === 0 && now.getDate() === 1) {
+
+    // Show messages based on the date
+    const month = now.getMonth();
+    const date = now.getDate();
+
+    if (month === 0 && date === 1) {
       console.log(
         "%c(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ %cHappy New Year! Wishing you a fantastic year ahead!",
         "color: #ff5e5e; font-size: 2rem; font-weight: bold;",
         "color: white; font-size: 1.2rem; font-weight: bold;"
       );
-    } else if (now.getMonth() === 11 && now.getDate() === 25) {
+    } else if (month === 11 && date === 25) {
       console.log(
         "%c＼(＾▽＾)／ %cMerry Christmas! Hope you have a joyful holiday season!",
         "color: #ff5e5e; font-size: 2rem; font-weight: bold;",
         "color: #79e65e; font-size: 1.2rem; font-weight: bold;"
       );
-    } else if (now.getMonth === 4 && now.getDate() === 6){
+    } else if (month === 4 && date === 6) {
       console.log(
-        "%c\(★ω★)/ %cHappy Birthday to me! Another year older, another year wiser!",
+        "%c\\(★ω★)/ %cHappy Birthday to me! Another year older, another year wiser!",
         "color: #dc94b4; font-size: 2rem; font-weight: bold;",
         "color: white; font-size: 1.2rem; font-weight: bold;"
       );
       document.title = "3173's blog - It's my birthday today!";
-      document.querySelector(".title").innerHTML = "<p>It's my birthday today! 🎉🎂🎈</p>";
-      document.querySelector(".title").style.color = "#ff5e5e";
-    } else if (now.getMonth() === 9 && now.getDate() === 31) {
+      const titleElem = document.querySelector(".title");
+      if (titleElem) {
+        titleElem.innerHTML = "<p>It's my birthday today! 🎉🎂🎈🎈🎈</p><h6 style='color: #666; font-size: 0.8rem; margin-left: 10px;'>pls send me lots of balloons pls pls pls i only need them</h6>";
+        titleElem.style.color = "#dc94b4";
+      }
+    } else if (month === 9 && date === 31) {
       console.log(
         "%c(ﾉ≧ڡ≦) %cHappy Halloween! Hope you have a spooktacular day!",
         "color: #ff7930; font-size: 2rem; font-weight: bold;",
         "color: white; font-size: 1.2rem; font-weight: bold;"
       );
-    } if (now.getMonth() === 5) {
+    }
+
+    if (month === 5) {
       console.log(
         "%c(ง'̀-'́)ง %cHappy Pride Month! Celebrate love and diversity! 🏳️‍🌈🏳️‍⚧️",
         "color: #ffb0fd; font-size: 2rem; font-weight: bold;",
         "color: white; font-size: 1.2rem; font-weight: bold;"
       );
-    } if (now.getMonth() === 1 && now.getDate() === 14) {
+    }
+    if (month === 1 && date === 14) {
       console.log(
         "%c(ღ˘⌣˘ღ) %cHappy Valentine's Day! Wishing you a day filled with love and joy!",
         "color: #ff82e6; font-size: 2rem; font-weight: bold;",
         "color: white; font-size: 1.2rem; font-weight: bold;"
       );
     }
+    if (month === 11 && date === 31) {
+      console.log(
+        "%c(◕ᴗ◕✿) %cNew Year is almost here!",
+        "color: #ff5e5e; font-size: 2rem; font-weight: bold;",
+        "color: white; font-size: 1.2rem; font-weight: bold;"
+      );
+    }
+    
     setInterval(updateDateTime, 1000);
   });
 

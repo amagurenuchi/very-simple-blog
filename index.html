@@ -447,6 +447,10 @@
       const warningElem = document.querySelector(".warning");
       const mainElem = document.querySelector(".main");
       const saveChoice = document.querySelector("#saveChoice")
+      const nsfwDefault = localStorage.getItem("show-nsfw");
+      if (nsfwDefault) {
+        localStorage.setItem("show-nsfw", "false"); // default to hiding nsfw posts. dont want people to be shocked
+      }
       if (warningElem) warningElem.style.display = "none";
       if (mainElem) mainElem.style.display = "block";
       console.log("Other than the cute kaomoji, there is little use here so...")

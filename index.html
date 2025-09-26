@@ -88,7 +88,7 @@
       color: #ffffff;
     }
 
-    .bio {
+    /* .bio {
       margin: 20px;
       padding: 15px;
       background-color: #ffffff0e;
@@ -100,7 +100,34 @@
 
     .bio h2 {
       color: rgb(255, 61, 61);
+    } */
+
+ .blogfilter
+    {
+      margin: 20px;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
+
+    .tobio
+    {
+      text-decoration: none;
+      color: #ffffff;
+      padding: 10px 10px;
+      border: 2px solid #ffffff;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+
+    .tobio:hover
+    {
+      background-color: #7a7a7a;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+
 
     .footer {
       margin: 20px;
@@ -355,7 +382,7 @@
     <!-- Elfsight Visitor Counter | Untitled Visitor Counter -->
 <script src="https://elfsightcdn.com/platform.js" async></script>
 <div class="elfsight-app-d7aae801-ebe1-42d6-9196-fae30aca556e" data-elfsight-app-lazy></div>
-    <div class="bio">
+    <!-- <div class="bio">
       <div class="text" style="margin-left: 10px">
         <h2>About me</h2>
         <ul>
@@ -378,8 +405,9 @@
           </li>
         </ul>
       </div>
-    </div>
+    </div> -->
     <div class="blogfilter">
+      <div class="filt">
       <select name="blogfilter" id="blogfilter">
         <option value="">All blogs</option>
         <option value="delta force">Delta Force</option>
@@ -392,7 +420,12 @@
       <button type="button" class="nsfwtoggle">
         Toggle NSFW/Gore posts
       </button>
-      <input type="number" name="postnum" class="postnum" placeholder="Jump to post #" style="width: 120px; margin-left: 20px; padding: 10px; border-radius: 5px; border: 1px solid #ffffff; background-color: #000000; color: #ffffff;" />
+            <input type="number" name="postnum" class="postnum" placeholder="Jump to post #" style="width: 120px; margin-left: 20px; padding: 10px; border-radius: 5px; border: 1px solid #ffffff; background-color: #000000; color: #ffffff;" />
+      </div>
+      <div class="biobutton">
+        <a href="aboutme.html" class="tobio">About me</a>
+      </div>
+
     </div>
     <div class="blogcontainer"></div>
     <div class="congrats" style="text-align: center">
@@ -509,17 +542,17 @@
       window.location.href = "about:blank";
     }
   }
-  const age = document.querySelector(".age");
-  const now = new Date();
-  const birthDate = new Date("2008-05-06");
-  let ageInYears = now.getYear() - birthDate.getYear();
-  if (now.getMonth() < birthDate.getMonth() || (now.getMonth() === birthDate.getMonth() && now.getDate() < birthDate.getDate())) {
-    ageInYears--;
-  }
-  if (ageInYears > 25){
-    ageInYears = `${ageInYears} (damn i'm old)`;
-  }
-  age.innerHTML = ageInYears;
+  // const age = document.querySelector(".age");
+  // const now = new Date();
+  // const birthDate = new Date("2008-05-06");
+  // let ageInYears = now.getYear() - birthDate.getYear();
+  // if (now.getMonth() < birthDate.getMonth() || (now.getMonth() === birthDate.getMonth() && now.getDate() < birthDate.getDate())) {
+  //   ageInYears--;
+  // }
+  // if (ageInYears > 25){
+  //   ageInYears = `${ageInYears} (damn i'm old)`;
+  // }
+  // age.innerHTML = ageInYears;
   document.addEventListener("DOMContentLoaded", () => {
     try {
       const agreed = localStorage.getItem("warning-agreed");

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About me!</title>
+  </head>
+  <style>
+    body {
+      font-family: "Mochiy Pop One", sans-serif;
+      /* background-image: url("./bg.jpg"); */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-color: #000000;
+      margin: 0;
+      padding: 0;
+      color: #ffffff;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      background-repeat: repeat;
+      background-color: #000000;
+      opacity: 0.8;
+      backdrop-filter: blur(10px);
+      z-index: -1;
+    }
+
+    .title {
+      font-size: 2rem;
+      color: #ffffff;
+      text-align: center;
+      padding: 20px;
+      margin-top: 70px;
+    }
+
+    .timebar {
+      background-color: #434343;
+      padding: 15px;
+      color: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+    }
+
+    .item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .item a {
+      text-decoration: none;
+      color: #ffffff;
+      margin-left: 10px;
+      padding: 10px;
+      transition: 0.3s;
+    }
+
+    .item a:hover {
+      background-color: #7a7a7a;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+
+    .basic {
+      margin: 20px;
+      padding: 15px;
+      background-color: #ffffff0e;
+      border-radius: 8px;
+      border-left: 5px solid rgb(255, 61, 61);
+      color: #ffffff;
+      margin-bottom: 50px;
+    }
+
+    .basic h2 {
+      color: rgb(255, 61, 61);
+    }
+
+    .hobby {
+      margin: 20px;
+      padding: 15px;
+      background-color: #ffffff0e;
+      border-radius: 8px;
+      border-left: 5px solid rgb(141, 167, 255);
+      color: #ffffff;
+      margin-bottom: 50px;
+    }
+
+    .hobby h2 {
+      color: rgb(141, 167, 255);
+    }
+  </style>
+  <body>
+    <div class="timebar">
+      <div class="item">
+        <div class="name" style="font-size: 1.25rem; color: rgb(61, 255, 245)">
+          Neneko Koromiko
+        </div>
+      </div>
+      <div class="datetime" style="margin-right: 30px"></div>
+    </div>
+    <div class="title">About me!</div>
+    <div class="basic">
+      <h2>A little bit about my info...</h2>
+      <p>
+        Well... Sadly, Neneko isn't my real name. (I wish it was.)<br />
+        <br />
+        My actual name is N***** K*** M*** (you will know if you check my
+        Facebook account).<br />
+        I'm <span class="age"></span> years old (born May 6th, 2008).
+      </p>
+      <p>
+        I am a high school student in Hanoi, Vietnam. I love programming,
+        especially web development (even though my brain is melting from working
+        25 hours in 3), mostly because that is only what I know at the moment.
+      </p>
+      <br />
+      <br />
+      <p>
+        I'm a trans girl (male to female just in case you don't know) and also
+        am pansexual, meaning I don't care about the gender of people I love :3
+      </p>
+      <br />
+      <p>
+        Just in case, please do NOT confuse me with the famous cosplayer with
+        the same name. <br />
+        Mine is written in Hiragana (ねねこ) while theirs is written in Katakana
+        (ネネコ).
+      </p>
+      <p>And yes, I procrastinate a lot, like most of you guys.</p>
+    </div>
+    <div class="hobby">
+      <h2>My hobbies (and struggles masquerading as hobbies I guess)</h2>
+      <div class="section">
+        <h3>Programming</h3>
+        <p>
+          It was a struggle. Really. I started my very amateurish coding journey
+          with Lua, by editing an Etterna skin, way back in 2022! (forked on my
+          GitHub page.)
+        </p>
+        <br />
+        <p>
+          Then, I moved on to HTML and CSS, and made a few simple static
+          websites. (Also on my GitHub.)
+        </p>
+        <p>
+          After that, I learned a bit of JavaScript, and made a few simple
+          interactive websites. (Also on my GitHub. What do you expect?)
+        </p>
+        <p>
+          And then comes Firebase intergration. Not a programming language, but
+          that's where most of the frustration came from sadly.
+        </p>
+        <br />
+        <p>
+          Now, I'm learning Python and C++, and trying to make more complex
+          projects (soon enough to be on my GitHub hopefully).
+        </p>
+      </div>
+      <div class="sectionrev">
+        <h3>Gaming</h3>
+        <p>
+          Gaming is my main stress reliever (and causer). I play a lot of games,
+          but my main ones are:
+        </p>
+        <ul>
+          <li>Etterna, along with osu!mania and other VSRGs</li>
+          <li>Genshin Impact (an open-world RPG)</li>
+          <li>
+            Delta Force (a tactical extraction FPS)(you should have known
+            already, I dedicated a fucking tag for that)
+          </li>
+          <li>Among Us (very rarely)</li>
+          <li>
+            Tetris the Grand Master 3 & 4 and its clones (like Techmino and
+            Master of Blocks)
+          </li>
+        </ul>
+        <div class="sectionmini">
+          <h4>Shooter games</h4>
+          <p>So yea. I do play a lot of shooter games, from mobile to PC.</p>
+          <p>In chronological order I have:</p>
+          <ul>
+            <li>PUBG Mobile (Original Season 2)</li>
+            <li>Call of Duty Mobile (Original Season 1)</li>
+            <li>Free Fire (around 2021-2022), worst shooter game ever.</li>
+            <li>Badlanders (2023 until it got shut down)</li>
+            <li>Valorant (Jun 2025)</li>
+            <li>Delta Force (2025, Season 5)</li>
+          </ul>
+          <p>
+            Needless to say, my skills were decent at most. I usually have my
+            sensitivity not tailored but rather accustomed from the start, which
+            caused some overshooting and undershooting alike.
+          </p>
+          <p>
+            And I do not fare well with games that require precise headshots
+            (like CS:GO or Valorant) and I couldn't get myself to aim at their
+            heads.
+          </p>
+        </div>
+        <div class="sectionmini">
+          <h4>Tetris</h4>
+          <p>
+            I have been playing Tetris off and on since I was a kid, but I only got serious
+            about it in 2021.
+          </p>
+          <p>TETR.IO. A modern, online Tetris game with a lot of features.</p>
+          <p>
+            I started playing it in around August 2021, when the game was still in Alpha.
+            I played it casually at first, but then I started to get more serious about it.
+            Slowly, I climbed through the ranks from D to A+ (14k TR), before taking a break until 2024.
+          </p>
+          <p>Then comes Beta. Quick Play 2 (Zenith Tower). I became dedicated again. Season 2 of Tetra League came and I reached S (16k TR) in around 2 months. <br>
+          Sadly, I couldn't reach S+ due to skill issues and time constraints (school, you know). I called it and just played casually up to now.
+        </p>
+        <br>
+        <p>
+          Nowadays, I mostly play TGM4, TGM3, Techmino, and Master of Blocks (MoB).</p>
+          <p>Having started playing TGM3 in around late 2022, at first I struggled a lot with the game's speed and mechanics, failing to beat the 7:30 torikan at Master mode at level 500 at my first time.
+          <br>But after a few months of practice, I finally managed to beat the entire move (reaching level 999) it a few months later, getting high S grades, then onto m grades. My current best is m9.
+          </p>
+          <p>Qualification exams are a different story. Since my plays were, and are so inconsistent, I am always on the verge of demotion and promotion, and I have been demoted a few times (once from m1 to S9), as well as failing the exam a few times (the worst one was a m5 fail).
+          </p>
+          <p>Shirase mode, the mode at which people practically play at the speed of light, was my favorite.
+            <br>I had been stuck at level 500 torikan for almost a year (before late 2024), before I finally managed to pass it in around almost a year of constant practicing! The 3:03 torikan was cruel...
+            <br><br>
+            And comes the even harder part: surviving the constantly rising garbage lines. Fortunately enough, the lock delay stays constant during this phase (12 frames from 600 to 1099) so when you build up enough confidence, you can easily survive with ease.
+            <br> Next comes the level 1000+ gimmick: Monochrome blocks ([ ]), basically taking away the colors of the blocks, making it harder to see the blocks and plan ahead. I struggled a lot with this, combined with a gruelling 10 frames of lock delay (and 8 at 1200+!), was too much for me to handle.
+            <br>
+            My current best is only level 1236.
+            <br>
+            <img src="./s12.jpg" alt="" width="300">
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    function updateDateTime() {
+      try {
+        const now = new Date();
+        const datetimeElem = document.querySelector(".datetime");
+        if (datetimeElem) {
+          datetimeElem.innerHTML = `${now.toLocaleDateString()} ${now.toLocaleTimeString(
+            "en-GB",
+            {
+              hour: "2-digit",
+              minute: "2-digit",
+              second: "2-digit",
+              hour12: false,
+            }
+          )}`;
+        }
+      } catch (error) {
+        console.error("Error updating datetime:", error);
+      }
+    }
+    const age = document.querySelector(".age");
+    const now = new Date();
+    const birthDate = new Date("2008-05-06");
+    let ageInYears = now.getYear() - birthDate.getYear();
+    if (
+      now.getMonth() < birthDate.getMonth() ||
+      (now.getMonth() === birthDate.getMonth() &&
+        now.getDate() < birthDate.getDate())
+    ) {
+      ageInYears--;
+    }
+    if (ageInYears > 25) {
+      ageInYears = `${ageInYears} (damn i'm old)`;
+    }
+    age.innerHTML = ageInYears;
+    document.addEventListener("DOMContentLoaded", () => {
+      updateDateTime();
+      setInterval(updateDateTime, 1000);
+    });
+  </script>
+</html>

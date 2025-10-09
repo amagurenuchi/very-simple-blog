@@ -322,6 +322,16 @@
       .warning h1 {
         font-size: 2rem;
       }
+
+      .blogfilter {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .biobutton {
+        margin-top: 25px;
+        margin-left: 20px;
+      }
     }
   </style>
   <title>Neneko's blog</title>
@@ -382,30 +392,6 @@
     <!-- Elfsight Visitor Counter | Untitled Visitor Counter -->
 <script src="https://elfsightcdn.com/platform.js" async></script>
 <div class="elfsight-app-d7aae801-ebe1-42d6-9196-fae30aca556e" data-elfsight-app-lazy></div>
-    <!-- <div class="bio">
-      <div class="text" style="margin-left: 10px">
-        <h2>About me</h2>
-        <ul>
-          <li><span class="age"></span> years old, trans girl</li>
-          <li>Dying to get out of high school by next year</li>
-          <li>
-            <span style="color: rgb(255, 61, 61)">NOT</span> from Japan. (I wish
-            i was)
-          </li>
-          <li style="color: rgb(251, 145, 255)">Akiyama Mizuki my beloved</li>
-          <li>Yes i sleep after 25:00</li>
-          <li>I'm a bit of a nerd (the good kind)</li>
-          <li>Huge rhythm game fanatic</li>
-          <li>Think offsets are just unnecessary to adjust most of the time</li>
-          <li>Hate people who are being assholes (a lot of them)</li>
-          <li>Despises transphobia and homophobia</li>
-          <li>
-            Had to speedrun creating Prownie in 2 weeks just bcause i got the
-            deadline messed up
-          </li>
-        </ul>
-      </div>
-    </div> -->
     <div class="blogfilter">
       <div class="filt">
       <select name="blogfilter" id="blogfilter">
@@ -583,9 +569,8 @@
     const diffInWeeks = Math.floor(diffInDays / 7);
     const diffInMonths = Math.floor(diffInDays / 30);
     const diffInYears = Math.floor(diffInDays / 365);
-
     if (diffInSeconds < 60) {
-      return 'just now';
+      return 'less than a minute ago';
     } else if (diffInMinutes < 60) {
       return `${diffInMinutes} minute${diffInMinutes !== 1 ? 's' : ''} ago`;
     } else if (diffInHours < 24) {
@@ -594,12 +579,16 @@
       return `${diffInDays} day${diffInDays !== 1 ? 's' : ''} ago`;
     } else if (diffInWeeks < 4) {
       return `${diffInWeeks} week${diffInWeeks !== 1 ? 's' : ''} ago`;
-    } else if (diffInMonths < 12) {
+    } else if (diffInDays < 30 && diffInWeeks >= 4) {
+      return `${diffInWeeks} week${diffInWeeks !== 1 ? 's' : ''} ago`;
+    }
+    else if (diffInMonths < 12) {
       return `${diffInMonths} month${diffInMonths !== 1 ? 's' : ''} ago`;
     } else {
       return `${diffInYears} year${diffInYears !== 1 ? 's' : ''} ago`;
     }
   }
+  
 
   const firebaseConfig = {
     apiKey: "AIzaSyCcyR-VW3hFroVrG0164QwVO8WYSliGZQA",
@@ -930,6 +919,23 @@
             <div class="blog-content" style="font-size: 1rem; color: #ffffff; margin-left: 10px;">${sanitizedContent}</div>
           `;
           blogElement.style.borderLeft = `5px solid ${bordercolor}`;
+          // Add mouseover event for blog-date inside the loop
+          blogElement.querySelectorAll(".blog-date").forEach(dateElem => {
+            dateElem.addEventListener("mouseover", (e) => {
+              e.target.innerHTML = blog.createdAt && typeof blog.createdAt.toDate === "function"
+                ? blog.createdAt.toDate().toLocaleString()
+                : blog.createdAt instanceof Date
+                  ? blog.createdAt.toLocaleString()
+                  : typeof blog.createdAt === "number"
+                    ? new Date(blog.createdAt).toLocaleString()
+                    : typeof blog.createdAt === "string"
+                      ? new Date(blog.createdAt).toLocaleString()
+                      : "";
+            });
+            dateElem.addEventListener("mouseout", (e) => {
+              e.target.innerHTML = dateString;
+            });
+          });
         blogContainer.appendChild(blogElement);
       });
     } catch (error) {
@@ -940,6 +946,7 @@
           "<p style='color:red;'>Failed to load blog posts. Please try again later.</p>";
       }
     }
+        
     // Fix blog filter: show/hide blog posts by category
     document.getElementById('blogfilter').addEventListener('change', () => {
       const blogfilter = document.getElementById('blogfilter');

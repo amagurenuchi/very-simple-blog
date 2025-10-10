@@ -117,26 +117,28 @@
             border-radius: 5px;
         }
 
-        .hintshidden{   
+        .hintshidden {
             color: #888;
             font-size: 0.8rem;
             margin-top: 10px;
             text-align: center;
         }
-        .hint{
+
+        .hint {
             display: none;
             z-index: 1000;
             position: absolute;
             top: 10%;
         }
-        .hint::before{
+
+        .hint::before {
             content: "";
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0, 0, 0, 0.8);
             z-index: -1;
         }
 
@@ -145,13 +147,56 @@
             top: 20px;
             left: 20px;
             padding: 10px 15px;
-            border:#000000;
-             border-bottom: 2px solid #ffffff;
+            border: #000000;
+            border-bottom: 2px solid #ffffff;
             background-color: #000000;
             color: #ffffff;
             cursor: pointer;
             transition: 0.3s;
             font-family: "Mochiy Pop One", sans-serif;
+        }
+
+        .formatting {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 10px;
+            background-color: #222222;
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .formatting button {
+            padding: 8px 12px;
+            margin: 2px;
+            border: none;
+            border-radius: 5px;
+            background-color: #000000;
+            color: #ffffff;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        @media (max-width: 600px) {
+            .form {
+                padding: 10px;
+            }
+
+            .form textarea {
+                height: 150px;
+            }
+
+            .tohome {
+                padding: 8px 12px;
+                top: 10px;
+                left: 10px;
+                font-size: 0.9rem;
+            }
+
+            .hintshidden {
+               display: none;
+            }
+
         }
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -161,75 +206,78 @@
 </head>
 
 <body>
-    <button class="tohome">< Home</button>
-    <div class="title">Write a blog</div>
-    <div class="form">
-        <div class="help-text">
-            The inputs are sanitized to prevent XSS attacks. HTML tags are allowed.
-        </div>
-        <input type="text" placeholder="Title" id="titleInput" onInput="previewBtn.click()" autocomplete="off">
-        <textarea placeholder="Content" id="contentInput" onInput="previewBtn.click()" autocomplete="off"></textarea>
-        <div class="formatting">
-            <button class="format-btn bold"><i class="fa-solid fa-bold"></i></button>
-            <button class="format-btn italic"><i class="fa-solid fa-italic"></i></button>
-            <button class="format-btn underline"><i class="fa-solid fa-underline"></i></button>
-            <button class="format-btn strike"><i class="fa-solid fa-strikethrough"></i></button>
-            <button class="format-btn h"><i class="fa-solid fa-heading fa-lg"></i></button>
-            <button class="format-btn ul"><i class="fa-solid fa-list-ul"></i></button>
-            <button class="format-btn ol"><i class="fa-solid fa-list-ol"></i></button>
-            <button class="format-btn blockquote"><i class="fa-solid fa-quote-left"></i></button>
-            <button class="format-btn code"><i class="fa-solid fa-code"></i></button>
-            <button class="format-btn img"><i class="fa-solid fa-image"></i></button>
-            <button class="format-btn link"><i class="fa-solid fa-link"></i></button>
-        </div>
-        <select name="importantTags" id="importantTags" class="important-tags" onchange="previewBtn.click()">
-            <option value="">Select an important tag</option>
-            <option value="delta force">Delta Force</option>
-            <option value="other games">Other Games</option>
-            <option value="development">Development</option>
-            <option value="life">Life</option>
-            <option value="balloonposting">Balloon Posting</option>
-            <option value="other">Other</option>
-        </select>
-        <input type="checkbox" id="nsfwCheckbox" onchange="previewBtn.click()" name="nsfwCheckbox">NSFW?</input>
-        <input type="checkbox" id="goreCheckbox" onchange="previewBtn.click()" name="goreCheckbox">Gore?</input>
-        <input type="text" placeholder="Tags (seperated by commas)" id="tagsInput" onInput="previewBtn.click()"
-            autocomplete="off">
-        <div class="button-group">
-            <button type="button" id="previewBtn">Preview</button>
-            <button type="submit" id="submit">Submit</button>
-        </div>
-        <div class="hintshidden">Press F1 to toggle help</div>
-        <div class="hint">
-            <p>Keyboard shortcuts: (Press F1 to toggle)</p>
-            <ul>
-                <li><strong>Ctrl + Enter</strong>: Submit the blog post</li>
-                <li><strong>Escape</strong>: Clear all inputs</li>
-                <li><strong>Enter</strong>: In title input, move to content input; in content input, add a new line</li>
-                 <li><strong>F1</strong>: Toggle this help message</li>
-                <li><strong>F2</strong>: Focus title input</li>
-                <li><strong>F3</strong>: Focus content input</li>
-                <li><strong>F4</strong>: Focus tags input</li>
-                <li><strong>F6</strong>: Focus important tags dropdown</li>
-                <br>
-                <li><strong>Ctrl + B</strong>: Bold</li>
-                <li><strong>Ctrl + I</strong>: Italic</li>
-                <li><strong>Ctrl + U</strong>: Underline</li>
-                <li><strong>Ctrl + S</strong>: Strikethrough</li>
-                <li><strong>Ctrl + H</strong>: Heading</li>
-                <li><strong>Ctrl + L</strong>: Unordered list</li>
-                <li><strong>Ctrl + Shift + L</strong>: Ordered list</li>
-                <li><strong>Ctrl + Q</strong>: Blockquote</li>
-                <li><strong>Ctrl + E</strong>: Code block</li>
-                <li><strong>Ctrl + M</strong>: Insert image</li>
-                <li><strong>Ctrl + K</strong>: Insert link</li>
-            </ul>
-        </div>
-        <div class="preview-section" id="previewSection" style="display: none;">
-            <div class="preview-title">Preview:</div>
-            <div class="preview-content" id="previewContent"></div>
-        </div>
-    </div>
+    <button class="tohome">
+        < Home</button>
+            <div class="title">Write a blog</div>
+            <div class="form">
+                <div class="help-text">
+                    The inputs are sanitized to prevent XSS attacks. HTML tags are allowed.
+                </div>
+                <input type="text" placeholder="Title" id="titleInput" onInput="previewBtn.click()" autocomplete="off">
+                <textarea placeholder="Content" id="contentInput" onInput="previewBtn.click()"
+                    autocomplete="off"></textarea>
+                <div class="formatting">
+                    <button class="format-btn bold"><i class="fa-solid fa-bold"></i></button>
+                    <button class="format-btn italic"><i class="fa-solid fa-italic"></i></button>
+                    <button class="format-btn underline"><i class="fa-solid fa-underline"></i></button>
+                    <button class="format-btn strike"><i class="fa-solid fa-strikethrough"></i></button>
+                    <button class="format-btn h"><i class="fa-solid fa-heading fa-lg"></i></button>
+                    <button class="format-btn ul"><i class="fa-solid fa-list-ul"></i></button>
+                    <button class="format-btn ol"><i class="fa-solid fa-list-ol"></i></button>
+                    <button class="format-btn blockquote"><i class="fa-solid fa-quote-left"></i></button>
+                    <button class="format-btn code"><i class="fa-solid fa-code"></i></button>
+                    <button class="format-btn img"><i class="fa-solid fa-image"></i></button>
+                    <button class="format-btn link"><i class="fa-solid fa-link"></i></button>
+                </div>
+                <select name="importantTags" id="importantTags" class="important-tags" onchange="previewBtn.click()">
+                    <option value="">Select an important tag</option>
+                    <option value="delta force">Delta Force</option>
+                    <option value="other games">Other Games</option>
+                    <option value="development">Development</option>
+                    <option value="life">Life</option>
+                    <option value="balloonposting">Balloon Posting</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="checkbox" id="nsfwCheckbox" onchange="previewBtn.click()" name="nsfwCheckbox">NSFW?</input>
+                <input type="checkbox" id="goreCheckbox" onchange="previewBtn.click()" name="goreCheckbox">Gore?</input>
+                <input type="text" placeholder="Tags (seperated by commas)" id="tagsInput" onInput="previewBtn.click()"
+                    autocomplete="off">
+                <div class="button-group">
+                    <button type="button" id="previewBtn">Preview</button>
+                    <button type="submit" id="submit">Submit</button>
+                </div>
+                <div class="hintshidden">Press F1 to toggle help</div>
+                <div class="hint">
+                    <p>Keyboard shortcuts: (Press F1 to toggle)</p>
+                    <ul>
+                        <li><strong>Ctrl + Enter</strong>: Submit the blog post</li>
+                        <li><strong>Escape</strong>: Clear all inputs</li>
+                        <li><strong>Enter</strong>: In title input, move to content input; in content input, add a new
+                            line</li>
+                        <li><strong>F1</strong>: Toggle this help message</li>
+                        <li><strong>F2</strong>: Focus title input</li>
+                        <li><strong>F3</strong>: Focus content input</li>
+                        <li><strong>F4</strong>: Focus tags input</li>
+                        <li><strong>F6</strong>: Focus important tags dropdown</li>
+                        <br>
+                        <li><strong>Ctrl + B</strong>: Bold</li>
+                        <li><strong>Ctrl + I</strong>: Italic</li>
+                        <li><strong>Ctrl + U</strong>: Underline</li>
+                        <li><strong>Ctrl + S</strong>: Strikethrough</li>
+                        <li><strong>Ctrl + H</strong>: Heading</li>
+                        <li><strong>Ctrl + L</strong>: Unordered list</li>
+                        <li><strong>Ctrl + Shift + L</strong>: Ordered list</li>
+                        <li><strong>Ctrl + Q</strong>: Blockquote</li>
+                        <li><strong>Ctrl + E</strong>: Code block</li>
+                        <li><strong>Ctrl + M</strong>: Insert image</li>
+                        <li><strong>Ctrl + K</strong>: Insert link</li>
+                    </ul>
+                </div>
+                <div class="preview-section" id="previewSection" style="display: none;">
+                    <div class="preview-title">Preview:</div>
+                    <div class="preview-content" id="previewContent"></div>
+                </div>
+            </div>
 </body>
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
@@ -385,128 +433,128 @@
         window.location.href = 'index.html';
     });
 
-// Add some keyboard functions
-document.addEventListener('keydown', (e) => {
-    if (e.ctrlKey && e.key === 'Enter') {
-        e.preventDefault();
-        submitBtn.click();
-    }
-    if (e.key === 'Escape') {
-        e.preventDefault();
-        titleInput.value = "";
-        contentInput.value = "";
-        tagsInput.value = "";
-        importantTags.value = "";
-        nsfwCheckbox.checked = false;
-        goreCheckbox.checked = false;
-        previewSection.style.display = 'none';
-    }
-    if (e.key === 'Enter'){
-        if (document.activeElement === titleInput) {
+    // Add some keyboard functions
+    document.addEventListener('keydown', (e) => {
+        if (e.ctrlKey && e.key === 'Enter') {
+            e.preventDefault();
+            submitBtn.click();
+        }
+        if (e.key === 'Escape') {
+            e.preventDefault();
+            titleInput.value = "";
+            contentInput.value = "";
+            tagsInput.value = "";
+            importantTags.value = "";
+            nsfwCheckbox.checked = false;
+            goreCheckbox.checked = false;
+            previewSection.style.display = 'none';
+        }
+        if (e.key === 'Enter') {
+            if (document.activeElement === titleInput) {
+                e.preventDefault();
+                contentInput.focus();
+            }
+            else if (document.activeElement === contentInput) {
+                e.preventDefault();
+                document.activeElement.value += "<br> \n";
+                const cursorPosition = document.activeElement.value.length;
+                document.activeElement.setSelectionRange(cursorPosition, cursorPosition);
+                document.activeElement.focus();
+                previewBtn.click();
+            }
+        }
+        if (e.key === 'F1') {
+            e.preventDefault();
+            document.querySelector('.hint').style.display =
+                document.querySelector('.hint').style.display === 'none' ? 'block' : 'none';
+            document.querySelector('.hintshidden').style.display =
+                document.querySelector('.hintshidden').style.display === 'block' ? 'none' : 'block';
+        }
+        if (e.key === 'F2') {
+            e.preventDefault();
+            titleInput.focus();
+        }
+        if (e.key === 'F3') {
             e.preventDefault();
             contentInput.focus();
         }
-        else if (document.activeElement === contentInput) {
+        if (e.key === 'F4') {
             e.preventDefault();
-            document.activeElement.value += "<br> \n";
-            const cursorPosition = document.activeElement.value.length;
-            document.activeElement.setSelectionRange(cursorPosition, cursorPosition);
-            document.activeElement.focus();
-            previewBtn.click();
+            tagsInput.focus();
         }
-    }
-    if (e.key === 'F1') {
-        e.preventDefault();
-        document.querySelector('.hint').style.display = 
-            document.querySelector('.hint').style.display === 'none' ? 'block' : 'none';
-        document.querySelector('.hintshidden').style.display = 
-            document.querySelector('.hintshidden').style.display === 'block' ? 'none' : 'block';
-    }
-    if (e.key === 'F2') {
-        e.preventDefault();
-        titleInput.focus();
-    }
-    if (e.key === 'F3') {
-        e.preventDefault();
-        contentInput.focus();
-    }
-    if (e.key === 'F4') {
-        e.preventDefault();
-        tagsInput.focus();
-    }
-if (e.key === 'F6') {
-        e.preventDefault();
-        importantTags.focus();
-    }
-// Formatting shortcuts
-    if (e.ctrlKey && e.key.toLowerCase() === 'b') {
-        e.preventDefault();
-        document.querySelector('.format-btn.bold').click();
-    }
-    if (e.ctrlKey && e.key.toLowerCase() === 'i') {
-        e.preventDefault();
-        document.querySelector('.format-btn.italic').click();
-    }
-    if (e.ctrlKey && e.key.toLowerCase() === 'u') {
-        e.preventDefault();
-        document.querySelector('.format-btn.underline').click();
-    }
-    if (e.ctrlKey && e.key.toLowerCase() === 'k') {
-        e.preventDefault();
-        document.querySelector('.format-btn.link').click();
-    }
-    if (e.ctrlKey && e.key.toLowerCase() === 'm') {
-        e.preventDefault();
-        document.querySelector('.format-btn.img').click();
-    }
-    if (e.ctrlKey && e.key.toLowerCase() === 'h') {
-        e.preventDefault();
-        document.querySelector('.format-btn.h').click();
-    }
-    if (e.ctrlKey && e.key.toLowerCase() === 'l') {
-        e.preventDefault();
-        document.querySelector('.format-btn.ul').click();
-    }
-    if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'l') {
-        e.preventDefault();
-        document.querySelector('.format-btn.ol').click();
-    }
-    if (e.ctrlKey && e.key.toLowerCase() === 'q') {
-        e.preventDefault();
-        document.querySelector('.format-btn.blockquote').click();
-    }
-    if (e.ctrlKey && e.key.toLowerCase() === 'e') {
-        e.preventDefault();
-        document.querySelector('.format-btn.code').click();
-    }
-    if (e.ctrlKey && e.key.toLowerCase() === 's') {
-        e.preventDefault();
-        document.querySelector('.format-btn.strike').click();
-    }
-    // Formatting undo
-    if (e.ctrlKey && e.key.toLowerCase() === 'z') {
-        e.preventDefault();
-        const formattingTags = [
-            '<strong></strong>', '<em></em>', '<u></u>', '<s></s>',
-            '<h1></h1>', '<ul>\n<li></li>\n</ul>\n', '<ol>\n<li></li>\n</ol>\n',
-            '<blockquote></blockquote>\n', '<pre><code></code></pre>\n'
-        ];
-        let value = contentInput.value;
-        let lastTag = '';
-        let lastIndex = -1;
-        formattingTags.forEach(tag => {
-            const idx = value.lastIndexOf(tag);
-            if (idx > lastIndex) {
-                lastTag = tag;
-                lastIndex = idx;
+        if (e.key === 'F6') {
+            e.preventDefault();
+            importantTags.focus();
+        }
+        // Formatting shortcuts
+        if (e.ctrlKey && e.key.toLowerCase() === 'b') {
+            e.preventDefault();
+            document.querySelector('.format-btn.bold').click();
+        }
+        if (e.ctrlKey && e.key.toLowerCase() === 'i') {
+            e.preventDefault();
+            document.querySelector('.format-btn.italic').click();
+        }
+        if (e.ctrlKey && e.key.toLowerCase() === 'u') {
+            e.preventDefault();
+            document.querySelector('.format-btn.underline').click();
+        }
+        if (e.ctrlKey && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            document.querySelector('.format-btn.link').click();
+        }
+        if (e.ctrlKey && e.key.toLowerCase() === 'm') {
+            e.preventDefault();
+            document.querySelector('.format-btn.img').click();
+        }
+        if (e.ctrlKey && e.key.toLowerCase() === 'h') {
+            e.preventDefault();
+            document.querySelector('.format-btn.h').click();
+        }
+        if (e.ctrlKey && e.key.toLowerCase() === 'l') {
+            e.preventDefault();
+            document.querySelector('.format-btn.ul').click();
+        }
+        if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'l') {
+            e.preventDefault();
+            document.querySelector('.format-btn.ol').click();
+        }
+        if (e.ctrlKey && e.key.toLowerCase() === 'q') {
+            e.preventDefault();
+            document.querySelector('.format-btn.blockquote').click();
+        }
+        if (e.ctrlKey && e.key.toLowerCase() === 'e') {
+            e.preventDefault();
+            document.querySelector('.format-btn.code').click();
+        }
+        if (e.ctrlKey && e.key.toLowerCase() === 's') {
+            e.preventDefault();
+            document.querySelector('.format-btn.strike').click();
+        }
+        // Formatting undo
+        if (e.ctrlKey && e.key.toLowerCase() === 'z') {
+            e.preventDefault();
+            const formattingTags = [
+                '<strong></strong>', '<em></em>', '<u></u>', '<s></s>',
+                '<h1></h1>', '<ul>\n<li></li>\n</ul>\n', '<ol>\n<li></li>\n</ol>\n',
+                '<blockquote></blockquote>\n', '<pre><code></code></pre>\n'
+            ];
+            let value = contentInput.value;
+            let lastTag = '';
+            let lastIndex = -1;
+            formattingTags.forEach(tag => {
+                const idx = value.lastIndexOf(tag);
+                if (idx > lastIndex) {
+                    lastTag = tag;
+                    lastIndex = idx;
+                }
+            });
+            if (lastIndex !== -1) {
+                contentInput.value = value.slice(0, lastIndex) + value.slice(lastIndex + lastTag.length);
+                previewBtn.click();
             }
-        });
-        if (lastIndex !== -1) {
-            contentInput.value = value.slice(0, lastIndex) + value.slice(lastIndex + lastTag.length);
-            previewBtn.click();
         }
-    }
-});
+    });
     // Formatting buttons functionality
     window.addEventListener('DOMContentLoaded', () => {
         const buttonActions = {
@@ -565,16 +613,16 @@ if (e.key === 'F6') {
             button.addEventListener('click', () => {
                 const action =
                     button.classList.contains('bold') ? 'bold' :
-                    button.classList.contains('italic') ? 'italic' :
-                    button.classList.contains('underline') ? 'underline' :
-                    button.classList.contains('strike') ? 'strike' :
-                    button.classList.contains('h') ? 'h' :
-                    button.classList.contains('ul') ? 'ul' :
-                    button.classList.contains('ol') ? 'ol' :
-                    button.classList.contains('blockquote') ? 'blockquote' :
-                    button.classList.contains('code') ? 'code' :
-                    button.classList.contains('img') ? 'img' :
-                    button.classList.contains('link') ? 'link' : null;
+                        button.classList.contains('italic') ? 'italic' :
+                            button.classList.contains('underline') ? 'underline' :
+                                button.classList.contains('strike') ? 'strike' :
+                                    button.classList.contains('h') ? 'h' :
+                                        button.classList.contains('ul') ? 'ul' :
+                                            button.classList.contains('ol') ? 'ol' :
+                                                button.classList.contains('blockquote') ? 'blockquote' :
+                                                    button.classList.contains('code') ? 'code' :
+                                                        button.classList.contains('img') ? 'img' :
+                                                            button.classList.contains('link') ? 'link' : null;
                 if (action && buttonActions[action]) {
                     buttonActions[action](contentInput);
                 }
@@ -599,8 +647,8 @@ if (e.key === 'F6') {
             textarea.focus();
         }
     });
-    
-        
+
+
 
 
     // Preview functionality
@@ -689,7 +737,7 @@ if (e.key === 'F6') {
                 });
             if (tagList.length > 0) {
                 previewHTML += `<div class="tag-list" style="margin-top:10px;">${tagList.join('')}</div>`;
-            }   
+            }
         }
         if (content) {
             previewHTML += `<div>${sanitizeHTML(content)}</div>`;
@@ -716,7 +764,7 @@ if (e.key === 'F6') {
             alert("Please select an important tag.");
             return;
         }
-        
+
         try {
             submitBtn.disabled = true;
             submitBtn.innerHTML = "Submitting...";

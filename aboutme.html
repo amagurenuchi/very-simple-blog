@@ -1,649 +1,613 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About me!</title>
-    <script
-      src="https://kit.fontawesome.com/ced4c4a7f8.js"
-      crossorigin="anonymous"
-    ></script>
-  </head>
-  <style>
-    body {
-      font-family: "Mochiy Pop One", sans-serif;
-      /* background-image: url("./bg.jpg"); */
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-color: #000000;
-      margin: 0;
-      padding: 0;
-      color: #ffffff;
-    }
 
-    body::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-size: cover;
-      background-position: center;
-      background-repeat: repeat;
-      background-color: #000000;
-      opacity: 0.8;
-      backdrop-filter: blur(10px);
-      z-index: -1;
-    }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About me!</title>
+  <script src="https://kit.fontawesome.com/ced4c4a7f8.js" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap" rel="stylesheet" />
+</head>
+<style>
+  body {
+    font-family: "Mochiy Pop One", sans-serif;
+    /* background-image: url("./bg.jpg"); */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #000000;
+    margin: 0;
+    padding: 0;
+    color: #ffffff;
+  }
 
-    .title {
-      font-size: 2rem;
-      color: #ffffff;
-      text-align: center;
-      padding: 20px;
-      margin-top: 70px;
-    }
+  body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+    background-color: #000000;
+    opacity: 0.8;
+    backdrop-filter: blur(10px);
+    z-index: -1;
+  }
 
-    .timebar {
-      background-color: #434343;
-      padding: 15px;
-      color: #ffffff;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 100;
-    }
+  .title {
+    font-size: 2rem;
+    color: #ffffff;
+    text-align: center;
+    padding: 20px;
+    margin-top: 70px;
+  }
 
-    .item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+  .timebar {
+    background-color: #434343;
+    padding: 15px;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+  }
 
-    .item a {
-      text-decoration: none;
-      color: #ffffff;
-      margin-left: 10px;
-      padding: 10px;
-      transition: 0.3s;
-    }
+  .item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-    .item a:hover {
-      background-color: #7a7a7a;
-      border-radius: 5px;
-      transition: 0.3s;
-    }
+  .item a {
+    text-decoration: none;
+    color: #ffffff;
+    margin-left: 10px;
+    padding: 10px;
+    transition: 0.3s;
+  }
 
-    .basic {
-      margin: 20px;
-      padding: 15px;
-      background-color: #ffffff0e;
-      border-radius: 8px;
-      border-left: 5px solid rgb(255, 61, 61);
-      color: #ffffff;
-      margin-bottom: 50px;
-    }
+  .item a:hover {
+    background-color: #7a7a7a;
+    border-radius: 5px;
+    transition: 0.3s;
+  }
 
-    .basic h2 {
-      color: rgb(255, 61, 61);
-    }
+  .basic {
+    margin: 20px;
+    padding: 15px;
+    background-color: #ffffff0e;
+    border-radius: 8px;
+    border-left: 5px solid rgb(255, 61, 61);
+    color: #ffffff;
+    margin-bottom: 50px;
+  }
 
-    .hobby {
-      margin: 20px;
-      padding: 15px;
-      background-color: #ffffff0e;
-      border-radius: 8px;
-      border-left: 5px solid rgb(141, 167, 255);
-      color: #ffffff;
-      margin-bottom: 50px;
-    }
+  .basic h2 {
+    color: rgb(255, 61, 61);
+  }
 
-    .hobby h2 {
-      color: rgb(141, 167, 255);
-    }
+  .hobby {
+    margin: 20px;
+    padding: 15px;
+    background-color: #ffffff0e;
+    border-radius: 8px;
+    border-left: 5px solid rgb(141, 167, 255);
+    color: #ffffff;
+    margin-bottom: 50px;
+  }
 
-    .small {
-      font-size: 0.8rem;
-      color: #989898;
-    }
+  .hobby h2 {
+    color: rgb(141, 167, 255);
+  }
 
-    .section {
-      margin-top: 20px;
-      padding: 10px;
-      background-color: #ffffff0a;
-      border-radius: 5px;
-      border-left: 5px solid rgb(61, 255, 245);
-    }
+  .small {
+    font-size: 0.8rem;
+    color: #989898;
+  }
 
-    .section h3 {
-      color: rgb(61, 255, 245);
-    }
+  .section {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #ffffff0a;
+    border-radius: 5px;
+    border-left: 5px solid rgb(61, 255, 245);
+  }
 
-    .sectionmini {
-      margin-top: 15px;
-      padding: 10px;
-      background-color: #ffffff05;
-      border-radius: 5px;
-      border-left: 5px solid rgb(255, 61, 255);
-    }
+  .section h3 {
+    color: rgb(61, 255, 245);
+  }
 
-    .sectionmini h4 {
-      color: rgb(255, 61, 255);
-    }
+  .sectionmini {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #ffffff05;
+    border-radius: 5px;
+    border-left: 5px solid rgb(255, 61, 255);
+  }
 
-    .section3 {
-      margin-top: 10px;
-      padding: 10px;
-      background-color: #ffffff02;
-      border-radius: 5px;
-      border-left: 5px solid rgb(255, 255, 61);
-    }
+  .sectionmini h4 {
+    color: rgb(255, 61, 255);
+  }
 
-    .section3 .name {
-      color: rgb(255, 255, 61);
-      font-weight: bold;
-      font-size: 1.1rem;
-    }
+  .section3 {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #ffffff02;
+    border-radius: 5px;
+    border-left: 5px solid rgb(255, 255, 61);
+  }
 
-    .section3 p {
-      margin: 5px 0;
-    }
+  .section3 .name {
+    color: rgb(255, 255, 61);
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
 
-    .section3 ul {
-      margin: 5px 20px;
-    }
+  .section3 p {
+    margin: 5px 0;
+  }
 
-    .section3 ul li {
-      margin: 3px 0;
-    }
+  .section3 ul {
+    margin: 5px 20px;
+  }
 
-    a {
-      color: #61aaff;
-      text-decoration: none;
-    }
+  .section3 ul li {
+    margin: 3px 0;
+  }
 
-    .rank {
-      color: #a0ff61;
-    }
+  a {
+    color: #61aaff;
+    text-decoration: none;
+  }
 
-    .endnotes {
-      margin: 20px;
-      padding: 15px;
-      background-color: #ffffff0e;
-      border-radius: 8px;
-      border-left: 5px solid rgb(255, 61, 167);
-      color: #ffffff;
-      margin-bottom: 50px;
-    }
+  .rank {
+    color: #a0ff61;
+  }
 
-    .endnotes h2 {
-      color: rgb(255, 61, 167);
-    }
+  .endnotes {
+    margin: 20px;
+    padding: 15px;
+    background-color: #ffffff0e;
+    border-radius: 8px;
+    border-left: 5px solid rgb(255, 61, 167);
+    color: #ffffff;
+    margin-bottom: 50px;
+  }
 
-    .socials {
-      margin-top: 10px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      font-size: 1.2rem;
-    }
+  .endnotes h2 {
+    color: rgb(255, 61, 167);
+  }
 
-    .socials i {
-      font-size: 1.75rem;
-      margin-right: 15px;
-    }
+  .socials {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    font-size: 1.2rem;
+  }
 
-    .socials a {
-      color: white;
-      padding: 10px;
-    }
+  .socials i {
+    font-size: 1.75rem;
+    margin-right: 15px;
+  }
 
-    .socials a:hover {
-      background-color: #7a7a7a;
-      transition: 0.3s;
-    }
-  </style>
+  .socials a {
+    color: white;
+    padding: 10px;
+  }
 
-  <body>
-    <div class="timebar">
-      <div class="item">
-        <div class="name" style="font-size: 1.25rem; color: rgb(61, 255, 245)">
-          Neneko Koromiko
-        </div>
+  .socials a:hover {
+    background-color: #7a7a7a;
+    transition: 0.3s;
+  }
+</style>
+
+<body>
+  <div class="timebar">
+    <div class="item">
+      <div class="name" style="font-size: 1.25rem; color: rgb(61, 255, 245)">
+        Neneko Koromiko
       </div>
-      <div class="datetime" style="margin-right: 30px"></div>
     </div>
-    <div class="title">About me!</div>
-    <div class="basic">
-      <h2>A little bit about my info...</h2>
+    <div class="datetime" style="margin-right: 30px"></div>
+  </div>
+  <div class="title">About me!</div>
+  <div class="basic">
+    <h2>A little bit about my info...</h2>
+    <p>
+      Well... Sadly, Neneko isn't my real name. (I wish it was.)<br />
+      <br />
+      My actual name is N***** K*** M*** (you will know if you check my
+      Facebook account).<br />
+      I'm <span class="age"></span> years old (born May 6th, 2008).
+    </p>
+    <p>
+      I am a high school student in Hanoi, Vietnam. I love programming,
+      especially web development (even though my brain is melting from working
+      25 hours in 3), mostly because that is only what I know at the moment.
+    </p>
+    <br />
+    <br />
+    <p>
+      I'm a trans girl (male to female just in case you don't know) and also
+      am pansexual, meaning I don't care about the gender of people I love :3
+    </p>
+    <br />
+    <p>
+      Just in case, please do NOT confuse me with the famous cosplayer with
+      the same name. <br />
+      Mine is written in Hiragana (ねねこ) while theirs is written in Katakana
+      (ネネコ).
+    </p>
+    <p>And yes, I procrastinate a lot, like most of you guys.</p>
+  </div>
+  <div class="hobby">
+    <h2>My hobbies (and struggles masquerading as hobbies I guess)</h2>
+    <div class="section">
+      <h3>Programming</h3>
       <p>
-        Well... Sadly, Neneko isn't my real name. (I wish it was.)<br />
-        <br />
-        My actual name is N***** K*** M*** (you will know if you check my
-        Facebook account).<br />
-        I'm <span class="age"></span> years old (born May 6th, 2008).
-      </p>
-      <p>
-        I am a high school student in Hanoi, Vietnam. I love programming,
-        especially web development (even though my brain is melting from working
-        25 hours in 3), mostly because that is only what I know at the moment.
+        It was a struggle. Really. I started my very amateurish coding journey
+        with Lua, by editing an Etterna skin, way back in 2022! (forked on my
+        GitHub page.)
       </p>
       <br />
-      <br />
       <p>
-        I'm a trans girl (male to female just in case you don't know) and also
-        am pansexual, meaning I don't care about the gender of people I love :3
+        Then, I moved on to HTML and CSS, and made a few simple static
+        websites. (Also on my GitHub.)
+      </p>
+      <p>
+        After that, I learned a bit of JavaScript, and made a few simple
+        interactive websites. (Also on my GitHub. What do you expect?)
+      </p>
+      <p>
+        And then comes Firebase intergration. Not a programming language, but
+        that's where most of the frustration came from sadly.
       </p>
       <br />
       <p>
-        Just in case, please do NOT confuse me with the famous cosplayer with
-        the same name. <br />
-        Mine is written in Hiragana (ねねこ) while theirs is written in Katakana
-        (ネネコ).
+        Now, I'm learning Python and C++, and trying to make more complex
+        projects (soon enough to be on my GitHub hopefully).
       </p>
-      <p>And yes, I procrastinate a lot, like most of you guys.</p>
     </div>
-    <div class="hobby">
-      <h2>My hobbies (and struggles masquerading as hobbies I guess)</h2>
-      <div class="section">
-        <h3>Programming</h3>
-        <p>
-          It was a struggle. Really. I started my very amateurish coding journey
-          with Lua, by editing an Etterna skin, way back in 2022! (forked on my
-          GitHub page.)
-        </p>
-        <br />
-        <p>
-          Then, I moved on to HTML and CSS, and made a few simple static
-          websites. (Also on my GitHub.)
-        </p>
-        <p>
-          After that, I learned a bit of JavaScript, and made a few simple
-          interactive websites. (Also on my GitHub. What do you expect?)
-        </p>
-        <p>
-          And then comes Firebase intergration. Not a programming language, but
-          that's where most of the frustration came from sadly.
-        </p>
-        <br />
-        <p>
-          Now, I'm learning Python and C++, and trying to make more complex
-          projects (soon enough to be on my GitHub hopefully).
-        </p>
-      </div>
-      <div class="section">
-        <h3>Gaming</h3>
-        <p>
-          Gaming is my main stress reliever (and causer). I play a lot of games,
-          but my main ones are:
-        </p>
+    <div class="section">
+      <h3>Gaming</h3>
+      <p>
+        Gaming is my main stress reliever (and causer). I play a lot of games,
+        but my main ones are:
+      </p>
+      <ul>
+        <li>Etterna, along with osu!mania and other VSRGs</li>
+        <li>Genshin Impact (an open-world RPG)</li>
+        <li>
+          Delta Force (a tactical extraction FPS)(you should have known
+          already, I dedicated a fucking tag for that)
+        </li>
+        <li>Among Us (very rarely)</li>
+        <li>
+          Tetris the Grand Master 3 & 4 and its clones (like Techmino and
+          Master of Blocks)
+        </li>
+      </ul>
+      <div class="sectionmini">
+        <h4>Shooter games</h4>
+        <p>So yea. I do play a lot of shooter games, from mobile to PC.</p>
+        <p>In chronological order I have played:</p>
         <ul>
-          <li>Etterna, along with osu!mania and other VSRGs</li>
-          <li>Genshin Impact (an open-world RPG)</li>
           <li>
-            Delta Force (a tactical extraction FPS)(you should have known
-            already, I dedicated a fucking tag for that)
+            PUBG Mobile (Original Season 2) >
+            <span class="rank">Top rank: Ace Master 11*</span>
           </li>
-          <li>Among Us (very rarely)</li>
           <li>
-            Tetris the Grand Master 3 & 4 and its clones (like Techmino and
-            Master of Blocks)
+            Call of Duty Mobile (Original Season 1) >
+            <span class="rank">Grand Master II</span>
+          </li>
+          <li>Free Fire (around 2021-2022), worst shooter game ever.</li>
+          <li>Badlanders (2023 until it got shut down)</li>
+          <li>Valorant (Jun 2025)</li>
+          <li>
+            Delta Force (2025, Season 5) >
+            <span class="rank">Marshal 74* / Platinum II</span>
           </li>
         </ul>
-        <div class="sectionmini">
-          <h4>Shooter games</h4>
-          <p>So yea. I do play a lot of shooter games, from mobile to PC.</p>
-          <p>In chronological order I have played:</p>
-          <ul>
-            <li>
-              PUBG Mobile (Original Season 2) >
-              <span class="rank">Top rank: Ace Master 11*</span>
-            </li>
-            <li>
-              Call of Duty Mobile (Original Season 1) >
-              <span class="rank">Grand Master II</span>
-            </li>
-            <li>Free Fire (around 2021-2022), worst shooter game ever.</li>
-            <li>Badlanders (2023 until it got shut down)</li>
-            <li>Valorant (Jun 2025)</li>
-            <li>
-              Delta Force (2025, Season 5) >
-              <span class="rank">Marshal 74* / Platinum II</span>
-            </li>
-          </ul>
+        <p>
+          Needless to say, my skills were decent at most. I usually have my
+          sensitivity not tailored but rather accustomed from the start, which
+          caused some overshooting and undershooting alike.
+        </p>
+        <p>
+          And I do not fare well with games that require precise headshots
+          (like CS:GO or Valorant) and I couldn't get myself to aim at their
+          heads.
+        </p>
+      </div>
+      <div class="sectionmini">
+        <h4>Tetris</h4>
+        <div class="section3">
+          <span class="name">TETR.IO</span>
+          <p>Season 1: 17.8k TR</p>
           <p>
-            Needless to say, my skills were decent at most. I usually have my
-            sensitivity not tailored but rather accustomed from the start, which
-            caused some overshooting and undershooting alike.
-          </p>
-          <p>
-            And I do not fare well with games that require precise headshots
-            (like CS:GO or Valorant) and I couldn't get myself to aim at their
-            heads.
+            Season 2: <br />
+            Zenith: 1662.1m (v/ Volatile)
+            <br />
+            TL: Top rank S+
           </p>
         </div>
-        <div class="sectionmini">
-          <h4>Tetris</h4>
-          <div class="section3">
-            <span class="name">TETR.IO</span>
-            <p>Season 1: 17.8k TR</p>
-            <p>
-              Season 2: <br />
-              Zenith: 1662.1m (v/ Volatile)
-              <br />
-              TL: Top rank S+
-            </p>
-          </div>
-          <div class="section3">
-            <span class="name">Techmino</span>
-            <p>
-              1v49 and 1v99 ULTIMATE cleared <br /><br />
-              Master Normal cleared in 6:58 <br />Master Hard Lv.5xx
-              <br />Master Graded M <br />
-              GrandMaster A+ grade (4.x points)
-            </p>
-          </div>
-          <div class="section3">
-            <span class="name">Master of Blocks: Apotheosis</span>
-            <p>
-              SRS-X main. <br />
-              20G: 5:35.xx
-              <br />
-              <br />Heaven: GM+ qualified, best grade Omega M <br />Hell: Lv.950
-              <br />Pandaemonium: Lv.5xx <br />Activation: S3 (too lazy for
-              this)
-            </p>
-          </div>
-          <div class="section3">
-            <span class="name">Tetris the Grand Master 3</span>
-            <p>
-              Easy: H4xx <br />Sakura: EX7 <br />Master: S9 qualified, best
-              grade m9 <br />Shirase: Lv.1236
-            </p>
-          </div>
-          <div class="section3">
-            <span class="name">Tetris the Grand Master 4</span>
-            <p>
-              Marathon: 400k+ <br />Normal: Three of Ten <br />
-              <span class="small"
-                >Normal 1.1: S9 (261k points) <br />Normal 2.1: m Grade (Lv.827)
-                <br />Normal 3.1: S4
-              </span>
-              <br />Asuka: Lv.1150 <br />
-              <span class="small">Asuka Easy: Ae 177</span> <br />Master: m
-              Grade (Lv.12xx) <br />Konoha: I suck at this. <br />Shiranui: Tier
-              41?
-            </p>
-          </div>
+        <div class="section3">
+          <span class="name">Techmino</span>
+          <p>
+            1v49 and 1v99 ULTIMATE cleared <br /><br />
+            Master Normal cleared in 6:58 <br />Master Hard Lv.5xx
+            <br />Master Graded M <br />
+            GrandMaster A+ grade (4.x points)
+          </p>
         </div>
-        <div class="sectionmini">
-          <h4>Rhythm games</h4>
-          <p>I mostly play VSRGs, especially osu!mania and Etterna.</p>
+        <div class="section3">
+          <span class="name">Master of Blocks: Apotheosis</span>
           <p>
-            I used to be an Etterna main for about 2 years, but of course,
-            interest had quickly faded. On the old site, my rating is 28.57, and
-            on the new site it is
-            <a href="https://etternaonline.com/users/AnemoArchon">28.84</a>
+            SRS-X main. <br />
+            20G: 5:35.xx
+            <br />
+            <br />Heaven: GM+ qualified, best grade Omega M <br />Hell: Lv.950
+            <br />Pandaemonium: Lv.5xx <br />Activation: S3 (too lazy for
+            this)
           </p>
+        </div>
+        <div class="section3">
+          <span class="name">Tetris the Grand Master 3</span>
           <p>
-            In osu!mania, I am currently at around 11k rank (highest was 6k)
-            with my highest rated song being almost 7* 3 years ago. (<a
-              href="https://osu.ppy.sh/users/26266703"
-              >Profile here</a
-            >) <br />I only play it occasionally now, mostly for fun.
+            Easy: H4xx <br />Sakura: EX7 <br />Master: S9 qualified, best
+            grade m9 <br />Shirase: Lv.1236
           </p>
-          <div class="section3">
-            <span class="name">CHUNITHM</span>
-            <p>
-              Yep. I mostly play arcade rhythm games now and this is one of
-              those. <br />I got a 16.42 rating pre-Verse, and currently at
-              16.53 rating. <br />My highest rated song is a 1008892 on FREEDOM
-              DiVE↓ (Lv.15). <br /><img
-                src="https://i.ibb.co/Xk7X4R0q/chuni-penguin-b50-2025-10-10-13-39-17.png"
-                alt=""
-                style="max-width: 400px"
-              />
-            </p>
-          </div>
-          <div class="section3">
-            <span class="name">Maimai</span>
-            <p>
-              Every new update is a struggle. I am currently having a rating of
-              13828 (personal best!)
-              <br />My playstyle is a bit different from most people, as I tend
-              to focus on stamina conservation by hitting the buttons with only
-              the tips of my fingers instead of the entire hand.
-              <span class="small"
-                >(Is this why my presses are so quiet compared to others?)</span
-              >
-              <br />
-              unfortunately, I don't have any screenshots of my plays yet, just
-              this. <br /><img
-                src="https://i.ibb.co/GvKXsgJW/topPlays.png"
-                alt=""
-                style="max-width: 800px"
-              />
-              <br />
-              I hate how the rating system is based on grade instead of score,
-              but oh well, drastic changes in score calculation (compared to
-              Chunithm) might explains it.
-            </p>
-          </div>
-          <div class="section3">
-            <span class="name">Pump It Up</span>
-            <p>
-              One of the earliest arcade rhythm game I have ever played (just
-              after that one try with reflec beat) <br />I play it every weekend
-              at the arcade near my house, and I am currently at 17k Pumpbility.
-              <br />The main bottleneck is the faulty pad, which sometimes
-              doesn't register my steps (more specifically, the up-left arrow on
-              the 2nd pad). <br />One thing I really like about the Pumpbility
-              system is that it encourages players to play more difficult songs
-              instead of farming easy ones for score, as harder songs give more
-              Pumpbility points, even with much lower scores. <br />I can play
-              well up to Single Lv.17 and Double Lv.15, but I rarely play
-              Double.
-            </p>
-          </div>
+        </div>
+        <div class="section3">
+          <span class="name">Tetris the Grand Master 4</span>
+          <p>
+            Marathon: 400k+ <br />Normal: Three of Ten <br />
+            <span class="small">Normal 1.1: S9 (261k points) <br />Normal 2.1: m Grade (Lv.827)
+              <br />Normal 3.1: S4
+            </span>
+            <br />Asuka: Lv.1150 <br />
+            <span class="small">Asuka Easy: Ae 177</span> <br />Master: m
+            Grade (Lv.12xx) <br />Konoha: I suck at this. <br />Shiranui: Tier
+            41?
+          </p>
         </div>
       </div>
-      <div class="section">
-        <h3>Other hobbies that are not either of those</h3>
+      <div class="sectionmini">
+        <h4>Rhythm games</h4>
+        <p>I mostly play VSRGs, especially osu!mania and Etterna.</p>
         <p>
-          I do create osu!mania/StepMania charts sometimes, and it's most of the
-          time obscure songs.
+          I used to be an Etterna main for about 2 years, but of course,
+          interest had quickly faded. On the old site, my rating is 28.57, and
+          on the new site it is
+          <a href="https://etternaonline.com/users/AnemoArchon">28.84</a>
         </p>
         <p>
-          At other times I just rot in bed watching YouTube (sorry for being
-          boring)
+          In osu!mania, I am currently at around 11k rank (highest was 6k)
+          with my highest rated song being almost 7* 3 years ago. (<a href="https://osu.ppy.sh/users/26266703">Profile
+            here</a>) <br />I only play it occasionally now, mostly for fun.
         </p>
-        <p>
-          I am obsessed with yaoi manga. (Yes, I am a fujoshi)
-        </p>
-        <p>I binge-watch medical dramas at night when I have nothing to do.</p>
-        <br />
-        My favorite ones are:
+        <div class="section3">
+          <span class="name">CHUNITHM</span>
+          <p>
+            Yep. I mostly play arcade rhythm games now and this is one of
+            those. <br />I got a 16.42 rating pre-Verse, and currently at
+            16.53 rating. <br />My highest rated song is a 1008892 on FREEDOM
+            DiVE↓ (Lv.15). <br /><img src="https://i.ibb.co/Xk7X4R0q/chuni-penguin-b50-2025-10-10-13-39-17.png" alt=""
+              style="max-width: 400px" />
+          </p>
+        </div>
+        <div class="section3">
+          <span class="name">Maimai</span>
+          <p>
+            Every new update is a struggle. I am currently having a rating of
+            13828 (personal best!)
+            <br />My playstyle is a bit different from most people, as I tend
+            to focus on stamina conservation by hitting the buttons with only
+            the tips of my fingers instead of the entire hand.
+            <span class="small">(Is this why my presses are so quiet compared to others?)</span>
+            <br />
+            unfortunately, I don't have any screenshots of my plays yet, just
+            this. <br /><img src="https://i.ibb.co/GvKXsgJW/topPlays.png" alt="" style="max-width: 800px" />
+            <br />
+            I hate how the rating system is based on grade instead of score,
+            but oh well, drastic changes in score calculation (compared to
+            Chunithm) might explains it.
+          </p>
+        </div>
+        <div class="section3">
+          <span class="name">Pump It Up</span>
+          <p>
+            One of the earliest arcade rhythm game I have ever played (just
+            after that one try with reflec beat) <br />I play it every weekend
+            at the arcade near my house, and I am currently at 17k Pumpbility.
+            <br />The main bottleneck is the faulty pad, which sometimes
+            doesn't register my steps (more specifically, the up-left arrow on
+            the 2nd pad). <br />One thing I really like about the Pumpbility
+            system is that it encourages players to play more difficult songs
+            instead of farming easy ones for score, as harder songs give more
+            Pumpbility points, even with much lower scores. <br />I can play
+            well up to Single Lv.17 and Double Lv.15, but I rarely play
+            Double.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <h3>Other hobbies that are not either of those</h3>
+      <p>
+        I do create osu!mania/StepMania charts sometimes, and it's most of the
+        time obscure songs.
+      </p>
+      <p>
+        At other times I just rot in bed watching YouTube (sorry for being
+        boring)
+      </p>
+      <p>
+        I am obsessed with yaoi manga. (Yes, I am a fujoshi)
+      </p>
+      <p>I binge-watch medical dramas at night when I have nothing to do.</p>
+      <br />
+      My favorite ones are:
+      <ul>
+        <li>The Resident</li>
+        <li>The Good Doctor</li>
+        <li>Grey's Anatomy</li>
+        <li>House M.D.</li>
+      </ul>
+      <br />
+      <div class="sectionmini">
+        <h4>Cosplay</h4>
+        <p>This is good enough to deserve a special section so...</p>
+        <p>I have cosplayed as: (images in my facebook account.)</p>
         <ul>
-          <li>The Resident</li>
-          <li>The Good Doctor</li>
-          <li>Grey's Anatomy</li>
-          <li>House M.D.</li>
+          <li>
+            Oct 2024 (first ever): Ame-chan
+            <a href="https://needy-streamer-overload.fandom.com/wiki/NEEDY_STREAMER_OVERLOAD">(Needy Streamer
+              Overload)</a>
+          </li>
+          <li>
+            Dec 2024: Arisu Suzushima
+            <a href="https://ongeki.sega.jp/">(O.N.G.E.K.I.)</a>
+          </li>
+          <li>
+            Mar 2025: Scaramouche
+            <a href="https://genshin-impact.fandom.com/wiki/Genshin_Impact_Wiki">(Genshin Impact)</a>
+          </li>
+          <li>
+            Jun 2025: Akiyama Mizuki
+            <a href="https://www.sekaipedia.org/">(Project Sekai)</a>
+          </li>
+          <li>
+            Jul 2025: Keqing
+            <a href="https://genshin-impact.fandom.com/wiki/Genshin_Impact_Wiki">(Genshin Impact)</a>
+          </li>
+          <li>Aug 2025: Akiyama Mizuki again</li>
+          <li>
+            Oct 2025: Sucrose
+            <a href="https://genshin-impact.fandom.com/wiki/Genshin_Impact_Wiki">(Genshin Impact)</a>
+          </li>
         </ul>
-        <br />
-        <div class="sectionmini">
-          <h4>Cosplay</h4>
-          <p>This is good enough to deserve a special section so...</p>
-          <p>I have cosplayed as: (images in my facebook account.)</p>
-          <ul>
-            <li>
-              Oct 2024 (first ever): Ame-chan
-              <a
-                href="https://needy-streamer-overload.fandom.com/wiki/NEEDY_STREAMER_OVERLOAD"
-                >(Needy Streamer Overload)</a
-              >
-            </li>
-            <li>
-              Dec 2024: Arisu Suzushima
-              <a href="https://ongeki.sega.jp/">(O.N.G.E.K.I.)</a>
-            </li>
-            <li>
-              Mar 2025: Scaramouche
-              <a
-                href="https://genshin-impact.fandom.com/wiki/Genshin_Impact_Wiki"
-                >(Genshin Impact)</a
-              >
-            </li>
-            <li>
-              Jun 2025: Akiyama Mizuki
-              <a href="https://www.sekaipedia.org/">(Project Sekai)</a>
-            </li>
-            <li>
-              Jul 2025: Keqing
-              <a
-                href="https://genshin-impact.fandom.com/wiki/Genshin_Impact_Wiki"
-                >(Genshin Impact)</a
-              >
-            </li>
-            <li>Aug 2025: Akiyama Mizuki again</li>
-            <li>
-              Oct 2025: Sucrose
-              <a
-                href="https://genshin-impact.fandom.com/wiki/Genshin_Impact_Wiki"
-                >(Genshin Impact)</a
-              >
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="section">
-        <h3>School stuff or something ig</h3>
-        <blockquote>
-          "I die hard for Calculus and hate Geometry to the very end"
-        </blockquote>
-        <span class="small" style="margin-left: 50px"
-          >- Me after grinding away my sanity with math homework</span
-        >
-        <p>
-          Like what you can infer from my age, I'm at grade 12 and is now
-          preparing for college next year.
-        </p>
-        <p>My main subjects are Math, Physics, ICT and English.</p>
-        <span class="small">
-          (I'm extremely bad at Chemistry and Biology (anything not
-          human-related), so I don't take them even though they are part of the
-          natural sciences group)</span
-        >
-        <p>
-          Despite that, I'm enrolled in classes that specializes in social
-          sciences group (Geography, History, Law Education, among other
-          lingustic subjects).
-        </p>
-        <p>
-          I am also an aspiring student when it comes to English and IT. (My
-          egoistical self did get in the way sometimes though)
-        </p>
-        <p>
-          I have a lot of homework and exams to prepare for, so I might not be
-          very active on the internet sometimes. (Especially during exam season)
-        </p>
-        <p>
-          I hate my clasmates. They are noisy and annoying and I just want to
-          study in peace. <br />
-          I still have to deal with them for another 8 months... See yall in
-          June.
-        </p>
       </div>
     </div>
-    <div class="endnotes">
-      <h2>So yea, that's pretty much it.</h2>
-      <p>Thanks for reading all the way to the end!</p>
-      Have my socials:
-      <div class="socials">
-        <a href="https://www.facebook.com/neneko.koromiko"
-          ><i class="fa-brands fa-facebook"></i>Facebook</a
-        >
-        <a href="https://www.instagram.com/mahotezuka_tgm4"
-          ><i class="fa-brands fa-instagram"></i>Instagram</a
-        >
-        <a href="https://www.youtube.com/@fumilette_omelette"
-          ><i class="fa-brands fa-youtube"></i>Youtube</a
-        >
-        <a href="https://www.tiktok.com/@mochiypancakes"
-          ><i class="fa-brands fa-tiktok"></i>TikTok</a
-        >
-
-        <a href="https://x.com/CultOfKemomimi">
-          <i class="fa-brands fa-twitter"></i>
-          X (Twitter)
-        </a>
-
-        <a
-          href="#"
-          onclick="navigator.clipboard.writeText('sugarlesscat.'); alert('Copied to clipboard!')"
-        >
-          <i class="fa-brands fa-discord"> </i>
-          Click to copy Discord username
-        </a>
-
-        <a href="https://ch.tetr.io/u/akiyama_mizuki">
-          <i class="fa-solid fa-cube"></i>
-          TETR.IO
-        </a>
-        <a href="https://osu.ppy.sh/users/26266703">
-          <i class="fa-brands fa-osi"></i>
-          osu!
-        </a>
-        <a href="https://theabsolute.plus/player/Icycle">
-          <i class="fa-solid fa-cube"></i>
-          TA.P page
-        </a>
-      </div>
+    <div class="section">
+      <h3>School stuff or something ig</h3>
+      <blockquote>
+        "I die hard for Calculus and hate Geometry to the very end"
+      </blockquote>
+      <span class="small" style="margin-left: 50px">- Me after grinding away my sanity with math homework</span>
+      <p>
+        Like what you can infer from my age, I'm at grade 12 and is now
+        preparing for college next year.
+      </p>
+      <p>My main subjects are Math, Physics, ICT and English.</p>
+      <span class="small">
+        (I'm extremely bad at Chemistry and Biology (anything not
+        human-related), so I don't take them even though they are part of the
+        natural sciences group)</span>
+      <p>
+        Despite that, I'm enrolled in classes that specializes in social
+        sciences group (Geography, History, Law Education, among other
+        lingustic subjects).
+      </p>
+      <p>
+        I am also an aspiring student when it comes to English and IT. (My
+        egoistical self did get in the way sometimes though)
+      </p>
+      <p>
+        I have a lot of homework and exams to prepare for, so I might not be
+        very active on the internet sometimes. (Especially during exam season)
+      </p>
+      <p>
+        I hate my clasmates. They are noisy and annoying and I just want to
+        study in peace. <br />
+        I still have to deal with them for another 8 months... See yall in
+        June.
+      </p>
     </div>
-  </body>
-  <script>
-    function updateDateTime() {
-      try {
-        const now = new Date();
-        const datetimeElem = document.querySelector(".datetime");
-        if (datetimeElem) {
-          datetimeElem.innerHTML = `${now.toLocaleDateString()} ${now.toLocaleTimeString(
-            "en-GB",
-            {
-              hour: "2-digit",
-              minute: "2-digit",
-              second: "2-digit",
-              hour12: false,
-            }
-          )}`;
-        }
-      } catch (error) {
-        console.error("Error updating datetime:", error);
+    <div class="sensitive">
+    </div>
+  </div>
+  <div class="endnotes">
+    <h2>So yea, that's pretty much it.</h2>
+    <p>Thanks for reading all the way to the end!</p>
+    Have my socials:
+    <div class="socials">
+      <a href="https://www.facebook.com/queenofheartbms"><i class="fa-brands fa-facebook"></i>Facebook</a>
+      <a href="https://www.instagram.com/mahotezuka_tgm4"><i class="fa-brands fa-instagram"></i>Instagram</a>
+      <a href="https://www.youtube.com/@fumilette_omelette"><i class="fa-brands fa-youtube"></i>Youtube</a>
+      <a href="https://www.tiktok.com/@mochiypancakes"><i class="fa-brands fa-tiktok"></i>TikTok</a>
+      <a href="https://x.com/CultOfKemomimi">
+        <i class="fa-brands fa-twitter"></i>
+        X (Twitter)
+      </a>
+
+      <a href="#" onclick="navigator.clipboard.writeText('sugarlesscat.'); alert('Copied to clipboard!')">
+        <i class="fa-brands fa-discord"> </i>
+        Click to copy Discord username
+      </a>
+
+      <a href="https://ch.tetr.io/u/akiyama_mizuki">
+        <i class="fa-solid fa-cube"></i>
+        TETR.IO
+      </a>
+      <a href="https://osu.ppy.sh/users/26266703">
+        <i class="fa-brands fa-osi"></i>
+        osu!
+      </a>
+      <a href="https://theabsolute.plus/player/Icycle">
+        <i class="fa-solid fa-cube"></i>
+        TA.P page
+      </a>
+    </div>
+  </div>
+</body>
+<script>
+  function updateDateTime() {
+    try {
+      const now = new Date();
+      const datetimeElem = document.querySelector(".datetime");
+      if (datetimeElem) {
+        datetimeElem.innerHTML = `${now.toLocaleDateString()} ${now.toLocaleTimeString(
+          "en-GB",
+          {
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+            hour12: false,
+          }
+        )}`;
       }
+    } catch (error) {
+      console.error("Error updating datetime:", error);
     }
-    const age = document.querySelector(".age");
-    const now = new Date();
-    const birthDate = new Date("2008-05-06");
-    let ageInYears = now.getYear() - birthDate.getYear();
-    if (
-      now.getMonth() < birthDate.getMonth() ||
-      (now.getMonth() === birthDate.getMonth() &&
-        now.getDate() < birthDate.getDate())
-    ) {
-      ageInYears--;
-    }
-    if (ageInYears > 25) {
-      ageInYears = `${ageInYears} (damn i'm old)`;
-    }
-    age.innerHTML = ageInYears;
-    document.addEventListener("DOMContentLoaded", () => {
-      updateDateTime();
-      setInterval(updateDateTime, 1000);
-    });
-  </script>
+  }
+  const age = document.querySelector(".age");
+  const now = new Date();
+  const birthDate = new Date("2008-05-06");
+  let ageInYears = now.getYear() - birthDate.getYear();
+  if (
+    now.getMonth() < birthDate.getMonth() ||
+    (now.getMonth() === birthDate.getMonth() &&
+      now.getDate() < birthDate.getDate())
+  ) {
+    ageInYears--;
+  }
+  if (ageInYears > 25) {
+    ageInYears = `${ageInYears} (damn i'm old)`;
+  }
+  age.innerHTML = ageInYears;
+  document.addEventListener("DOMContentLoaded", () => {
+    updateDateTime();
+    setInterval(updateDateTime, 1000);
+  });
+</script>
+
 </html>

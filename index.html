@@ -1,99 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap"
-      rel="stylesheet"
-    />
-    <script
-      src="https://kit.fontawesome.com/ced4c4a7f8.js"
-      crossorigin="anonymous"
-    ></script>
-    <style>
-      body {
-        font-family: "Mochiy Pop One", sans-serif;
-        /* background-image: url("./bg.jpg"); */
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-color: #000000;
-        margin: 0;
-        padding: 0;
-        color: #ffffff;
-      }
 
-      body::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-size: cover;
-        background-position: center;
-        background-repeat: repeat;
-        background-color: #000000;
-        opacity: 0.8;
-        backdrop-filter: blur(10px);
-        z-index: -1;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/ced4c4a7f8.js" crossorigin="anonymous"></script>
+  <style>
+    body {
+      font-family: "Mochiy Pop One", sans-serif;
+      /* background-image: url("./bg.jpg"); */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-color: #000000;
+      margin: 0;
+      padding: 0;
+      color: #ffffff;
+    }
 
-      .title {
-        font-size: 2rem;
-        color: #ffffff;
-        text-align: center;
-        padding: 20px;
-        margin-top: 70px;
-      }
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      background-repeat: repeat;
+      background-color: #000000;
+      opacity: 0.8;
+      backdrop-filter: blur(10px);
+      z-index: -1;
+    }
 
-      .timebar {
-        background-color: #434343;
-        padding: 15px;
-        color: #ffffff;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        z-index: 100;
-      }
+    .title {
+      font-size: 2rem;
+      color: #ffffff;
+      text-align: center;
+      padding: 20px;
+      margin-top: 70px;
+    }
 
-      .item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
+    .timebar {
+      background-color: #434343;
+      padding: 15px;
+      color: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+    }
 
-      .item a {
-        text-decoration: none;
-        color: #ffffff;
-        margin-left: 10px;
-        padding: 10px;
-        transition: 0.3s;
-      }
+    .item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-      .item a:hover {
-        background-color: #7a7a7a;
-        border-radius: 5px;
-        transition: 0.3s;
-      }
+    .item a {
+      text-decoration: none;
+      color: #ffffff;
+      margin-left: 10px;
+      padding: 10px;
+      transition: 0.3s;
+    }
 
-      .blog-post {
-        margin: 20px;
-        padding: 15px;
-        background-color: #ffffff0e;
-        border-radius: 8px;
-        color: #ffffff;
-      }
+    .item a:hover {
+      background-color: #7a7a7a;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
 
-      /* .bio {
+    .blog-post {
+      margin: 20px;
+      padding: 15px;
+      background-color: #ffffff0e;
+      border-radius: 8px;
+      color: #ffffff;
+    }
+
+    /* .bio {
       margin: 20px;
       padding: 15px;
       background-color: #ffffff0e;
@@ -107,374 +102,405 @@
       color: rgb(255, 61, 61);
     } */
 
-      .blogfilter {
-        margin: 20px;
-        padding: 15px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
+    .blogfilter {
+      margin: 20px;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-      .tobio {
-        text-decoration: none;
-        color: #ffffff;
-        padding: 10px 10px;
-        border: 2px solid #ffffff;
-        border-radius: 5px;
-        transition: 0.3s;
-      }
+    .tobio {
+      text-decoration: none;
+      color: #ffffff;
+      padding: 10px 10px;
+      border: 2px solid #ffffff;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
 
-      .tobio:hover {
-        background-color: #7a7a7a;
-        border-radius: 5px;
-        transition: 0.3s;
-      }
+    .tobio:hover {
+      background-color: #7a7a7a;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
 
-      .footer {
-        margin: 20px;
-        padding: 15px;
-        background-color: #ffffff0e;
-        border-radius: 8px;
-        border-left: 5px solid #0320fc;
-        border-right: 5px solid #0320fc;
-        display: flex;
-      }
+    .footer {
+      margin: 20px;
+      padding: 15px;
+      background-color: #ffffff0e;
+      border-radius: 8px;
+      border-left: 5px solid #0320fc;
+      border-right: 5px solid #0320fc;
+      display: flex;
+    }
 
-      .footer i {
-        margin-right: 10px;
-        font-size: 1.78rem;
-      }
+    .footer i {
+      margin-right: 10px;
+      font-size: 1.78rem;
+    }
 
-      .warning {
-        display: none;
-        z-index: 1000;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.95);
-        backdrop-filter: blur(10px);
-        overflow-y: auto;
-      }
+    .warning {
+      display: none;
+      z-index: 1000;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(10px);
+      overflow-y: auto;
+    }
 
+    .warning-content {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 40px;
+      background-color: #1a1a1a;
+      border: 2px solid #ff4d4d;
+      border-radius: 15px;
+      box-shadow: 0 0 30px rgba(255, 77, 77, 0.3);
+      color: #ffffff;
+    }
+
+    .main {
+      display: none;
+    }
+
+    .warning h1 {
+      color: #ff4d4d;
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2.5rem;
+      text-shadow: 0 0 10px rgba(255, 77, 77, 0.5);
+      border-bottom: 2px solid #ff4d4d;
+      padding-bottom: 15px;
+    }
+
+    .warning-intro {
+      background-color: rgba(255, 77, 77, 0.1);
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 25px;
+      border-left: 4px solid #ff4d4d;
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+
+    .warning ul {
+      background-color: rgba(255, 77, 77, 0.05);
+      padding: 25px 40px;
+      border-radius: 10px;
+      margin: 20px 0;
+      border: 1px solid rgba(255, 77, 77, 0.2);
+    }
+
+    .warning li {
+      margin-bottom: 12px;
+      padding-left: 10px;
+      position: relative;
+    }
+
+    .warning li::before {
+      content: "⚠️";
+      position: absolute;
+      left: -25px;
+      top: 0;
+    }
+
+    .warning-disclaimer {
+      background-color: rgba(255, 77, 77, 0.1);
+      padding: 20px;
+      border-radius: 10px;
+      margin: 25px 0;
+      border-left: 4px solid #ff4d4d;
+      font-style: italic;
+    }
+
+    .buttonswarning {
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .button {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .buttonswarning button {
+      padding: 15px 25px;
+      border: 2px solid;
+      border-radius: 10px;
+      background-color: transparent;
+      color: #ffffff;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1.1rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .buttonswarning button:first-child {
+      border-color: #434343;
+      background-color: #434343;
+    }
+
+    .buttonswarning button:first-child:hover {
+      background-color: #555;
+      border-color: #555;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(67, 67, 67, 0.4);
+    }
+
+    .buttonswarning button:last-child {
+      border-color: #ff4d4d;
+      background-color: #ff4d4d;
+    }
+
+    .buttonswarning button:last-child:hover {
+      background-color: #ff3333;
+      border-color: #ff3333;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 77, 77, 0.4);
+    }
+
+    .buttonswarning button:disabled {
+      background-color: #444;
+      border-color: #444;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .warning p {
+      margin: 15px 0;
+      line-height: 1.6;
+    }
+
+    #blogfilter {
+      margin-left: 20px;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ffffff;
+      background-color: #000000;
+      color: #ffffff;
+      width: 25%;
+    }
+
+    .nsfwtoggle {
+      margin-left: 20px;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ffffff;
+      background-color: #000000;
+      color: #ffffff;
+    }
+
+    .nsfwtoggle:hover {
+      background-color: #7a7a7a;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+
+    .viewcount {
+      text-align: center;
+      margin-top: -10px;
+      font-size: 1rem;
+      color: #cccccc;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      gap: 20px;
+      width: 100%;
+    }
+    .viewlabel {
+      margin-bottom: 10px;
+      color: #444;
+      font-size: small;
+    }
+
+
+    @media (max-width: 768px) {
       .warning-content {
-        max-width: 800px;
-        margin: 50px auto;
-        padding: 40px;
-        background-color: #1a1a1a;
-        border: 2px solid #ff4d4d;
-        border-radius: 15px;
-        box-shadow: 0 0 30px rgba(255, 77, 77, 0.3);
-        color: #ffffff;
-      }
-
-      .main {
-        display: none;
-      }
-
-      .warning h1 {
-        color: #ff4d4d;
-        text-align: center;
-        margin-bottom: 30px;
-        font-size: 2.5rem;
-        text-shadow: 0 0 10px rgba(255, 77, 77, 0.5);
-        border-bottom: 2px solid #ff4d4d;
-        padding-bottom: 15px;
-      }
-
-      .warning-intro {
-        background-color: rgba(255, 77, 77, 0.1);
-        padding: 20px;
-        border-radius: 10px;
-        margin-bottom: 25px;
-        border-left: 4px solid #ff4d4d;
-        font-size: 1.1rem;
-        font-weight: bold;
-      }
-
-      .warning ul {
-        background-color: rgba(255, 77, 77, 0.05);
-        padding: 25px 40px;
-        border-radius: 10px;
-        margin: 20px 0;
-        border: 1px solid rgba(255, 77, 77, 0.2);
-      }
-
-      .warning li {
-        margin-bottom: 12px;
-        padding-left: 10px;
-        position: relative;
-      }
-
-      .warning li::before {
-        content: "⚠️";
-        position: absolute;
-        left: -25px;
-        top: 0;
-      }
-
-      .warning-disclaimer {
-        background-color: rgba(255, 77, 77, 0.1);
-        padding: 20px;
-        border-radius: 10px;
-        margin: 25px 0;
-        border-left: 4px solid #ff4d4d;
-        font-style: italic;
-      }
-
-      .buttonswarning {
-        margin-top: 30px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 15px;
+        margin: 20px;
+        padding: 25px;
       }
 
       .button {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
+        grid-template-columns: 1fr;
       }
 
-      .buttonswarning button {
-        padding: 15px 25px;
-        border: 2px solid;
-        border-radius: 10px;
-        background-color: transparent;
-        color: #ffffff;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        font-size: 1.1rem;
-        font-weight: bold;
-        text-transform: uppercase;
-        letter-spacing: 1px;
+      .warning h1 {
+        font-size: 2rem;
       }
 
-      .buttonswarning button:first-child {
-        border-color: #434343;
-        background-color: #434343;
+      .blogfilter {
+        flex-direction: column;
+        align-items: flex-start;
       }
 
-      .buttonswarning button:first-child:hover {
-        background-color: #555;
-        border-color: #555;
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(67, 67, 67, 0.4);
-      }
-
-      .buttonswarning button:last-child {
-        border-color: #ff4d4d;
-        background-color: #ff4d4d;
-      }
-
-      .buttonswarning button:last-child:hover {
-        background-color: #ff3333;
-        border-color: #ff3333;
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(255, 77, 77, 0.4);
-      }
-
-      .buttonswarning button:disabled {
-        background-color: #444;
-        border-color: #444;
-        cursor: not-allowed;
-        transform: none;
-        box-shadow: none;
-      }
-
-      .warning p {
-        margin: 15px 0;
-        line-height: 1.6;
-      }
-      #blogfilter {
+      .biobutton {
+        margin-top: 25px;
         margin-left: 20px;
-        padding: 10px;
-        border-radius: 5px;
-        border: 1px solid #ffffff;
-        background-color: #000000;
-        color: #ffffff;
-        width: 25%;
       }
-      .nsfwtoggle {
-        margin-left: 20px;
-        padding: 10px;
-        border-radius: 5px;
-        border: 1px solid #ffffff;
-        background-color: #000000;
-        color: #ffffff;
-      }
-      .nsfwtoggle:hover {
-        background-color: #7a7a7a;
-        border-radius: 5px;
-        transition: 0.3s;
-      }
-      @media (max-width: 768px) {
-        .warning-content {
-          margin: 20px;
-          padding: 25px;
-        }
+    }
 
-        .button {
-          grid-template-columns: 1fr;
-        }
+    .like-button {
+      background-color: transparent;
+      border: none;
+      font-family: "Mochiy Pop One", sans-serif;
+      color: #ffee00;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      margin-top: 10px;
+    }
 
-        .warning h1 {
-          font-size: 2rem;
-        }
+    .starburst {
+      position: fixed;
+      font-size: 24px;
+      color: #ffffff;
+      pointer-events: none;
+      z-index: 1000;
+    }
 
-        .blogfilter {
-          flex-direction: column;
-          align-items: flex-start;
-        }
+    .dislike-button {
+      background-color: transparent;
+      border: none;
+      font-family: "Mochiy Pop One", sans-serif;
+      color: #ff4444;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      margin-top: 10px;
+    }
+  </style>
+  <title>Neneko's blog</title>
+</head>
 
-        .biobutton {
-          margin-top: 25px;
-          margin-left: 20px;
-        }
-      }
+<body>
+  <div class="warning">
+    <div class="warning-content">
+      <h1>⚠️ WARNING ⚠️</h1>
 
-      .like-button {
-        background-color: transparent;
-        border: none;
-        font-family: "Mochiy Pop One", sans-serif;
-        color: #ffee00;
-        padding: 8px 12px;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 1rem;
-        transition: all 0.3s ease;
-        margin-top: 10px;
-      }
+      <div class="warning-intro">
+        This blog contains the following content, but is not limited to:
+      </div>
 
-      .starburst {
-        position: fixed;
-        font-size: 24px;
-        color: #ffffff;
-        pointer-events: none;
-        z-index: 1000;
-      }
+      <ul>
+        <li>
+          Occasional NSFW (sexually explicit) content, along with fetish
+          content (mostly balloon fetish)
+        </li>
+        <li>Violent content</li>
+        <li>Mature language</li>
+        <li>
+          Triggering content such as suicidal thoughts and/or attempts and
+          self-destructive behavior
+        </li>
+        <li>
+          Slight cyberbullying and/or harassment to intended targets (to an
+          extent)
+        </li>
+        <li>
+          Hate speech towards selected targets or people in general, part
+          satire part serious
+        </li>
+        <li>
+          Mentions of homophobia and/or transphobia (quoted from others, not
+          the writer's beliefs)
+        </li>
+        <li>Huge OOC moments</li>
+        <li>Content that could infuriate you</li>
+        <li>Very long posts (There is no TL;DR here)</li>
+      </ul>
 
-      .dislike-button {
-        background-color: transparent;
-        border: none;
-        font-family: "Mochiy Pop One", sans-serif;
-        color: #ff4444;
-        padding: 8px 12px;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 1rem;
-        transition: all 0.3s ease;
-        margin-top: 10px;
-      }
-    </style>
-    <title>Neneko's blog</title>
-  </head>
+      <div class="warning-disclaimer">
+        <p>
+          <strong>⚠️ Important:</strong> If you are sensitive to any of the
+          above content, please exit this website and don't look back.
+        </p>
 
-  <body>
-    <div class="warning">
-      <div class="warning-content">
-        <h1>⚠️ WARNING ⚠️</h1>
+        <p>
+          All responsibility for any consequences related to the content of
+          this blog lies with the reader, especially the owner of this
+          website.
+        </p>
 
-        <div class="warning-intro">
-          This blog contains the following content, but is not limited to:
-        </div>
+        <p>
+          By continuing to browse this website, you acknowledge that you have
+          read and agreed to the terms of this disclaimer.
+        </p>
+      </div>
 
-        <ul>
-          <li>
-            Occasional NSFW (sexually explicit) content, along with fetish
-            content (mostly balloon fetish)
-          </li>
-          <li>Violent content</li>
-          <li>Mature language</li>
-          <li>
-            Triggering content such as suicidal thoughts and/or attempts and
-            self-destructive behavior
-          </li>
-          <li>
-            Slight cyberbullying and/or harassment to intended targets (to an
-            extent)
-          </li>
-          <li>
-            Hate speech towards selected targets or people in general, part
-            satire part serious
-          </li>
-          <li>
-            Mentions of homophobia and/or transphobia (quoted from others, not
-            the writer's beliefs)
-          </li>
-          <li>Huge OOC moments</li>
-          <li>Content that could infuriate you</li>
-          <li>Very long posts (There is no TL;DR here)</li>
-        </ul>
-
-        <div class="warning-disclaimer">
-          <p>
-            <strong>⚠️ Important:</strong> If you are sensitive to any of the
-            above content, please exit this website and don't look back.
-          </p>
-
-          <p>
-            All responsibility for any consequences related to the content of
-            this blog lies with the reader, especially the owner of this
-            website.
-          </p>
-
-          <p>
-            By continuing to browse this website, you acknowledge that you have
-            read and agreed to the terms of this disclaimer.
-          </p>
-        </div>
-
-        <div class="buttonswarning">
-          <div class="button">
-            <button type="button" onclick="continueBtn()">
-              ✅ Yes, I agree, let me see the blog!
-            </button>
-            <button type="button" onclick="exitBtn()">❌ Nope, I'm out</button>
-          </div>
+      <div class="buttonswarning">
+        <div class="button">
+          <button type="button" onclick="continueBtn()">
+            ✅ Yes, I agree, let me see the blog!
+          </button>
+          <button type="button" onclick="exitBtn()">❌ Nope, I'm out</button>
         </div>
       </div>
     </div>
-    <div class="main">
-      <div class="timebar">
-        <div class="item">
-          <div
-            class="name"
-            style="font-size: 1.25rem; color: rgb(61, 255, 245)"
-          >
-            Neneko Koromiko
-          </div>
+  </div>
+  <div class="main">
+    <div class="timebar">
+      <div class="item">
+        <div class="name" style="font-size: 1.25rem; color: rgb(61, 255, 245)">
+          Neneko Koromiko
         </div>
-        <div class="datetime" style="margin-right: 30px"></div>
       </div>
-      <div class="title">Neneko Koromiko's Blog</div>
-      <!-- Elfsight Visitor Counter | Untitled Visitor Counter -->
-      <script src="https://elfsightcdn.com/platform.js" async></script>
-      <div
-        class="elfsight-app-d7aae801-ebe1-42d6-9196-fae30aca556e"
-        data-elfsight-app-lazy
-      ></div>
-      <div class="blogfilter">
-        <div class="filt">
-          <select name="blogfilter" id="blogfilter">
-            <option value="">All blogs</option>
-            <option value="delta force">Delta Force</option>
-            <option value="other games">Other Games</option>
-            <option value="development">Development</option>
-            <option value="life">Life</option>
-            <option value="balloonposting">Balloonposting</option>
-            <option value="other">Other</option>
-          </select>
-          <button type="button" class="nsfwtoggle">
-            Toggle NSFW/Gore posts
-          </button>
-          <input
-            type="number"
-            name="postnum"
-            class="postnum"
-            placeholder="Jump to post #"
-            style="
+      <div class="datetime" style="margin-right: 30px"></div>
+    </div>
+    <div class="title">Neneko Koromiko's Blog</div>
+    <div class="viewcount">
+      <div class="stats">
+        <div class="total">
+          <span class="viewlabel">Total page views</span> <br>
+          <span class="views"></span>
+        </div>
+        <div class="daily">
+          <span class="viewlabel">Today's views</span> <br>
+          <span class="dailyviews"></span>
+        </div>
+      </div>
+      <div class="stats2">
+      <span class="viewlabel">Daily stats are reset at 00:00 UTC+7.</span></div>
+    </div>
+    <div class="blogfilter">
+      <div class="filt">
+        <select name="blogfilter" id="blogfilter">
+          <option value="">All blogs</option>
+          <option value="delta force">Delta Force</option>
+          <option value="other games">Other Games</option>
+          <option value="development">Development</option>
+          <option value="life">Life</option>
+          <option value="balloonposting">Balloonposting</option>
+          <option value="other">Other</option>
+        </select>
+        <button type="button" class="nsfwtoggle">
+          Toggle NSFW/Gore posts
+        </button>
+        <input type="number" name="postnum" class="postnum" placeholder="Jump to post #" style="
               width: 120px;
               margin-left: 20px;
               padding: 10px;
@@ -482,28 +508,23 @@
               border: 1px solid #ffffff;
               background-color: #000000;
               color: #ffffff;
-            "
-          />
-        </div>
-        <div class="biobutton">
-          <a href="aboutme.html" class="tobio">About me</a>
-        </div>
+            " />
       </div>
-      <div class="blogcontainer"></div>
-      <div
-        class="loading"
-        style="
+      <div class="biobutton">
+        <a href="aboutme.html" class="tobio">About me</a>
+      </div>
+    </div>
+    <div class="blogcontainer"></div>
+    <div class="loading" style="
           text-align: center;
           color: #888;
           margin-top: 20px;
           font-size: x-large;
-        "
-      >
-        Loading blogs...
-      </div>
-      <div class="congrats" style="text-align: center; display: none">
-        <span
-          style="
+        ">
+      Loading blogs...
+    </div>
+    <div class="congrats" style="text-align: center; display: none">
+      <span style="
             font-size: 1.5rem;
             font-weight: bold;
             color: transparent;
@@ -516,112 +537,92 @@
               rgba(0, 242, 255, 1) 75%,
               rgba(0, 255, 170, 1) 100%
             );
-          "
-          >You made it to the end of the blog! Yay!</span
-        >
-      </div>
-      <div class="footer" style="margin-top: 50px">
-        <div class="section">
-          <span
-            style="
+          ">You made it to the end of the blog! Yay!</span>
+    </div>
+    <div class="footer" style="margin-top: 50px">
+      <div class="section">
+        <span style="
               font-size: 1.5rem;
               font-weight: bold;
               margin-left: 15px;
               color: #0320fc;
-            "
-            >Some of my stuff i guess</span
-          >
-          <div class="item">
-            <a
-              href="https://www.youtube.com/@fumilette_omelette"
-              target="_blank"
-              ><i class="fa-brands fa-youtube"></i> Youtube</a
-            >
-          </div>
-          <div class="item">
-            <a href="https://github.com/yumemizook" target="_blank"
-              ><i class="fa-brands fa-github"></i> GitHub</a
-            >
-          </div>
-          <div class="item">
-            <a href="https://www.facebook.com/queenofheartbms" target="_blank"
-              ><i class="fa-brands fa-facebook"></i> Facebook</a
-            >
-          </div>
-          <div class="item">
-            <a href="https://youtu.be/N6DMXNyvAxs" target="_blank"
-              ><i class="fa-solid fa-music"></i> The song that is stuck in my
-              head right now</a
-            >
-          </div>
+            ">Some of my stuff i guess</span>
+        <div class="item">
+          <a href="https://www.youtube.com/@fumilette_omelette" target="_blank"><i class="fa-brands fa-youtube"></i>
+            Youtube</a>
         </div>
-        <div class="section">
-          <span
-            style="
+        <div class="item">
+          <a href="https://github.com/yumemizook" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+        </div>
+        <div class="item">
+          <a href="https://www.facebook.com/queenofheartbms" target="_blank"><i class="fa-brands fa-facebook"></i>
+            Facebook</a>
+        </div>
+        <div class="item">
+          <a href="https://youtu.be/N6DMXNyvAxs" target="_blank"><i class="fa-solid fa-music"></i> The song that is
+            stuck in my
+            head right now</a>
+        </div>
+      </div>
+      <div class="section">
+        <span style="
               font-size: 1.5rem;
               font-weight: bold;
               margin-left: 15px;
               color: #0320fc;
-            "
-            >Stuff I made</span
-          >
-          <div class="item">
-            <a href="https://prownieir.vercel.app" target="_blank"
-              ><i class="fa-solid fa-code"></i>Prownie IR</a
-            >
-          </div>
-          <div class="item">
-            <a href="https://lr2skinhelp.vercel.app" target="_blank"
-              ><i class="fa-solid fa-code"></i> LR2 Skin Help (English
-              Version)</a
-            >
-          </div>
-          <div class="item">
-            <a href="https://yumemizook.github.io/suometeo/" target="_blank"
-              ><i class="fa-solid fa-code"></i> Suometeo (weather app)</a
-            >
-          </div>
-          <div class="item">
-            <a href="https://yumemizook.github.io/sample-quiz/" target="_blank"
-              ><i class="fa-solid fa-code"></i> Very simple quiz site</a
-            >
-          </div>
+            ">Stuff I made</span>
+        <div class="item">
+          <a href="https://prownieir.vercel.app" target="_blank"><i class="fa-solid fa-code"></i>Prownie IR</a>
+        </div>
+        <div class="item">
+          <a href="https://lr2skinhelp.vercel.app" target="_blank"><i class="fa-solid fa-code"></i> LR2 Skin Help
+            (English
+            Version)</a>
+        </div>
+        <div class="item">
+          <a href="https://yumemizook.github.io/suometeo/" target="_blank"><i class="fa-solid fa-code"></i> Suometeo
+            (weather app)</a>
+        </div>
+        <div class="item">
+          <a href="https://yumemizook.github.io/sample-quiz/" target="_blank"><i class="fa-solid fa-code"></i> Very
+            simple quiz site</a>
         </div>
       </div>
     </div>
-  </body>
-  <script>
-    function continueBtn() {
-      try {
-        localStorage.setItem("warning-agreed", "true");
-        const warningElem = document.querySelector(".warning");
-        const mainElem = document.querySelector(".main");
-        const saveChoice = document.querySelector("#saveChoice");
-        const nsfwDefault = localStorage.getItem("show-nsfw");
-        if (nsfwDefault) {
-          localStorage.setItem("show-nsfw", "false"); // default to hiding nsfw posts. dont want people to be shocked
-        }
-        if (warningElem) warningElem.style.display = "none";
-        if (mainElem) mainElem.style.display = "block";
-        console.log(
-          "Other than the cute kaomoji, there is little use here so..."
-        );
-      } catch (e) {
-        console.error("Error in continueBtn:", e);
+  </div>
+</body>
+<script>
+  function continueBtn() {
+    try {
+      localStorage.setItem("warning-agreed", "true");
+      const warningElem = document.querySelector(".warning");
+      const mainElem = document.querySelector(".main");
+      const saveChoice = document.querySelector("#saveChoice");
+      const nsfwDefault = localStorage.getItem("show-nsfw");
+      if (nsfwDefault) {
+        localStorage.setItem("show-nsfw", "false"); // default to hiding nsfw posts. dont want people to be shocked
       }
+      if (warningElem) warningElem.style.display = "none";
+      if (mainElem) mainElem.style.display = "block";
+      console.log(
+        "Other than the cute kaomoji, there is little use here so..."
+      );
+    } catch (e) {
+      console.error("Error in continueBtn:", e);
     }
+  }
 
-    function exitBtn() {
-      try {
-        localStorage.setItem("warning-agreed", "false");
-        const warningElem = document.querySelector(".warning");
-        const mainElem = document.querySelector(".main");
+  function exitBtn() {
+    try {
+      localStorage.setItem("warning-agreed", "false");
+      const warningElem = document.querySelector(".warning");
+      const mainElem = document.querySelector(".main");
 
-        warningElem.style.display = "none";
-        console.log("%cPOOR!", "color: red; font-size: 5rem");
+      warningElem.style.display = "none";
+      console.log("%cPOOR!", "color: red; font-size: 5rem");
 
-        // Windows 95 exit message
-        mainElem.innerHTML = `
+      // Windows 95 exit message
+      mainElem.innerHTML = `
         <div style="
           position: fixed;
           top: 0;
@@ -655,545 +656,605 @@
         </div>
       `;
 
+      mainElem.style.display = "block";
+    } catch (e) {
+      console.error("Error in exitBtn:", e);
+      window.location.href = "about:blank";
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    try {
+      const agreed = localStorage.getItem("warning-agreed");
+      const warningElem = document.querySelector(".warning");
+      const mainElem = document.querySelector(".main");
+      const dontRemind = localStorage.getItem("dont-remind-again");
+      if (agreed === "true") {
+        warningElem.style.display = "none";
         mainElem.style.display = "block";
-      } catch (e) {
-        console.error("Error in exitBtn:", e);
-        window.location.href = "about:blank";
-      }
-    }
-
-    document.addEventListener("DOMContentLoaded", () => {
-      try {
-        const agreed = localStorage.getItem("warning-agreed");
-        const warningElem = document.querySelector(".warning");
-        const mainElem = document.querySelector(".main");
-        const dontRemind = localStorage.getItem("dont-remind-again");
-        if (agreed === "true") {
-          warningElem.style.display = "none";
-          mainElem.style.display = "block";
-        } else {
-          mainElem.style.display = "none";
-          warningElem.style.display = "block";
-          if (agreed === "false") localStorage.removeItem("warning-agreed");
-        }
-      } catch (e) {
-        console.error("Error initializing warning/main state:", e);
-      }
-    });
-  </script>
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-    import {
-      getFirestore,
-      collection,
-      getDocs,
-      query,
-      orderBy,
-      doc,
-      updateDoc,
-    } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
-
-    // Custom date formatting function to avoid CORS issues with Firebase
-    function formatDistanceToNow(date, options = {}) {
-      const now = new Date();
-      const diffInMs = now - date;
-      const diffInSeconds = Math.floor(diffInMs / 1000);
-      const diffInMinutes = Math.floor(diffInSeconds / 60);
-      const diffInHours = Math.floor(diffInMinutes / 60);
-      const diffInDays = Math.floor(diffInHours / 24);
-      const diffInWeeks = Math.floor(diffInDays / 7);
-      const diffInMonths = Math.floor(diffInDays / 30);
-      const diffInYears = Math.floor(diffInDays / 365);
-      if (diffInSeconds < 60) {
-        return "less than a minute ago";
-      } else if (diffInMinutes < 60) {
-        return `${diffInMinutes} minute${diffInMinutes !== 1 ? "s" : ""} ago`;
-      } else if (diffInHours < 24) {
-        return `${diffInHours} hour${diffInHours !== 1 ? "s" : ""} ago`;
-      } else if (diffInDays < 7) {
-        return `${diffInDays} day${diffInDays !== 1 ? "s" : ""} ago`;
-      } else if (diffInWeeks < 4) {
-        return `${diffInWeeks} week${diffInWeeks !== 1 ? "s" : ""} ago`;
-      } else if (diffInDays < 30 && diffInWeeks >= 4) {
-        return `${diffInWeeks} week${diffInWeeks !== 1 ? "s" : ""} ago`;
-      } else if (diffInMonths < 12) {
-        return `${diffInMonths} month${diffInMonths !== 1 ? "s" : ""} ago`;
       } else {
-        return `${diffInYears} year${diffInYears !== 1 ? "s" : ""} ago`;
+        mainElem.style.display = "none";
+        warningElem.style.display = "block";
+        if (agreed === "false") localStorage.removeItem("warning-agreed");
       }
+    } catch (e) {
+      console.error("Error initializing warning/main state:", e);
     }
+  });
+</script>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+  import {
+    getFirestore,
+    collection,
+    getDocs,
+    getDoc,
+    setDoc,
+    query,
+    orderBy,
+    doc,
+    updateDoc,
+  } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyCcyR-VW3hFroVrG0164QwVO8WYSliGZQA",
-      authDomain: "testrun-b565e.firebaseapp.com",
-      databaseURL:
-        "https://testrun-b565e-default-rtdb.asia-southeast1.firebasedatabase.app",
-      projectId: "testrun-b565e",
-      storageBucket: "testrun-b565e.firebasestorage.app",
-      messagingSenderId: "786542410028",
-      appId: "1:786542410028:web:7898349ee8c158e96e9489",
-    };
+  // Custom date formatting function to avoid CORS issues with Firebase
+  function formatDistanceToNow(date, options = {}) {
+    const now = new Date();
+    const diffInMs = now - date;
+    const diffInSeconds = Math.floor(diffInMs / 1000);
+    const diffInMinutes = Math.floor(diffInSeconds / 60);
+    const diffInHours = Math.floor(diffInMinutes / 60);
+    const diffInDays = Math.floor(diffInHours / 24);
+    const diffInWeeks = Math.floor(diffInDays / 7);
+    const diffInMonths = Math.floor(diffInDays / 30);
+    const diffInYears = Math.floor(diffInDays / 365);
+    if (diffInSeconds < 60) {
+      return "less than a minute ago";
+    } else if (diffInMinutes < 60) {
+      return `${diffInMinutes} minute${diffInMinutes !== 1 ? "s" : ""} ago`;
+    } else if (diffInHours < 24) {
+      return `${diffInHours} hour${diffInHours !== 1 ? "s" : ""} ago`;
+    } else if (diffInDays < 7) {
+      return `${diffInDays} day${diffInDays !== 1 ? "s" : ""} ago`;
+    } else if (diffInWeeks < 4) {
+      return `${diffInWeeks} week${diffInWeeks !== 1 ? "s" : ""} ago`;
+    } else if (diffInDays < 30 && diffInWeeks >= 4) {
+      return `${diffInWeeks} week${diffInWeeks !== 1 ? "s" : ""} ago`;
+    } else if (diffInMonths < 12) {
+      return `${diffInMonths} month${diffInMonths !== 1 ? "s" : ""} ago`;
+    } else {
+      return `${diffInYears} year${diffInYears !== 1 ? "s" : ""} ago`;
+    }
+  }
 
-    // Initialize Firebase first
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-    const blogRef = collection(db, "blog");
+  const firebaseConfig = {
+    apiKey: "AIzaSyCcyR-VW3hFroVrG0164QwVO8WYSliGZQA",
+    authDomain: "testrun-b565e.firebaseapp.com",
+    databaseURL:
+      "https://testrun-b565e-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "testrun-b565e",
+    storageBucket: "testrun-b565e.firebasestorage.app",
+    messagingSenderId: "786542410028",
+    appId: "1:786542410028:web:7898349ee8c158e96e9489",
+  };
 
-    // Secure HTML sanitizer function to avoid XSS attacks
-    function sanitizeHTML(html) {
-      // Create a temporary div to parse HTML
-      const tempDiv = document.createElement("div");
-      tempDiv.innerHTML = html;
+  // Initialize Firebase first
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  const blogRef = collection(db, "blog");
 
-      // Define allowed tags and attributes
-      const allowedTags = {
-        p: ["style"],
-        br: [],
-        strong: ["style"],
-        em: ["style"],
-        u: ["style"],
-        h1: ["style"],
-        h2: ["style"],
-        h3: ["style"],
-        h4: ["style"],
-        h5: ["style"],
-        h6: ["style"],
-        ul: ["style"],
-        ol: ["style"],
-        li: ["style"],
-        blockquote: ["style"],
-        code: ["style"],
-        pre: ["style"],
-        hr: ["style"],
-        iframe: [
-          "src",
-          "width",
-          "height",
-          "style",
-          "allow",
-          "allowfullscreen",
-          "frameborder",
-          "scrolling",
-        ],
-        img: ["src", "alt", "title", "width", "height", "style"],
-        video: [
-          "src",
-          "controls",
-          "width",
-          "height",
-          "style",
-          "autoplay",
-          "muted",
-          "loop",
-        ],
-        audio: ["src", "controls", "style", "autoplay", "muted", "loop"],
-        source: ["src", "type"],
-        a: ["href", "target", "rel", "style"],
-        span: ["style"],
-        div: ["style"],
-      };
+  async function incrementDailyVisitCount() {
+    try {
+      // Get today's date in YYYY-MM-DD format using UTC+7 timezone
+      const today = new Date();
+      // Convert to UTC+7 by adding 7 hours (7 * 60 * 60 * 1000 milliseconds)
+      const utc7Time = new Date(today.getTime() + (7 * 60 * 60 * 1000));
+      // Format as YYYY-MM-DD in UTC+7
+      const year = utc7Time.getUTCFullYear();
+      const month = String(utc7Time.getUTCMonth() + 1).padStart(2, '0');
+      const day = String(utc7Time.getUTCDate()).padStart(2, '0');
+      const dateKey = `${year}-${month}-${day}`; // e.g., "2024-01-15"
+      const dailyDocRef = doc(db, "counters", `dailyVisits-${dateKey}`);
+      const dailyDocSnap = await getDoc(dailyDocRef);
 
-      // Define allowed CSS properties for style attributes to avoid CSS injection
-      const allowedCSSProps = [
-        "color",
-        "background-color",
-        "font-size",
-        "font-weight",
-        "font-style",
-        "text-align",
-        "margin",
-        "padding",
-        "border",
-        "border-radius",
+      let dailyCount = 1;
+      if (dailyDocSnap.exists()) {
+        dailyCount = (dailyDocSnap.data().count || 0) + 1;
+        await updateDoc(dailyDocRef, { count: dailyCount, date: dateKey });
+      } else {
+        await setDoc(dailyDocRef, { count: 1, date: dateKey });
+      }
+
+      // Update the daily views display
+      const dailyViewsElem = document.querySelector(".dailyviews");
+      if (dailyViewsElem) {
+        dailyViewsElem.textContent = dailyCount;
+        // Use a different color formula for daily views
+        const dr = (dailyCount * 13) % 360;
+        dailyViewsElem.style.color = `hsl(${dr}, 100%, 73.2%)`;
+      }
+    } catch (e) {
+      console.error("Error incrementing daily visit count:", e);
+    }
+  }
+
+  async function incrementViewCount() {
+    try {
+      const viewDocRef = doc(db, "counters", "blogViews");
+      const viewDocSnap = await getDoc(viewDocRef);
+      if (viewDocSnap.exists()) {
+        const currentViews = viewDocSnap.data().count || 0;
+        await updateDoc(viewDocRef, { count: currentViews + 1 });
+        document.querySelector(".views").textContent = currentViews + 1;
+        // Use a more visually distinct color formula for the view count
+        const r = (currentViews * 3) % 255;
+        const g = (currentViews * 7) % 255;
+        const b = (currentViews * 11) % 255;
+        document.querySelector(".views").style.color = `rgb(${r}, ${g}, ${b})`;
+      } else {
+        await setDoc(viewDocRef, { count: 1 });
+        document.querySelector(".views").textContent = 1;
+      }
+
+      // Also increment daily visit count
+      await incrementDailyVisitCount();
+    } catch (e) {
+      console.error("Error incrementing view count:", e);
+    }
+  }
+  // Secure HTML sanitizer function to avoid XSS attacks
+  function sanitizeHTML(html) {
+    // Create a temporary div to parse HTML
+    const tempDiv = document.createElement("div");
+    tempDiv.innerHTML = html;
+
+    // Define allowed tags and attributes
+    const allowedTags = {
+      p: ["style"],
+      br: [],
+      strong: ["style"],
+      em: ["style"],
+      u: ["style"],
+      h1: ["style"],
+      h2: ["style"],
+      h3: ["style"],
+      h4: ["style"],
+      h5: ["style"],
+      h6: ["style"],
+      ul: ["style"],
+      ol: ["style"],
+      li: ["style"],
+      blockquote: ["style"],
+      code: ["style"],
+      pre: ["style"],
+      hr: ["style"],
+      iframe: [
+        "src",
         "width",
         "height",
-        "max-width",
-        "max-height",
-        "display",
-        "float",
-        "clear",
-        "position",
-        "top",
-        "left",
-        "right",
-        "bottom",
-        "z-index",
-      ];
+        "style",
+        "allow",
+        "allowfullscreen",
+        "frameborder",
+        "scrolling",
+      ],
+      img: ["src", "alt", "title", "width", "height", "style"],
+      video: [
+        "src",
+        "controls",
+        "width",
+        "height",
+        "style",
+        "autoplay",
+        "muted",
+        "loop",
+      ],
+      audio: ["src", "controls", "style", "autoplay", "muted", "loop"],
+      source: ["src", "type"],
+      a: ["href", "target", "rel", "style"],
+      span: ["style"],
+      div: ["style"],
+    };
 
-      // Function to sanitize style attribute to avoid CSS injection
-      function sanitizeStyle(styleValue) {
-        if (!styleValue) return "";
+    // Define allowed CSS properties for style attributes to avoid CSS injection
+    const allowedCSSProps = [
+      "color",
+      "background-color",
+      "font-size",
+      "font-weight",
+      "font-style",
+      "text-align",
+      "margin",
+      "padding",
+      "border",
+      "border-radius",
+      "width",
+      "height",
+      "max-width",
+      "max-height",
+      "display",
+      "float",
+      "clear",
+      "position",
+      "top",
+      "left",
+      "right",
+      "bottom",
+      "z-index",
+    ];
 
-        // Remove any script-like content
-        if (
-          styleValue.includes("javascript:") ||
-          styleValue.includes("expression(")
-        ) {
-          return "";
-        }
+    // Function to sanitize style attribute to avoid CSS injection
+    function sanitizeStyle(styleValue) {
+      if (!styleValue) return "";
 
-        // Only allow safe CSS properties
-        const styles = styleValue.split(";");
-        const sanitizedStyles = styles
-          .map((style) => {
-            const [property, value] = style.split(":").map((s) => s.trim());
-            if (allowedCSSProps.includes(property) && value) {
-              return `${property}: ${value}`;
-            }
-            return "";
-          })
-          .filter((style) => style.length > 0);
-
-        return sanitizedStyles.join("; ");
+      // Remove any script-like content
+      if (
+        styleValue.includes("javascript:") ||
+        styleValue.includes("expression(")
+      ) {
+        return "";
       }
 
-      // Function to sanitize attributes to avoid XSS attacks
-      function sanitizeAttributes(element, allowedAttrs) {
-        const attributes = Array.from(element.attributes);
-        attributes.forEach((attr) => {
-          if (!allowedAttrs.includes(attr.name)) {
-            element.removeAttribute(attr.name);
-          } else if (attr.name === "style") {
-            const sanitizedStyle = sanitizeStyle(attr.value);
-            if (sanitizedStyle) {
-              element.setAttribute("style", sanitizedStyle);
-            } else {
-              element.removeAttribute("style");
-            }
-          } else if (attr.name === "href") {
-            // Ensure href is safe (no javascript: or data:)
-            if (
-              attr.value.startsWith("javascript:") ||
-              attr.value.startsWith("data:")
-            ) {
-              element.removeAttribute("href");
-            }
-          } else if (attr.name === "src") {
-            // Ensure src is safe (no javascript: or data: for non-images to avoid XSS attacks)
-            if (
-              attr.value.startsWith("javascript:") ||
-              (attr.value.startsWith("data:") &&
-                !element.tagName.toLowerCase().match(/^(img|video|audio)$/))
-            ) {
-              element.removeAttribute("src");
-            }
+      // Only allow safe CSS properties
+      const styles = styleValue.split(";");
+      const sanitizedStyles = styles
+        .map((style) => {
+          const [property, value] = style.split(":").map((s) => s.trim());
+          if (allowedCSSProps.includes(property) && value) {
+            return `${property}: ${value}`;
           }
-        });
-        // If opening in a new tab, ensure rel is safe
-        if (
-          element.tagName.toLowerCase() === "a" &&
-          element.getAttribute("target") === "_blank"
-        ) {
-          element.setAttribute("rel", "noopener noreferrer");
-        }
-      }
+          return "";
+        })
+        .filter((style) => style.length > 0);
 
-      // Function to recursively sanitize DOM elements to avoid XSS attacks
-      function sanitizeElement(element) {
-        const tagName = element.tagName.toLowerCase();
-
-        // Remove disallowed tags
-        if (!allowedTags[tagName]) {
-          element.remove();
-          return;
-        }
-
-        // Sanitize attributes to avoid XSS attacks
-        sanitizeAttributes(element, allowedTags[tagName]);
-
-        // Recursively sanitize child elements
-        const children = Array.from(element.children);
-        children.forEach((child) => sanitizeElement(child));
-      }
-
-      // Sanitize the entire content
-      sanitizeElement(tempDiv);
-
-      return tempDiv.innerHTML;
+      return sanitizedStyles.join("; ");
     }
 
-    async function loadBlogs() {
-      try {
-        const blogContainer = document.querySelector(".blogcontainer");
-        if (!blogContainer) {
-          console.error("Blog container element not found");
-          return;
+    // Function to sanitize attributes to avoid XSS attacks
+    function sanitizeAttributes(element, allowedAttrs) {
+      const attributes = Array.from(element.attributes);
+      attributes.forEach((attr) => {
+        if (!allowedAttrs.includes(attr.name)) {
+          element.removeAttribute(attr.name);
+        } else if (attr.name === "style") {
+          const sanitizedStyle = sanitizeStyle(attr.value);
+          if (sanitizedStyle) {
+            element.setAttribute("style", sanitizedStyle);
+          } else {
+            element.removeAttribute("style");
+          }
+        } else if (attr.name === "href") {
+          // Ensure href is safe (no javascript: or data:)
+          if (
+            attr.value.startsWith("javascript:") ||
+            attr.value.startsWith("data:")
+          ) {
+            element.removeAttribute("href");
+          }
+        } else if (attr.name === "src") {
+          // Ensure src is safe (no javascript: or data: for non-images to avoid XSS attacks)
+          if (
+            attr.value.startsWith("javascript:") ||
+            (attr.value.startsWith("data:") &&
+              !element.tagName.toLowerCase().match(/^(img|video|audio)$/))
+          ) {
+            element.removeAttribute("src");
+          }
         }
+      });
+      // If opening in a new tab, ensure rel is safe
+      if (
+        element.tagName.toLowerCase() === "a" &&
+        element.getAttribute("target") === "_blank"
+      ) {
+        element.setAttribute("rel", "noopener noreferrer");
+      }
+    }
 
-        const blogQuery = query(blogRef, orderBy("createdAt", "desc"));
-        const blogSnapshot = await getDocs(blogQuery);
-        const blogList = blogSnapshot.docs.map((doc) => doc.data());
-        const nsfwToggle = document.querySelector(".nsfwtoggle");
-        blogContainer.innerHTML = "";
+    // Function to recursively sanitize DOM elements to avoid XSS attacks
+    function sanitizeElement(element) {
+      const tagName = element.tagName.toLowerCase();
 
-        if (blogList.length === 0) {
-          blogContainer.innerHTML =
-            "<p style='color:#888;'>No blog posts found.</p>";
-          return;
-        }
+      // Remove disallowed tags
+      if (!allowedTags[tagName]) {
+        element.remove();
+        return;
+      }
 
-        blogList.forEach((blog) => {
-          const blogElement = document.createElement("div");
-          blogElement.className = "blog-post";
-          let dateString = "";
-          const imptags = blog.importantValue;
-          const importantText = {
-            "delta force": "Delta Force",
-            "other games": "Other games",
-            development: "Development",
-            life: "Life",
-            other: "Other / Shitposts",
-            balloonposting: "Balloonposting",
-          };
-          try {
-            if (blog.createdAt && typeof blog.createdAt.toDate === "function") {
-              dateString = formatDistanceToNow(blog.createdAt.toDate());
-            } else if (blog.createdAt instanceof Date) {
-              dateString = formatDistanceToNow(blog.createdAt);
-            } else if (
-              typeof blog.createdAt === "number" ||
-              typeof blog.createdAt === "string"
-            ) {
-              dateString = formatDistanceToNow(new Date(blog.createdAt));
-            } else {
-              dateString = "";
-            }
-          } catch (e) {
+      // Sanitize attributes to avoid XSS attacks
+      sanitizeAttributes(element, allowedTags[tagName]);
+
+      // Recursively sanitize child elements
+      const children = Array.from(element.children);
+      children.forEach((child) => sanitizeElement(child));
+    }
+
+    // Sanitize the entire content
+    sanitizeElement(tempDiv);
+
+    return tempDiv.innerHTML;
+  }
+
+  async function loadBlogs() {
+    try {
+      const blogContainer = document.querySelector(".blogcontainer");
+      if (!blogContainer) {
+        console.error("Blog container element not found");
+        return;
+      }
+
+      const blogQuery = query(blogRef, orderBy("createdAt", "desc"));
+      const blogSnapshot = await getDocs(blogQuery);
+      const blogList = blogSnapshot.docs.map((doc) => doc.data());
+      const nsfwToggle = document.querySelector(".nsfwtoggle");
+      blogContainer.innerHTML = "";
+
+      if (blogList.length === 0) {
+        blogContainer.innerHTML =
+          "<p style='color:#888;'>No blog posts found.</p>";
+        return;
+      }
+
+      blogList.forEach((blog) => {
+        const blogElement = document.createElement("div");
+        blogElement.className = "blog-post";
+        let dateString = "";
+        const imptags = blog.importantValue;
+        const importantText = {
+          "delta force": "Delta Force",
+          "other games": "Other games",
+          development: "Development",
+          life: "Life",
+          other: "Other / Shitposts",
+          balloonposting: "Balloonposting",
+        };
+        try {
+          if (blog.createdAt && typeof blog.createdAt.toDate === "function") {
+            dateString = formatDistanceToNow(blog.createdAt.toDate());
+          } else if (blog.createdAt instanceof Date) {
+            dateString = formatDistanceToNow(blog.createdAt);
+          } else if (
+            typeof blog.createdAt === "number" ||
+            typeof blog.createdAt === "string"
+          ) {
+            dateString = formatDistanceToNow(new Date(blog.createdAt));
+          } else {
             dateString = "";
           }
-          let timestampMs = null;
-          if (blog.createdAt && typeof blog.createdAt.toDate === "function") {
-            timestampMs = blog.createdAt.toDate().getTime();
-          } else if (blog.createdAt instanceof Date) {
-            timestampMs = blog.createdAt.getTime();
-          } else if (typeof blog.createdAt === "number") {
-            timestampMs = blog.createdAt;
-          } else if (typeof blog.createdAt === "string") {
-            const parsed = Date.parse(blog.createdAt);
-            if (!Number.isNaN(parsed)) timestampMs = parsed;
-          }
+        } catch (e) {
+          dateString = "";
+        }
+        let timestampMs = null;
+        if (blog.createdAt && typeof blog.createdAt.toDate === "function") {
+          timestampMs = blog.createdAt.toDate().getTime();
+        } else if (blog.createdAt instanceof Date) {
+          timestampMs = blog.createdAt.getTime();
+        } else if (typeof blog.createdAt === "number") {
+          timestampMs = blog.createdAt;
+        } else if (typeof blog.createdAt === "string") {
+          const parsed = Date.parse(blog.createdAt);
+          if (!Number.isNaN(parsed)) timestampMs = parsed;
+        }
 
-          let luminous = 0;
-          let lightnessPercent = 0;
-          let color = "";
-          let bordercolor = "";
-          if (typeof timestampMs === "number" && !Number.isNaN(timestampMs)) {
-            switch (imptags) {
-              case "delta force":
-                luminous =
-                  ((Number(new Date()) - Number(timestampMs)) /
-                    (1000 * 60 * 60 * 24 * 30)) *
-                  30;
-                lightnessPercent = Math.max(0, Math.min(100, 70 + luminous));
-                color = `hsl(138,85%,${lightnessPercent}%)`;
-                bordercolor = `hsl(138,85%,70%)`;
-                break;
-              case "other games":
-                luminous =
-                  ((Number(new Date()) - Number(timestampMs)) /
-                    (1000 * 60 * 60 * 24 * 30)) *
-                  17;
-                lightnessPercent = Math.max(0, Math.min(100, 83 + luminous));
-                color = `hsl(188, 100%, ${lightnessPercent}%)`;
-                bordercolor = `hsl(188, 100%, 83%)`;
-                break;
-              case "development":
-                luminous =
-                  ((Number(new Date()) - Number(timestampMs)) /
-                    (1000 * 60 * 60 * 24 * 30)) *
-                  20;
-                lightnessPercent = Math.max(0, Math.min(100, 80 + luminous));
-                color = `hsl(256, 100%, ${lightnessPercent}%)`;
-                bordercolor = `hsl(256, 100%, 80%)`;
-                break;
-              case "life":
-                luminous =
-                  ((Number(new Date()) - Number(timestampMs)) /
-                    (1000 * 60 * 60 * 24 * 30)) *
-                  23;
-                lightnessPercent = Math.max(0, Math.min(100, 77 + luminous));
-                color = `hsl(60, 100%, ${lightnessPercent}%)`;
-                bordercolor = `hsl(60, 100%, 77%)`;
-                break;
-              case "balloonposting":
-                luminous =
-                  ((Number(new Date()) - Number(timestampMs)) /
-                    (1000 * 60 * 60 * 24 * 30)) *
-                  16;
-                lightnessPercent = Math.max(0, Math.min(100, 84 + luminous));
-                color = `hsl(333, 100%, ${lightnessPercent}%)`;
-                bordercolor = `hsl(333, 100%, 84%)`;
-                break;
-              case "other":
-                luminous =
-                  ((Number(new Date()) - Number(timestampMs)) /
-                    (1000 * 60 * 60 * 24 * 30)) *
-                  50;
-                lightnessPercent = Math.max(0, Math.min(100, 50 + luminous));
-                color = `hsl(0, 0%, ${lightnessPercent}%)`;
-                bordercolor = `hsl(0, 0%, 50%)`;
-                break;
-            }
+        let luminous = 0;
+        let lightnessPercent = 0;
+        let color = "";
+        let bordercolor = "";
+        if (typeof timestampMs === "number" && !Number.isNaN(timestampMs)) {
+          switch (imptags) {
+            case "delta force":
+              luminous =
+                ((Number(new Date()) - Number(timestampMs)) /
+                  (1000 * 60 * 60 * 24 * 30)) *
+                30;
+              lightnessPercent = Math.max(0, Math.min(100, 70 + luminous));
+              color = `hsl(138,85%,${lightnessPercent}%)`;
+              bordercolor = `hsl(138,85%,70%)`;
+              break;
+            case "other games":
+              luminous =
+                ((Number(new Date()) - Number(timestampMs)) /
+                  (1000 * 60 * 60 * 24 * 30)) *
+                17;
+              lightnessPercent = Math.max(0, Math.min(100, 83 + luminous));
+              color = `hsl(188, 100%, ${lightnessPercent}%)`;
+              bordercolor = `hsl(188, 100%, 83%)`;
+              break;
+            case "development":
+              luminous =
+                ((Number(new Date()) - Number(timestampMs)) /
+                  (1000 * 60 * 60 * 24 * 30)) *
+                20;
+              lightnessPercent = Math.max(0, Math.min(100, 80 + luminous));
+              color = `hsl(256, 100%, ${lightnessPercent}%)`;
+              bordercolor = `hsl(256, 100%, 80%)`;
+              break;
+            case "life":
+              luminous =
+                ((Number(new Date()) - Number(timestampMs)) /
+                  (1000 * 60 * 60 * 24 * 30)) *
+                23;
+              lightnessPercent = Math.max(0, Math.min(100, 77 + luminous));
+              color = `hsl(60, 100%, ${lightnessPercent}%)`;
+              bordercolor = `hsl(60, 100%, 77%)`;
+              break;
+            case "balloonposting":
+              luminous =
+                ((Number(new Date()) - Number(timestampMs)) /
+                  (1000 * 60 * 60 * 24 * 30)) *
+                16;
+              lightnessPercent = Math.max(0, Math.min(100, 84 + luminous));
+              color = `hsl(333, 100%, ${lightnessPercent}%)`;
+              bordercolor = `hsl(333, 100%, 84%)`;
+              break;
+            case "other":
+              luminous =
+                ((Number(new Date()) - Number(timestampMs)) /
+                  (1000 * 60 * 60 * 24 * 30)) *
+                50;
+              lightnessPercent = Math.max(0, Math.min(100, 50 + luminous));
+              color = `hsl(0, 0%, ${lightnessPercent}%)`;
+              bordercolor = `hsl(0, 0%, 50%)`;
+              break;
           }
-          const nsfw = blog.nsfw;
-          const gore = blog.gore;
-          let nsfwTagHTML = "";
-          let goreTagHTML = "";
-          if (nsfw === true) {
-            nsfwTagHTML = `<div class="nsfw-tag" style="display:inline-block;margin:0 0 6px 10px;padding:2px 10px;border-radius:12px;background:#ff0000;color:#fff;font-size:0.95em;font-weight:bold;">&hearts; R-18<br></div>`;
-          }
-          if (gore === true) {
-            goreTagHTML = `<div class="gore-tag" style="display:inline-block;margin:0 0 6px 10px;padding:2px 10px;border-radius:12px;background:#000;color:#ff0000;font-size:0.95em;font-weight:bold;">🔪 R-18G<br></div>`;
-          }
+        }
+        const nsfw = blog.nsfw;
+        const gore = blog.gore;
+        let nsfwTagHTML = "";
+        let goreTagHTML = "";
+        if (nsfw === true) {
+          nsfwTagHTML = `<div class="nsfw-tag" style="display:inline-block;margin:0 0 6px 10px;padding:2px 10px;border-radius:12px;background:#ff0000;color:#fff;font-size:0.95em;font-weight:bold;">&hearts; R-18<br></div>`;
+        }
+        if (gore === true) {
+          goreTagHTML = `<div class="gore-tag" style="display:inline-block;margin:0 0 6px 10px;padding:2px 10px;border-radius:12px;background:#000;color:#ff0000;font-size:0.95em;font-weight:bold;">🔪 R-18G<br></div>`;
+        }
 
-          // filter nsfw/gore posts if the toggle is set to hide them
-          const nsfwSetting = localStorage.getItem("show-nsfw");
-          const nsfwButton = document.querySelector(".nsfwtoggle");
-          if (nsfwSetting === "true") {
+        // filter nsfw/gore posts if the toggle is set to hide them
+        const nsfwSetting = localStorage.getItem("show-nsfw");
+        const nsfwButton = document.querySelector(".nsfwtoggle");
+        if (nsfwSetting === "true") {
+          nsfwButton.textContent = "Hide NSFW posts";
+        } else {
+          nsfwButton.textContent = "Show NSFW posts";
+        }
+        nsfwButton.onclick = () => {
+          if (localStorage.getItem("show-nsfw") === "true") {
+            localStorage.setItem("show-nsfw", "false");
             nsfwButton.textContent = "Hide NSFW posts";
           } else {
+            localStorage.setItem("show-nsfw", "true");
             nsfwButton.textContent = "Show NSFW posts";
           }
-          nsfwButton.onclick = () => {
-            if (localStorage.getItem("show-nsfw") === "true") {
-              localStorage.setItem("show-nsfw", "false");
-              nsfwButton.textContent = "Hide NSFW posts";
-            } else {
-              localStorage.setItem("show-nsfw", "true");
-              nsfwButton.textContent = "Show NSFW posts";
+          // Reload blogs to apply the new setting
+          loadBlogs();
+        };
+        const postNumInput = document.querySelector(".postnum");
+        postNumInput.onchange = () => {
+          const bloglist = document.querySelectorAll(".blog-post");
+          const postNum = parseInt(postNumInput.value, 10);
+          if (!isNaN(postNum) && postNum > 0 && postNum <= blogList.length) {
+            const targetBlog = document.querySelector(
+              `.blog-post:nth-child(${bloglist.length + 1 - postNum})`
+            );
+            if (targetBlog) {
+              targetBlog.scrollIntoView({ behavior: "smooth" });
             }
-            // Reload blogs to apply the new setting
-            loadBlogs();
-          };
-          const postNumInput = document.querySelector(".postnum");
-          postNumInput.onchange = () => {
-            const bloglist = document.querySelectorAll(".blog-post");
-            const postNum = parseInt(postNumInput.value, 10);
-            if (!isNaN(postNum) && postNum > 0 && postNum <= blogList.length) {
-              const targetBlog = document.querySelector(
-                `.blog-post:nth-child(${bloglist.length + 1 - postNum})`
-              );
-              if (targetBlog) {
-                targetBlog.scrollIntoView({ behavior: "smooth" });
-              }
-            }
-          };
-          let numLikes = Number(blog.likes) || 0;
-          let numDislikes = Number(blog.dislikes) || 0;
-          let likeStreak = 0;
-          let lastLikeTime = 0;
-          // Like button HTML
-          const likeButtonHTML = `
+          }
+        };
+        let numLikes = Number(blog.likes) || 0;
+        let numDislikes = Number(blog.dislikes) || 0;
+        let likeStreak = 0;
+        let lastLikeTime = 0;
+        // Like button HTML
+        const likeButtonHTML = `
             <button class="like-button">&#9733; ${numLikes}</button> <div class="likestreak" style="display:inline-block;font-size:0.9em;color:#ffee00;margin-left:10px;"></div>
             `;
-          setTimeout(async () => {
-            const likeButton = blogElement.querySelector(".like-button");
-            const likeStreakElem = blogElement.querySelector(".likestreak");
-            likeButton.addEventListener("click", async () => {
-              numLikes += 1;
-              likeStreak += 1;
-              likeButton.innerHTML = `&#9733; ${numLikes}`;
-              // Animate the button
-              likeButton.style.transform = "scale(1.2)";
-              likeButton.style.backgroundColor = "#ffee00cc";
-              likeButton.style.color = "#000";
+        setTimeout(async () => {
+          const likeButton = blogElement.querySelector(".like-button");
+          const likeStreakElem = blogElement.querySelector(".likestreak");
+          likeButton.addEventListener("click", async () => {
+            numLikes += 1;
+            likeStreak += 1;
+            likeButton.innerHTML = `&#9733; ${numLikes}`;
+            // Animate the button
+            likeButton.style.transform = "scale(1.2)";
+            likeButton.style.backgroundColor = "#ffee00cc";
+            likeButton.style.color = "#000";
 
-              // Create starburst effect
-              const buttonRect = likeButton.getBoundingClientRect();
-              const numStars = Math.floor(Math.random() * 3) + 1; // 1 to 3 starbursts
+            // Create starburst effect
+            const buttonRect = likeButton.getBoundingClientRect();
+            const numStars = Math.floor(Math.random() * 3) + 1; // 1 to 3 starbursts
 
-              for (let i = 0; i < numStars; i++) {
-                const starburst = document.createElement("div");
-                starburst.className = "starburst";
-                starburst.innerHTML = "&#9733;";
-                document.body.appendChild(starburst);
+            for (let i = 0; i < numStars; i++) {
+              const starburst = document.createElement("div");
+              starburst.className = "starburst";
+              starburst.innerHTML = "&#9733;";
+              document.body.appendChild(starburst);
 
-                const startX = event.clientX;
-                const startY = event.clientY;
+              const startX = event.clientX;
+              const startY = event.clientY;
 
-                starburst.style.left = `${startX}px`;
-                starburst.style.top = `${startY}px`;
-                starburst.style.transition = "all 0.5s ease-out";
+              starburst.style.left = `${startX}px`;
+              starburst.style.top = `${startY}px`;
+              starburst.style.transition = "all 0.5s ease-out";
 
-                // Random direction: -1 (left) or 1 (right)
-                const direction =
-                  Math.random() < 0.33 ? -1 : Math.random() > 0.66 ? 1 : 0;
-                // Random rotation between -180 and 180 degrees
-                const rotation = Math.random() * 360 - 180;
+              // Random direction: -1 (left) or 1 (right)
+              const direction =
+                Math.random() < 0.33 ? -1 : Math.random() > 0.66 ? 1 : 0;
+              // Random rotation between -180 and 180 degrees
+              const rotation = Math.random() * 360 - 180;
 
-                requestAnimationFrame(() => {
-                  starburst.style.transform = `translate(${
-                    direction * 50
+              requestAnimationFrame(() => {
+                starburst.style.transform = `translate(${direction * 50
                   }px, -20px) scale(1.5) rotate(${rotation}deg)`;
-                  starburst.style.opacity = "0";
-                });
+                starburst.style.opacity = "0";
+              });
 
-                setTimeout(() => {
-                  starburst.remove();
-                }, 500);
-              }
-              window.clearTimeout(lastLikeTime);
-              lastLikeTime = window.setTimeout(() => {
-                likeButton.style.transform = "scale(1)";
-                likeButton.style.backgroundColor = "transparent";
-                likeButton.style.color = "#ffee00";
-                likeStreak = 0;
-                if (likeStreakElem) {
-                  likeStreakElem.style.color = "transparent";
-                  likeStreakElem.style.transition = "color 0.5s ease";
-                  likeStreakElem.textContent = "";
-                }
-              }, 3000);
-
+              setTimeout(() => {
+                starburst.remove();
+              }, 500);
+            }
+            window.clearTimeout(lastLikeTime);
+            lastLikeTime = window.setTimeout(() => {
+              likeButton.style.transform = "scale(1)";
+              likeButton.style.backgroundColor = "transparent";
+              likeButton.style.color = "#ffee00";
+              likeStreak = 0;
               if (likeStreakElem) {
-                likeStreakElem.textContent = `+${likeStreak}`;
+                likeStreakElem.style.color = "transparent";
+                likeStreakElem.style.transition = "color 0.5s ease";
+                likeStreakElem.textContent = "";
               }
+            }, 3000);
 
-              if (likeStreak >= 1000) {
-                likeStreak = 1000;
-                likeStreakElem.textContent = `MAX!`;
-                likeButton.style.backgroundColor = "#ff8800";
-                numLikes = numLikes - 1; // prevent further likes
-              }
+            if (likeStreakElem) {
+              likeStreakElem.textContent = `+${likeStreak}`;
+            }
 
-              try {
-                const blogDocRef = doc(
-                  db,
-                  "blog",
-                  blogSnapshot.docs[blogList.indexOf(blog)].id
-                );
-                await updateDoc(blogDocRef, { likes: numLikes });
-              } catch (err) {
-                console.error("Error updating likes:", err);
-              }
-            });
-          }, 0);
+            if (likeStreak >= 1000) {
+              likeStreak = 1000;
+              likeStreakElem.textContent = `MAX!`;
+              likeButton.style.backgroundColor = "#ff8800";
+              numLikes = numLikes - 1; // prevent further likes
+            }
 
-          const dislikeButtonHTML = `
+            try {
+              const blogDocRef = doc(
+                db,
+                "blog",
+                blogSnapshot.docs[blogList.indexOf(blog)].id
+              );
+              await updateDoc(blogDocRef, { likes: numLikes });
+            } catch (err) {
+              console.error("Error updating likes:", err);
+            }
+          });
+        }, 0);
+
+        const dislikeButtonHTML = `
             <button class="dislike-button"><i class="fa-solid fa-heart-crack"></i> ${numDislikes}</button> <div class="alert"></div>
             `;
-          setTimeout(async () => {
-            const dislikeButton = blogElement.querySelector(".dislike-button");
-            dislikeButton.addEventListener("click", async () => {
-              numDislikes += 1;
-              dislikeButton.innerHTML = `<i class="fa-solid fa-heart-crack"></i> ${numDislikes}`;
-              // clear any existing scheduled reset, then store the new timeout id on the button
-              if (dislikeButton && dislikeButton.shakeTimeout) {
-                clearTimeout(dislikeButton.shakeTimeout);
-              }
+        setTimeout(async () => {
+          const dislikeButton = blogElement.querySelector(".dislike-button");
+          dislikeButton.addEventListener("click", async () => {
+            numDislikes += 1;
+            dislikeButton.innerHTML = `<i class="fa-solid fa-heart-crack"></i> ${numDislikes}`;
+            // clear any existing scheduled reset, then store the new timeout id on the button
+            if (dislikeButton && dislikeButton.shakeTimeout) {
+              clearTimeout(dislikeButton.shakeTimeout);
+            }
 
-              dislikeButton.shakeTimeout = setTimeout(() => {
-                if (!dislikeButton) return;
-                dislikeButton.style.transform = "scale(1)";
-                dislikeButton.style.backgroundColor = "transparent";
-                dislikeButton.style.color = "#ff4444";
-                dislikeButton.classList.remove("shake");
-              }, 600);
-              // Inject shake CSS once
-              if (!document.getElementById("shake-style")) {
-                const style = document.createElement("style");
-                style.id = "shake-style";
-                style.textContent = `
+            dislikeButton.shakeTimeout = setTimeout(() => {
+              if (!dislikeButton) return;
+              dislikeButton.style.transform = "scale(1)";
+              dislikeButton.style.backgroundColor = "transparent";
+              dislikeButton.style.color = "#ff4444";
+              dislikeButton.classList.remove("shake");
+            }, 600);
+            // Inject shake CSS once
+            if (!document.getElementById("shake-style")) {
+              const style = document.createElement("style");
+              style.id = "shake-style";
+              style.textContent = `
 @keyframes heart-shake {
   0% { transform: translateX(0); }
   20% { transform: translateX(-4px); }
@@ -1206,224 +1267,35 @@
   animation: heart-shake 300ms ease-in-out;
 }
 `;
-                document.head.appendChild(style);
-              }
+              document.head.appendChild(style);
+            }
 
-              // Animate the button (scale + color)
-              dislikeButton.style.backgroundColor = "#ff4444cc";
-              dislikeButton.style.color = "#000";
+            // Animate the button (scale + color)
+            dislikeButton.style.backgroundColor = "#ff4444cc";
+            dislikeButton.style.color = "#000";
 
-              // Add shaking effect class
-              dislikeButton.classList.add("shake");
-              const alertElem = blogElement.querySelector(".alert");
-              if (numDislikes >= 50 && numDislikes < 100) {
-                dislikeButton.style.backgroundColor = "#cc0000";
-              }
-              if (numDislikes >= 200 && numDislikes < 500) {
-                dislikeButton.style.backgroundColor = "#aa0000";
-              }
-              if (numDislikes >= 500 && numDislikes < 750) {
-                dislikeButton.style.backgroundColor = "#880000";
-              }
-              if (numDislikes >= 750 && numDislikes < 1000) {
-                dislikeButton.style.backgroundColor = "#770000";
-              }
-              if (numDislikes >= 1000 && numDislikes < 2500) {
-                dislikeButton.style.backgroundColor = "#770000";
-                if (alertElem) {
-                  alertElem.textContent = "Calm down there, hater! I get it!";
-                  alertElem.style.color = "#ff4444";
-                  alertElem.style.fontWeight = "bold";
-                  alertElem.style.marginLeft = "10px";
-                  setTimeout(() => {
-                    if (alertElem) {
-                      alertElem.style.transition = "color 0.5s ease";
-                      alertElem.style.color = "transparent";
-                      setTimeout(() => {
-                        if (alertElem) alertElem.textContent = "";
-                      }, 500);
-                    }
-                  }, 3000);
-                }
-              }
-              if (numDislikes >= 2500 && numDislikes < 5000) {
-                dislikeButton.style.backgroundColor = "#550000";
-                if (alertElem) {
-                  alertElem.textContent =
-                    "Woah, you really don't like this post!";
-                  alertElem.style.color = "#ff4444";
-                  alertElem.style.fontWeight = "bold";
-                  alertElem.style.marginLeft = "10px";
-                  setTimeout(() => {
-                    if (alertElem) {
-                      alertElem.style.transition = "color 0.5s ease";
-                      alertElem.style.color = "transparent";
-                      setTimeout(() => {
-                        if (alertElem) alertElem.textContent = "";
-                      }, 500);
-                    }
-                  }, 3000);
-                }
-              }
-              if (numDislikes >= 5000 && numDislikes < 10000) {
-                dislikeButton.style.backgroundColor = "#330000";
-                if (alertElem) {
-                  alertElem.textContent = "Okay, that's enough! Chill out!";
-                  alertElem.style.color = "#ff4444";
-                  alertElem.style.fontWeight = "bold";
-                  alertElem.style.marginLeft = "10px";
-                  setTimeout(() => {
-                    if (alertElem) {
-                      alertElem.style.transition = "color 0.5s ease";
-                      alertElem.style.color = "transparent";
-                      setTimeout(() => {
-                        if (alertElem) alertElem.textContent = "";
-                      }, 500);
-                    }
-                  }, 3000);
-                }
-              }
-              if (numDislikes >= 10000 && numDislikes < 20000) {
-                dislikeButton.style.backgroundColor = "#220000";
-                dislikeButton.style.color = "#a00";
-                if (alertElem) {
-                  alertElem.textContent = "Alright, you win. I give up.";
-                  alertElem.style.color = "#ff4444";
-                  alertElem.style.fontWeight = "bold";
-                  alertElem.style.marginLeft = "10px";
-                  setTimeout(() => {
-                    if (alertElem) {
-                      alertElem.style.transition = "color 0.5s ease";
-                      alertElem.style.color = "transparent";
-                      setTimeout(() => {
-                        if (alertElem) alertElem.textContent = "";
-                      }, 500);
-                    }
-                  }, 3000);
-                }
-              }
-              if (numDislikes >= 20000 && numDislikes < 50000) {
-                dislikeButton.style.backgroundColor = "#220000";
-                dislikeButton.style.color = "#a00";
-                if (alertElem) {
-                  alertElem.textContent = "...";
-                  alertElem.style.color = "#ff4444";
-                  alertElem.style.fontWeight = "bold";
-                  alertElem.style.marginLeft = "10px";
-                  setTimeout(() => {
-                    if (alertElem) {
-                      alertElem.style.transition = "color 0.5s ease";
-                      alertElem.style.color = "transparent";
-                      setTimeout(() => {
-                        if (alertElem) alertElem.textContent = "";
-                      }, 500);
-                    }
-                  }, 3000);
-                }
-              }
-              if (numDislikes >= 50000 && numDislikes < 100000) {
-                dislikeButton.style.backgroundColor = "#220000";
-                dislikeButton.style.color = "#a00";
-                dislikeButton.style.color = "#fff";
-                if (alertElem) {
-                  alertElem.textContent = "......";
-                  alertElem.style.color = "#ff4444";
-                  alertElem.style.fontWeight = "bold";
-                  alertElem.style.marginLeft = "10px";
-                  setTimeout(() => {
-                    if (alertElem) {
-                      alertElem.style.transition = "color 0.5s ease";
-                      alertElem.style.color = "transparent";
-                      setTimeout(() => {
-                        if (alertElem) alertElem.textContent = "";
-                      }, 500);
-                    }
-                  }, 3000);
-                }
-              }
-              if (numDislikes >= 100000 && numDislikes < 200000) {
-                dislikeButton.style.backgroundColor = "#220000";
-                dislikeButton.style.color = "#a00";
-                dislikeButton.style.color = "#fff";
-                if (alertElem) {
-                  alertElem.textContent = "I can't take this anymore...";
-                  alertElem.style.color = "#ff4444";
-                  alertElem.style.fontWeight = "bold";
-                  alertElem.style.marginLeft = "10px";
-                  setTimeout(() => {
-                    if (alertElem) {
-                      alertElem.style.transition = "color 0.5s ease";
-                      alertElem.style.color = "transparent";
-                      setTimeout(() => {
-                        if (alertElem) alertElem.textContent = "";
-                      }, 500);
-                    }
-                  }, 3000);
-                }
-              }
-              if (numDislikes >= 200000 && numDislikes < 500000) {
-                dislikeButton.style.backgroundColor = "#220000";
-                dislikeButton.style.color = "#a00";
-                if (alertElem) {
-                  alertElem.textContent = "Stopping the dislikes won't help...";
-                  alertElem.style.color = "#ff4444";
-                  alertElem.style.fontWeight = "bold";
-                  alertElem.style.marginLeft = "10px";
-                  setTimeout(() => {
-                    if (alertElem) {
-                      alertElem.style.transition = "color 0.5s ease";
-                      alertElem.style.color = "transparent";
-                      setTimeout(() => {
-                        if (alertElem) alertElem.textContent = "";
-                      }, 500);
-                    }
-                  }, 3000);
-                }
-              }
-              if (numDislikes >= 500000 && numDislikes < 1000000) {
-                dislikeButton.style.backgroundColor = "#220000";
-                dislikeButton.style.color = "#a00";
-                if (alertElem) {
-                  alertElem.textContent =
-                    "This is getting ridiculous... Please stop.";
-                  alertElem.style.color = "#ff4444";
-                  alertElem.style.fontWeight = "bold";
-                  alertElem.style.marginLeft = "10px";
-                  setTimeout(() => {
-                    if (alertElem) {
-                      alertElem.style.transition = "color 0.5s ease";
-                      alertElem.style.color = "transparent";
-                      setTimeout(() => {
-                        if (alertElem) alertElem.textContent = "";
-                      }, 500);
-                    }
-                  }, 3000);
-                }
-              }
-              if (numDislikes === 1000000) {
-                dislikeButton.style.backgroundColor = "#220000";
-                dislikeButton.style.color = "#a00";
-                if (alertElem) {
-                  alertElem.textContent = "I give up. Do whatever you want.";
-                  alertElem.style.color = "#ff4444";
-                  alertElem.style.fontWeight = "bold";
-                  alertElem.style.marginLeft = "10px";
-                  setTimeout(() => {
-                    if (alertElem) {
-                      alertElem.style.transition = "color 0.5s ease";
-                      alertElem.style.color = "transparent";
-                      setTimeout(() => {
-                        if (alertElem) alertElem.textContent = "";
-                      }, 500);
-                    }
-                  }, 3000);
-                }
-              }
-              if (numDislikes > 1000000) {
-                dislikeButton.style.backgroundColor = "#110000";
-                dislikeButton.style.color = "#f00";
-                dislikeButton.innerHTML = `<i class="fa-solid fa-heart-crack"></i> ${numDislikes}`;
-
+            // Add shaking effect class
+            dislikeButton.classList.add("shake");
+            const alertElem = blogElement.querySelector(".alert");
+            if (numDislikes >= 50 && numDislikes < 100) {
+              dislikeButton.style.backgroundColor = "#cc0000";
+            }
+            if (numDislikes >= 200 && numDislikes < 500) {
+              dislikeButton.style.backgroundColor = "#aa0000";
+            }
+            if (numDislikes >= 500 && numDislikes < 750) {
+              dislikeButton.style.backgroundColor = "#880000";
+            }
+            if (numDislikes >= 750 && numDislikes < 1000) {
+              dislikeButton.style.backgroundColor = "#770000";
+            }
+            if (numDislikes >= 1000 && numDislikes < 2500) {
+              dislikeButton.style.backgroundColor = "#770000";
+              if (alertElem) {
+                alertElem.textContent = "Calm down there, hater! I get it!";
+                alertElem.style.color = "#ff4444";
+                alertElem.style.fontWeight = "bold";
+                alertElem.style.marginLeft = "10px";
                 setTimeout(() => {
                   if (alertElem) {
                     alertElem.style.transition = "color 0.5s ease";
@@ -1434,247 +1306,437 @@
                   }
                 }, 3000);
               }
-              try {
-                const blogDocRef = doc(
-                  db,
-                  "blog",
-                  blogSnapshot.docs[blogList.indexOf(blog)].id
-                );
-                await updateDoc(blogDocRef, { dislikes: numDislikes });
-              } catch (err) {
-                console.error("Error updating dislikes:", err);
+            }
+            if (numDislikes >= 2500 && numDislikes < 5000) {
+              dislikeButton.style.backgroundColor = "#550000";
+              if (alertElem) {
+                alertElem.textContent =
+                  "Woah, you really don't like this post!";
+                alertElem.style.color = "#ff4444";
+                alertElem.style.fontWeight = "bold";
+                alertElem.style.marginLeft = "10px";
+                setTimeout(() => {
+                  if (alertElem) {
+                    alertElem.style.transition = "color 0.5s ease";
+                    alertElem.style.color = "transparent";
+                    setTimeout(() => {
+                      if (alertElem) alertElem.textContent = "";
+                    }, 500);
+                  }
+                }, 3000);
               }
-            });
-          }, 0);
+            }
+            if (numDislikes >= 5000 && numDislikes < 10000) {
+              dislikeButton.style.backgroundColor = "#330000";
+              if (alertElem) {
+                alertElem.textContent = "Okay, that's enough! Chill out!";
+                alertElem.style.color = "#ff4444";
+                alertElem.style.fontWeight = "bold";
+                alertElem.style.marginLeft = "10px";
+                setTimeout(() => {
+                  if (alertElem) {
+                    alertElem.style.transition = "color 0.5s ease";
+                    alertElem.style.color = "transparent";
+                    setTimeout(() => {
+                      if (alertElem) alertElem.textContent = "";
+                    }, 500);
+                  }
+                }, 3000);
+              }
+            }
+            if (numDislikes >= 10000 && numDislikes < 20000) {
+              dislikeButton.style.backgroundColor = "#220000";
+              dislikeButton.style.color = "#a00";
+              if (alertElem) {
+                alertElem.textContent = "Alright, you win. I give up.";
+                alertElem.style.color = "#ff4444";
+                alertElem.style.fontWeight = "bold";
+                alertElem.style.marginLeft = "10px";
+                setTimeout(() => {
+                  if (alertElem) {
+                    alertElem.style.transition = "color 0.5s ease";
+                    alertElem.style.color = "transparent";
+                    setTimeout(() => {
+                      if (alertElem) alertElem.textContent = "";
+                    }, 500);
+                  }
+                }, 3000);
+              }
+            }
+            if (numDislikes >= 20000 && numDislikes < 50000) {
+              dislikeButton.style.backgroundColor = "#220000";
+              dislikeButton.style.color = "#a00";
+              if (alertElem) {
+                alertElem.textContent = "...";
+                alertElem.style.color = "#ff4444";
+                alertElem.style.fontWeight = "bold";
+                alertElem.style.marginLeft = "10px";
+                setTimeout(() => {
+                  if (alertElem) {
+                    alertElem.style.transition = "color 0.5s ease";
+                    alertElem.style.color = "transparent";
+                    setTimeout(() => {
+                      if (alertElem) alertElem.textContent = "";
+                    }, 500);
+                  }
+                }, 3000);
+              }
+            }
+            if (numDislikes >= 50000 && numDislikes < 100000) {
+              dislikeButton.style.backgroundColor = "#220000";
+              dislikeButton.style.color = "#a00";
+              dislikeButton.style.color = "#fff";
+              if (alertElem) {
+                alertElem.textContent = "......";
+                alertElem.style.color = "#ff4444";
+                alertElem.style.fontWeight = "bold";
+                alertElem.style.marginLeft = "10px";
+                setTimeout(() => {
+                  if (alertElem) {
+                    alertElem.style.transition = "color 0.5s ease";
+                    alertElem.style.color = "transparent";
+                    setTimeout(() => {
+                      if (alertElem) alertElem.textContent = "";
+                    }, 500);
+                  }
+                }, 3000);
+              }
+            }
+            if (numDislikes >= 100000 && numDislikes < 200000) {
+              dislikeButton.style.backgroundColor = "#220000";
+              dislikeButton.style.color = "#a00";
+              dislikeButton.style.color = "#fff";
+              if (alertElem) {
+                alertElem.textContent = "I can't take this anymore...";
+                alertElem.style.color = "#ff4444";
+                alertElem.style.fontWeight = "bold";
+                alertElem.style.marginLeft = "10px";
+                setTimeout(() => {
+                  if (alertElem) {
+                    alertElem.style.transition = "color 0.5s ease";
+                    alertElem.style.color = "transparent";
+                    setTimeout(() => {
+                      if (alertElem) alertElem.textContent = "";
+                    }, 500);
+                  }
+                }, 3000);
+              }
+            }
+            if (numDislikes >= 200000 && numDislikes < 500000) {
+              dislikeButton.style.backgroundColor = "#220000";
+              dislikeButton.style.color = "#a00";
+              if (alertElem) {
+                alertElem.textContent = "Stopping the dislikes won't help...";
+                alertElem.style.color = "#ff4444";
+                alertElem.style.fontWeight = "bold";
+                alertElem.style.marginLeft = "10px";
+                setTimeout(() => {
+                  if (alertElem) {
+                    alertElem.style.transition = "color 0.5s ease";
+                    alertElem.style.color = "transparent";
+                    setTimeout(() => {
+                      if (alertElem) alertElem.textContent = "";
+                    }, 500);
+                  }
+                }, 3000);
+              }
+            }
+            if (numDislikes >= 500000 && numDislikes < 1000000) {
+              dislikeButton.style.backgroundColor = "#220000";
+              dislikeButton.style.color = "#a00";
+              if (alertElem) {
+                alertElem.textContent =
+                  "This is getting ridiculous... Please stop.";
+                alertElem.style.color = "#ff4444";
+                alertElem.style.fontWeight = "bold";
+                alertElem.style.marginLeft = "10px";
+                setTimeout(() => {
+                  if (alertElem) {
+                    alertElem.style.transition = "color 0.5s ease";
+                    alertElem.style.color = "transparent";
+                    setTimeout(() => {
+                      if (alertElem) alertElem.textContent = "";
+                    }, 500);
+                  }
+                }, 3000);
+              }
+            }
+            if (numDislikes === 1000000) {
+              dislikeButton.style.backgroundColor = "#220000";
+              dislikeButton.style.color = "#a00";
+              if (alertElem) {
+                alertElem.textContent = "I give up. Do whatever you want.";
+                alertElem.style.color = "#ff4444";
+                alertElem.style.fontWeight = "bold";
+                alertElem.style.marginLeft = "10px";
+                setTimeout(() => {
+                  if (alertElem) {
+                    alertElem.style.transition = "color 0.5s ease";
+                    alertElem.style.color = "transparent";
+                    setTimeout(() => {
+                      if (alertElem) alertElem.textContent = "";
+                    }, 500);
+                  }
+                }, 3000);
+              }
+            }
+            if (numDislikes > 1000000) {
+              dislikeButton.style.backgroundColor = "#110000";
+              dislikeButton.style.color = "#f00";
+              dislikeButton.innerHTML = `<i class="fa-solid fa-heart-crack"></i> ${numDislikes}`;
 
-          if ((nsfw === true || gore === true) && nsfwSetting !== "true") {
-            return; // Skip rendering this blog post
-          } else if (nsfwSetting === "true") {
-            // Do nothing, allow rendering
-          }
-          const blogtags = blog.tags;
-          const blogtagColors = [
-            "#ff6b6b", // red
-            "#6bc1ff", // blue
-            "#6bffb0", // green
-            "#ffe66b", // yellow
-            "#b36bff", // purple
-            "#ffb36b", // orange
-            "#6bffd6", // teal
-            "#ff6be6", // pink
-            "#aaff6b", // lime
-            "#6b8cff", // indigo
-          ];
-          const tagList = blogtags
-            .split(",")
-            .map((tag) => tag.trim())
-            .filter((tag) => tag.length > 0)
-            .map((tag, idx) => {
-              const color = blogtagColors[idx % blogtagColors.length];
-              return `<div class="tag" style="display:inline-block;padding:2px 3px 2px 3px;border-radius:8px;background:${color};color:#222;font-size:0.95em;">${sanitizeHTML(
-                tag
-              )}</div>`;
-            });
-          // Sanitize the blog content before inserting
-          const sanitizedContent = sanitizeHTML(blog.content || "No content");
+              setTimeout(() => {
+                if (alertElem) {
+                  alertElem.style.transition = "color 0.5s ease";
+                  alertElem.style.color = "transparent";
+                  setTimeout(() => {
+                    if (alertElem) alertElem.textContent = "";
+                  }, 500);
+                }
+              }, 3000);
+            }
+            try {
+              const blogDocRef = doc(
+                db,
+                "blog",
+                blogSnapshot.docs[blogList.indexOf(blog)].id
+              );
+              await updateDoc(blogDocRef, { dislikes: numDislikes });
+            } catch (err) {
+              console.error("Error updating dislikes:", err);
+            }
+          });
+        }, 0);
 
-          blogElement.innerHTML = `
+        if ((nsfw === true || gore === true) && nsfwSetting !== "true") {
+          return; // Skip rendering this blog post
+        } else if (nsfwSetting === "true") {
+          // Do nothing, allow rendering
+        }
+        const blogtags = blog.tags;
+        const blogtagColors = [
+          "#ff6b6b", // red
+          "#6bc1ff", // blue
+          "#6bffb0", // green
+          "#ffe66b", // yellow
+          "#b36bff", // purple
+          "#ffb36b", // orange
+          "#6bffd6", // teal
+          "#ff6be6", // pink
+          "#aaff6b", // lime
+          "#6b8cff", // indigo
+        ];
+        const tagList = blogtags
+          .split(",")
+          .map((tag) => tag.trim())
+          .filter((tag) => tag.length > 0)
+          .map((tag, idx) => {
+            const color = blogtagColors[idx % blogtagColors.length];
+            return `<div class="tag" style="display:inline-block;padding:2px 3px 2px 3px;border-radius:8px;background:${color};color:#222;font-size:0.95em;">${sanitizeHTML(
+              tag
+            )}</div>`;
+          });
+        // Sanitize the blog content before inserting
+        const sanitizedContent = sanitizeHTML(blog.content || "No content");
+
+        blogElement.innerHTML = `
       <span class="number" style="font-size: 0.6em; color: #666; margin-left: 11px;">post #${(
-        blogList.length - blogList.indexOf(blog)
-      )
-        .toString()
-        .padStart(3, "0")}</span> <br>
+            blogList.length - blogList.indexOf(blog)
+          )
+            .toString()
+            .padStart(3, "0")}</span> <br>
       <span class="blog-date" style="font-size: 0.8rem; color: #888; margin-left: 10px;">${dateString}</span>
         <h2 class="blog-title" style="font-size: 1.5rem; margin-left: 10px; color: ${color}">${sanitizeHTML(
-            blog.title || "Untitled"
-          )}</h2>
+              blog.title || "Untitled"
+            )}</h2>
         ${goreTagHTML}
         ${nsfwTagHTML}
-        <div class="imptag" style="font-size: 0.8rem; color: #222; margin-left: 10px; background-color: ${bordercolor}; border-radius: 5px; padding: 3px 5px 3px 5px; width: fit-content;">● ${
-            importantText[imptags]
+        <div class="imptag" style="font-size: 0.8rem; color: #222; margin-left: 10px; background-color: ${bordercolor}; border-radius: 5px; padding: 3px 5px 3px 5px; width: fit-content;">● ${importantText[imptags]
           }</div>
         <div class="blog-tags" style="font-size: 0.8rem; color: #888; margin-left: 10px; margin-top: 5px;">${tagList.join(
-          " "
-        )}</div>
+            " "
+          )}</div>
         <div class="blog-content" style="font-size: 1rem; color: #ffffff; margin-left: 10px;">${sanitizedContent}</div>
         <div class="like-container" style="margin-left: 10px; margin-top: 10px;">${likeButtonHTML} ${dislikeButtonHTML} </div>
       `;
-          blogElement.style.borderLeft = `5px solid ${bordercolor}`;
-          // Add mouseover event for blog-date inside the loop
-          blogElement.querySelectorAll(".blog-date").forEach((dateElem) => {
-            dateElem.addEventListener("mouseover", (e) => {
-              e.target.innerHTML =
-                blog.createdAt && typeof blog.createdAt.toDate === "function"
-                  ? blog.createdAt.toDate().toLocaleString("en-GB", {
-                      year: "numeric",
-                      month: "2-digit",
-                      day: "2-digit",
-                      hour: "2-digit",
-                      minute: "2-digit",
-                      second: "2-digit",
-                      hour12: false,
-                    })
-                  : blog.createdAt instanceof Date
+        blogElement.style.borderLeft = `5px solid ${bordercolor}`;
+        // Add mouseover event for blog-date inside the loop
+        blogElement.querySelectorAll(".blog-date").forEach((dateElem) => {
+          dateElem.addEventListener("mouseover", (e) => {
+            e.target.innerHTML =
+              blog.createdAt && typeof blog.createdAt.toDate === "function"
+                ? blog.createdAt.toDate().toLocaleString("en-GB", {
+                  year: "numeric",
+                  month: "2-digit",
+                  day: "2-digit",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                  second: "2-digit",
+                  hour12: false,
+                })
+                : blog.createdAt instanceof Date
                   ? blog.createdAt.toLocaleString()
                   : typeof blog.createdAt === "number"
-                  ? new Date(blog.createdAt).toLocaleString()
-                  : typeof blog.createdAt === "string"
-                  ? new Date(blog.createdAt).toLocaleString()
-                  : "";
-            });
-            dateElem.addEventListener("mouseout", (e) => {
-              e.target.innerHTML = dateString;
-            });
+                    ? new Date(blog.createdAt).toLocaleString()
+                    : typeof blog.createdAt === "string"
+                      ? new Date(blog.createdAt).toLocaleString()
+                      : "";
           });
-          blogContainer.appendChild(blogElement);
+          dateElem.addEventListener("mouseout", (e) => {
+            e.target.innerHTML = dateString;
+          });
         });
-      } catch (error) {
-        console.error("Error loading blogs:", error);
-        const blogContainer = document.querySelector(".blogcontainer");
-        if (blogContainer) {
-          blogContainer.innerHTML =
-            "<p style='color:red;'>Failed to load blog posts. Please try again later.</p>";
-        }
-      }
-
-      // Fix blog filter: show/hide blog posts by category
-      document.getElementById("blogfilter").addEventListener("change", () => {
-        const blogfilter = document.getElementById("blogfilter");
-        const bloglist = document.querySelectorAll(".blog-post");
-        const selected = blogfilter.value;
-
-        bloglist.forEach((blog) => {
-          // Get the category from the imptag div inside the blog post
-          const imptagDiv = blog.querySelector(".imptag");
-          const dotFilter = imptagDiv
-            ? imptagDiv.textContent.trim().match(/●\s*(.+)/)
-            : "";
-          const category = dotFilter ? dotFilter[1].trim().toLowerCase() : "";
-          if (!selected || selected === "" || category === selected) {
-            blog.style.display = "block";
-          } else {
-            blog.style.display = "none";
-          }
-        });
+        blogContainer.appendChild(blogElement);
       });
-      const loadingElem = document.querySelector(".loading");
-      const congratsElem = document.querySelector(".congrats");
-      loadingElem.style.display = "none";
-      congratsElem.style.display = "block";
-    }
-    function updateDateTime() {
-      try {
-        const now = new Date();
-        const datetimeElem = document.querySelector(".datetime");
-        if (datetimeElem) {
-          datetimeElem.innerHTML = `${now.toLocaleDateString()} ${now.toLocaleTimeString(
-            "en-GB",
-            {
-              hour: "2-digit",
-              minute: "2-digit",
-              second: "2-digit",
-              hour12: false,
-            }
-          )}`;
-        }
-      } catch (error) {
-        console.error("Error updating datetime:", error);
+    } catch (error) {
+      console.error("Error loading blogs:", error);
+      const blogContainer = document.querySelector(".blogcontainer");
+      if (blogContainer) {
+        blogContainer.innerHTML =
+          "<p style='color:red;'>Failed to load blog posts. Please try again later.</p>";
       }
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
-      updateDateTime();
-      loadBlogs();
-      const now = new Date();
+    // Fix blog filter: show/hide blog posts by category
+    document.getElementById("blogfilter").addEventListener("change", () => {
+      const blogfilter = document.getElementById("blogfilter");
+      const bloglist = document.querySelectorAll(".blog-post");
+      const selected = blogfilter.value;
 
-      // Show messages based on the time of day
-      const hour = now.getHours();
-      if (hour >= 0 && hour < 6) {
-        console.log(
-          "%c(∪｡∪)｡｡｡zzZ %cTime to go to bed?",
-          "color: cyan; font-size: 2rem; font-weight: bold;",
-          "color: white; font-size: 1.2rem; font-weight: bold;"
-        );
-      } else if (hour >= 6 && hour < 12) {
-        console.log(
-          "%c(*・ω・)ﾉ %cGood morning! Hope you have a good day!",
-          "color: #bfff47; font-size: 2rem; font-weight: bold;",
-          "color: white; font-size: 1.2rem; font-weight: bold;"
-        );
-      } else if (hour >= 12 && hour < 18) {
-        console.log(
-          "%c(´• ω •`) ♡ %cGood afternoon! Hoping for a great rest of your day!",
-          "color: #47fcff; font-size: 2rem; font-weight: bold;",
-          "color: white; font-size: 1.2rem; font-weight: bold;"
-        );
-      } else {
-        console.log(
-          "%c(づ ◕‿◕ )づ %cGood evening! Don't stay up too late like me!",
-          "color: #ff7ac6; font-size: 2rem; font-weight: bold;",
-          "color: white; font-size: 1.2rem; font-weight: bold;"
-        );
-      }
-
-      // Show messages based on the date
-      const month = now.getMonth();
-      const date = now.getDate();
-
-      if (month === 0 && date === 1) {
-        console.log(
-          "%c(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ %cHappy New Year! Wishing you a fantastic year ahead!",
-          "color: #ff5e5e; font-size: 2rem; font-weight: bold;",
-          "color: white; font-size: 1.2rem; font-weight: bold;"
-        );
-      } else if (month === 11 && date === 25) {
-        console.log(
-          "%c＼(＾▽＾)／ %cMerry Christmas! Hope you have a joyful holiday season!",
-          "color: #ff5e5e; font-size: 2rem; font-weight: bold;",
-          "color: #79e65e; font-size: 1.2rem; font-weight: bold;"
-        );
-      } else if (month === 4 && date === 6) {
-        console.log(
-          "%c\\(★ω★)/ %cHappy Birthday to me! Another year older, another year wiser!",
-          "color: #dc94b4; font-size: 2rem; font-weight: bold;",
-          "color: white; font-size: 1.2rem; font-weight: bold;"
-        );
-        document.title = "Neneko's blog - It's my birthday today!";
-        const titleElem = document.querySelector(".title");
-        if (titleElem) {
-          titleElem.innerHTML =
-            "<p>It's my birthday today! 🎉🎂🎈🎈🎈</p><h6 style='color: #666; font-size: 0.8rem; margin-left: 10px;'>pls send me lots of balloons pls pls pls i only need them</h6>";
-          titleElem.style.color = "#dc94b4";
+      bloglist.forEach((blog) => {
+        // Get the category from the imptag div inside the blog post
+        const imptagDiv = blog.querySelector(".imptag");
+        const dotFilter = imptagDiv
+          ? imptagDiv.textContent.trim().match(/●\s*(.+)/)
+          : "";
+        const category = dotFilter ? dotFilter[1].trim().toLowerCase() : "";
+        if (!selected || selected === "" || category === selected) {
+          blog.style.display = "block";
+        } else {
+          blog.style.display = "none";
         }
-      } else if (month === 9 && date === 31) {
-        console.log(
-          "%c(ﾉ≧ڡ≦) %cHappy Halloween! Hope you have a spooktacular day!",
-          "color: #ff7930; font-size: 2rem; font-weight: bold;",
-          "color: white; font-size: 1.2rem; font-weight: bold;"
-        );
-      }
-
-      if (month === 5) {
-        console.log(
-          "%c(ง'̀-'́)ง %cHappy Pride Month! Celebrate love and diversity! 🏳️‍🌈🏳️‍⚧️",
-          "color: #ffb0fd; font-size: 2rem; font-weight: bold;",
-          "color: white; font-size: 1.2rem; font-weight: bold;"
-        );
-      }
-      if (month === 1 && date === 14) {
-        console.log(
-          "%c(ღ˘⌣˘ღ) %cHappy Valentine's Day! Wishing you a day filled with love and joy!",
-          "color: #ff82e6; font-size: 2rem; font-weight: bold;",
-          "color: white; font-size: 1.2rem; font-weight: bold;"
-        );
-      }
-      if (month === 11 && date === 31) {
-        console.log(
-          "%c(◕ᴗ◕✿) %cNew Year is almost here!",
-          "color: #ff5e5e; font-size: 2rem; font-weight: bold;",
-          "color: white; font-size: 1.2rem; font-weight: bold;"
-        );
-      }
-
-      setInterval(updateDateTime, 1000);
+      });
     });
-  </script>
+    const loadingElem = document.querySelector(".loading");
+    const congratsElem = document.querySelector(".congrats");
+    loadingElem.style.display = "none";
+    congratsElem.style.display = "block";
+  }
+  function updateDateTime() {
+    try {
+      const now = new Date();
+      const datetimeElem = document.querySelector(".datetime");
+      if (datetimeElem) {
+        datetimeElem.innerHTML = `${now.toLocaleDateString()} ${now.toLocaleTimeString(
+          "en-GB",
+          {
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+            hour12: false,
+          }
+        )}`;
+      }
+    } catch (error) {
+      console.error("Error updating datetime:", error);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    updateDateTime();
+    loadBlogs();
+    incrementViewCount();
+    const now = new Date();
+
+    // Show messages based on the time of day
+    const hour = now.getHours();
+    if (hour >= 0 && hour < 6) {
+      console.log(
+        "%c(∪｡∪)｡｡｡zzZ %cTime to go to bed?",
+        "color: cyan; font-size: 2rem; font-weight: bold;",
+        "color: white; font-size: 1.2rem; font-weight: bold;"
+      );
+    } else if (hour >= 6 && hour < 12) {
+      console.log(
+        "%c(*・ω・)ﾉ %cGood morning! Hope you have a good day!",
+        "color: #bfff47; font-size: 2rem; font-weight: bold;",
+        "color: white; font-size: 1.2rem; font-weight: bold;"
+      );
+    } else if (hour >= 12 && hour < 18) {
+      console.log(
+        "%c(´• ω •`) ♡ %cGood afternoon! Hoping for a great rest of your day!",
+        "color: #47fcff; font-size: 2rem; font-weight: bold;",
+        "color: white; font-size: 1.2rem; font-weight: bold;"
+      );
+    } else {
+      console.log(
+        "%c(づ ◕‿◕ )づ %cGood evening! Don't stay up too late like me!",
+        "color: #ff7ac6; font-size: 2rem; font-weight: bold;",
+        "color: white; font-size: 1.2rem; font-weight: bold;"
+      );
+    }
+
+    // Show messages based on the date
+    const month = now.getMonth();
+    const date = now.getDate();
+
+    if (month === 0 && date === 1) {
+      console.log(
+        "%c(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ %cHappy New Year! Wishing you a fantastic year ahead!",
+        "color: #ff5e5e; font-size: 2rem; font-weight: bold;",
+        "color: white; font-size: 1.2rem; font-weight: bold;"
+      );
+    } else if (month === 11 && date === 25) {
+      console.log(
+        "%c＼(＾▽＾)／ %cMerry Christmas! Hope you have a joyful holiday season!",
+        "color: #ff5e5e; font-size: 2rem; font-weight: bold;",
+        "color: #79e65e; font-size: 1.2rem; font-weight: bold;"
+      );
+    } else if (month === 4 && date === 6) {
+      console.log(
+        "%c\\(★ω★)/ %cHappy Birthday to me! Another year older, another year wiser!",
+        "color: #dc94b4; font-size: 2rem; font-weight: bold;",
+        "color: white; font-size: 1.2rem; font-weight: bold;"
+      );
+      document.title = "Neneko's blog - It's my birthday today!";
+      const titleElem = document.querySelector(".title");
+      if (titleElem) {
+        titleElem.innerHTML =
+          "<p>It's my birthday today! 🎉🎂🎈🎈🎈</p><h6 style='color: #666; font-size: 0.8rem; margin-left: 10px;'>pls send me lots of balloons pls pls pls i only need them</h6>";
+        titleElem.style.color = "#dc94b4";
+      }
+    } else if (month === 9 && date === 31) {
+      console.log(
+        "%c(ﾉ≧ڡ≦) %cHappy Halloween! Hope you have a spooktacular day!",
+        "color: #ff7930; font-size: 2rem; font-weight: bold;",
+        "color: white; font-size: 1.2rem; font-weight: bold;"
+      );
+    }
+
+    if (month === 5) {
+      console.log(
+        "%c(ง'̀-'́)ง %cHappy Pride Month! Celebrate love and diversity! 🏳️‍🌈🏳️‍⚧️",
+        "color: #ffb0fd; font-size: 2rem; font-weight: bold;",
+        "color: white; font-size: 1.2rem; font-weight: bold;"
+      );
+    }
+    if (month === 1 && date === 14) {
+      console.log(
+        "%c(ღ˘⌣˘ღ) %cHappy Valentine's Day! Wishing you a day filled with love and joy!",
+        "color: #ff82e6; font-size: 2rem; font-weight: bold;",
+        "color: white; font-size: 1.2rem; font-weight: bold;"
+      );
+    }
+    if (month === 11 && date === 31) {
+      console.log(
+        "%c(◕ᴗ◕✿) %cNew Year is almost here!",
+        "color: #ff5e5e; font-size: 2rem; font-weight: bold;",
+        "color: white; font-size: 1.2rem; font-weight: bold;"
+      );
+    }
+
+    setInterval(updateDateTime, 1000);
+  });
+</script>
+
 </html>

@@ -796,7 +796,6 @@
         const r = Math.floor((currentViews * mulR) % 255);
         const g = Math.floor((currentViews * mulG) % 255);
         const b = Math.floor((currentViews * mulB) % 255);
-        console.log(`View count color RGB(${r}, ${g}, ${b})`);
         document.querySelector(".views").style.color = `rgb(${r}, ${g}, ${b})`;
       } else {
         await setDoc(viewDocRef, { count: 1 });

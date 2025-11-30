@@ -786,9 +786,16 @@
         await updateDoc(viewDocRef, { count: currentViews + 1 });
         document.querySelector(".views").textContent = currentViews + 1;
         // Use a more visually distinct color formula for the view count
-        const r = (currentViews * 3) % 255;
-        const g = (currentViews * 7) % 255;
-        const b = (currentViews * 11) % 255;
+        function randomMultiplier(min = 3, max = 13) {
+          return Math.random() * (max - min) + min;
+        }
+        const mulR = randomMultiplier(5, 15);
+        const mulG = randomMultiplier(4, 12);
+        const mulB = randomMultiplier(1, 8);
+        const r = Math.floor((currentViews * mulR) % 255);
+        const g = Math.floor((currentViews * mulG) % 255);
+        const b = Math.floor((currentViews * mulB) % 255);
+        console.log(`View count color RGB(${r}, ${g}, ${b})`);
         document.querySelector(".views").style.color = `rgb(${r}, ${g}, ${b})`;
       } else {
         await setDoc(viewDocRef, { count: 1 });

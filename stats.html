@@ -384,6 +384,10 @@
         options: {
           responsive: true,
           maintainAspectRatio: false,
+          interaction: {
+            intersect: false,
+            mode: 'index'
+          },
           plugins: {
             legend: {
               labels: {
@@ -391,11 +395,60 @@
               }
             },
             tooltip: {
-              backgroundColor: 'rgba(0, 0, 0, 0.8)',
-              titleColor: '#ffffff',
+              backgroundColor: 'rgba(0, 0, 0, 0.9)',
+              titleColor: 'rgb(61, 255, 245)',
               bodyColor: '#ffffff',
               borderColor: 'rgb(61, 255, 245)',
-              borderWidth: 1
+              borderWidth: 2,
+              padding: 12,
+              titleFont: {
+                family: 'Mochiy Pop One',
+                size: 14,
+                weight: 'bold'
+              },
+              bodyFont: {
+                family: 'Mochiy Pop One',
+                size: 13
+              },
+              callbacks: {
+                title: function(context) {
+                  const index = context[0].dataIndex;
+                  const dataPoint = last30DaysData[index];
+                  return `📅 ${dataPoint.displayDate}`;
+                },
+                label: function(context) {
+                  const index = context.dataIndex;
+                  const dataPoint = last30DaysData[index];
+                  const count = dataPoint.count;
+                  const dateKey = dataPoint.date;
+                  
+                  const lines = [
+                    `👁️ Daily Views: ${count.toLocaleString()}`,
+                  ];
+                  
+                  if (count === 0) {
+                    lines.push('⚠️ No visits recorded');
+                  } else {
+                    lines.push(`✅ ${count === 1 ? '1 visit' : `${count} visits`}`);
+                  }
+                  
+                  return lines;
+                },
+                afterBody: function(context) {
+                  const index = context[0].dataIndex;
+                  const dataPoint = last30DaysData[index];
+                  
+                  // Calculate percentage of max if not zero
+                  if (dataPoint.count > 0 && last30DaysData.length > 0) {
+                    const maxCount = Math.max(...last30DaysData.map(d => d.count));
+                    if (maxCount > 0) {
+                      const percentage = ((dataPoint.count / maxCount) * 100).toFixed(1);
+                      return `📈 ${percentage}% of peak day`;
+                    }
+                  }
+                  return '';
+                }
+              }
             }
           },
           scales: {
@@ -459,6 +512,10 @@
         options: {
           responsive: true,
           maintainAspectRatio: false,
+          interaction: {
+            intersect: false,
+            mode: 'index'
+          },
           plugins: {
             legend: {
               labels: {
@@ -466,11 +523,62 @@
               }
             },
             tooltip: {
-              backgroundColor: 'rgba(0, 0, 0, 0.8)',
-              titleColor: '#ffffff',
+              backgroundColor: 'rgba(0, 0, 0, 0.9)',
+              titleColor: '#0320fc',
               bodyColor: '#ffffff',
               borderColor: '#0320fc',
-              borderWidth: 1
+              borderWidth: 2,
+              padding: 12,
+              titleFont: {
+                family: 'Mochiy Pop One',
+                size: 14,
+                weight: 'bold'
+              },
+              bodyFont: {
+                family: 'Mochiy Pop One',
+                size: 13
+              },
+              callbacks: {
+                title: function(context) {
+                  const index = context[0].dataIndex;
+                  const dataPoint = cumulativeData[index];
+                  return `📅 ${dataPoint.displayDate}`;
+                },
+                label: function(context) {
+                  const index = context.dataIndex;
+                  const dataPoint = cumulativeData[index];
+                  const dailyCount = dataPoint.count;
+                  const cumulativeTotal = dataPoint.cumulative;
+                  const dateKey = dataPoint.date;
+                  
+                  const lines = [
+                    `👁️ Daily Views: ${dailyCount.toLocaleString()}`,
+                    `📈 Cumulative Total: ${cumulativeTotal.toLocaleString()}`
+                  ];
+                  
+
+                  return lines;
+                },
+                afterBody: function(context) {
+                  const index = context[0].dataIndex;
+                  const dataPoint = cumulativeData[index];
+                  
+                  // Calculate percentage of total if available
+                  if (index > 0) {
+                    const previousCumulative = cumulativeData[index - 1].cumulative;
+                    const growth = dataPoint.cumulative - previousCumulative;
+                    if (growth > 0) {
+                      const growthPercent = ((growth / previousCumulative) * 100).toFixed(2);
+                      return `📊 Growth: +${growth.toLocaleString()} (+${growthPercent}%)`;
+                    }
+                  }
+                  
+                  // Show position in timeline
+                  const totalDays = cumulativeData.length;
+                  const dayNumber = index + 1;
+                  return `📍 Day ${dayNumber} of ${totalDays} tracked`;
+                }
+              }
             }
           },
           scales: {

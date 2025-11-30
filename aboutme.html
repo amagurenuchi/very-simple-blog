@@ -12,232 +12,275 @@
       href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap"
       rel="stylesheet"
     />
+    <style>
+      body {
+        font-family: "Mochiy Pop One", sans-serif;
+        /* background-image: url("./bg.jpg"); */
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-color: #000000;
+        margin: 0;
+        padding: 0;
+        color: #ffffff;
+      }
+
+      body::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        background-repeat: repeat;
+        background-color: #000000;
+        opacity: 0.8;
+        backdrop-filter: blur(10px);
+        z-index: -1;
+      }
+
+      .title {
+        font-size: 2rem;
+        color: #ffffff;
+        text-align: center;
+        padding: 20px;
+        margin-top: 70px;
+      }
+
+      .timebar {
+        background-color: #434343;
+        padding: 15px;
+        color: #ffffff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 100;
+      }
+
+      .item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .item a {
+        text-decoration: none;
+        color: #ffffff;
+        margin-left: 10px;
+        padding: 10px;
+        transition: 0.3s;
+      }
+
+      .item a:hover {
+        background-color: #7a7a7a;
+        border-radius: 5px;
+        transition: 0.3s;
+      }
+
+      .basic {
+        margin: 20px;
+        padding: 15px;
+        background-color: #ffffff0e;
+        border-radius: 8px;
+        border-left: 5px solid rgb(255, 61, 61);
+        color: #ffffff;
+        margin-bottom: 50px;
+      }
+
+      .basic h2 {
+        color: rgb(255, 61, 61);
+      }
+
+      .hobby {
+        margin: 20px;
+        padding: 15px;
+        background-color: #ffffff0e;
+        border-radius: 8px;
+        border-left: 5px solid rgb(141, 167, 255);
+        color: #ffffff;
+        margin-bottom: 50px;
+      }
+
+      .hobby h2 {
+        color: rgb(141, 167, 255);
+      }
+
+      .small {
+        font-size: 0.8rem;
+        color: #989898;
+      }
+
+      .section {
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #ffffff0a;
+        border-radius: 5px;
+        border-left: 5px solid rgb(61, 255, 245);
+      }
+
+      .section h3 {
+        color: rgb(61, 255, 245);
+      }
+
+      .sectionmini {
+        margin-top: 15px;
+        padding: 10px;
+        background-color: #ffffff05;
+        border-radius: 5px;
+        border-left: 5px solid rgb(255, 61, 255);
+      }
+
+      .sectionmini h4 {
+        color: rgb(255, 61, 255);
+      }
+
+      .section3 {
+        margin-top: 10px;
+        padding: 10px;
+        background-color: #ffffff02;
+        border-radius: 5px;
+        border-left: 5px solid rgb(255, 255, 61);
+      }
+
+      .section3 .name {
+        color: rgb(255, 255, 61);
+        font-weight: bold;
+        font-size: 1.1rem;
+      }
+
+      .section3 p {
+        margin: 5px 0;
+      }
+
+      .section3 ul {
+        margin: 5px 20px;
+      }
+
+      .section3 ul li {
+        margin: 3px 0;
+      }
+
+      a {
+        color: #61aaff;
+        text-decoration: none;
+      }
+
+      .rank {
+        color: #a0ff61;
+      }
+
+      .endnotes {
+        margin: 20px;
+        padding: 15px;
+        background-color: #ffffff0e;
+        border-radius: 8px;
+        border-left: 5px solid rgb(255, 61, 167);
+        color: #ffffff;
+        margin-bottom: 50px;
+      }
+
+      .endnotes h2 {
+        color: rgb(255, 61, 167);
+      }
+
+      .socials {
+        margin-top: 10px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        font-size: 1.2rem;
+      }
+
+      .socials i {
+        font-size: 1.75rem;
+        margin-right: 15px;
+      }
+
+      .socials a {
+        color: white;
+        padding: 10px;
+      }
+
+      .socials a:hover {
+        background-color: #7a7a7a;
+        transition: 0.3s;
+      }
+
+      .tablist {
+        display: flex;
+        justify-content: left;
+        margin-top: 20px;
+        margin-left: 30px;
+        margin-right: 30px;
+        gap: 2px;
+      }
+
+      .tab {
+        padding: 10px 15px;
+        color: #ffffff;
+        background-color: #434343;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        cursor: pointer;
+      }
+      .tab:hover {
+        background-color: #7a7a7a;
+        transition: 0.3s;
+      }
+
+      .tabdisp {
+        background-color: #2fd2d8;
+      }
+      .tab2 {
+        display: none;
+      }
+      .tab3 {
+        display: none;
+      }
+      .tab4 {
+        display: none;
+      }
+
+      .sensitive {
+        margin: 20px;
+        padding: 15px;
+        background-color: #ffffff0e;
+        border-radius: 8px;
+        border-left: 5px solid rgb(154, 32, 165);
+        color: #ffffff;
+        margin-bottom: 50px;
+      }
+
+      .sensitive h2 {
+        color: rgb(154, 32, 165);
+      }
+
+      .sensitiveclick {
+        padding: 10px 15px;
+        background-color: rgb(154, 32, 165);
+        color: #ffffff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .sencontent {
+        margin-top: 15px;
+        display: none;
+      }
+    </style>
   </head>
-  <style>
-    body {
-      font-family: "Mochiy Pop One", sans-serif;
-      /* background-image: url("./bg.jpg"); */
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-color: #000000;
-      margin: 0;
-      padding: 0;
-      color: #ffffff;
-    }
-
-    body::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-size: cover;
-      background-position: center;
-      background-repeat: repeat;
-      background-color: #000000;
-      opacity: 0.8;
-      backdrop-filter: blur(10px);
-      z-index: -1;
-    }
-
-    .title {
-      font-size: 2rem;
-      color: #ffffff;
-      text-align: center;
-      padding: 20px;
-      margin-top: 70px;
-    }
-
-    .timebar {
-      background-color: #434343;
-      padding: 15px;
-      color: #ffffff;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 100;
-    }
-
-    .item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .item a {
-      text-decoration: none;
-      color: #ffffff;
-      margin-left: 10px;
-      padding: 10px;
-      transition: 0.3s;
-    }
-
-    .item a:hover {
-      background-color: #7a7a7a;
-      border-radius: 5px;
-      transition: 0.3s;
-    }
-
-    .basic {
-      margin: 20px;
-      padding: 15px;
-      background-color: #ffffff0e;
-      border-radius: 8px;
-      border-left: 5px solid rgb(255, 61, 61);
-      color: #ffffff;
-      margin-bottom: 50px;
-    }
-
-    .basic h2 {
-      color: rgb(255, 61, 61);
-    }
-
-    .hobby {
-      margin: 20px;
-      padding: 15px;
-      background-color: #ffffff0e;
-      border-radius: 8px;
-      border-left: 5px solid rgb(141, 167, 255);
-      color: #ffffff;
-      margin-bottom: 50px;
-    }
-
-    .hobby h2 {
-      color: rgb(141, 167, 255);
-    }
-
-    .small {
-      font-size: 0.8rem;
-      color: #989898;
-    }
-
-    .section {
-      margin-top: 20px;
-      padding: 10px;
-      background-color: #ffffff0a;
-      border-radius: 5px;
-      border-left: 5px solid rgb(61, 255, 245);
-    }
-
-    .section h3 {
-      color: rgb(61, 255, 245);
-    }
-
-    .sectionmini {
-      margin-top: 15px;
-      padding: 10px;
-      background-color: #ffffff05;
-      border-radius: 5px;
-      border-left: 5px solid rgb(255, 61, 255);
-    }
-
-    .sectionmini h4 {
-      color: rgb(255, 61, 255);
-    }
-
-    .section3 {
-      margin-top: 10px;
-      padding: 10px;
-      background-color: #ffffff02;
-      border-radius: 5px;
-      border-left: 5px solid rgb(255, 255, 61);
-    }
-
-    .section3 .name {
-      color: rgb(255, 255, 61);
-      font-weight: bold;
-      font-size: 1.1rem;
-    }
-
-    .section3 p {
-      margin: 5px 0;
-    }
-
-    .section3 ul {
-      margin: 5px 20px;
-    }
-
-    .section3 ul li {
-      margin: 3px 0;
-    }
-
-    a {
-      color: #61aaff;
-      text-decoration: none;
-    }
-
-    .rank {
-      color: #a0ff61;
-    }
-
-    .endnotes {
-      margin: 20px;
-      padding: 15px;
-      background-color: #ffffff0e;
-      border-radius: 8px;
-      border-left: 5px solid rgb(255, 61, 167);
-      color: #ffffff;
-      margin-bottom: 50px;
-    }
-
-    .endnotes h2 {
-      color: rgb(255, 61, 167);
-    }
-
-    .socials {
-      margin-top: 10px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      font-size: 1.2rem;
-    }
-
-    .socials i {
-      font-size: 1.75rem;
-      margin-right: 15px;
-    }
-
-    .socials a {
-      color: white;
-      padding: 10px;
-    }
-
-    .socials a:hover {
-      background-color: #7a7a7a;
-      transition: 0.3s;
-    }
-
-    .tablist {
-      display: flex;
-      justify-content: left;
-      margin-top: 20px;
-      margin-left:30px;
-      margin-right: 30px;
-      gap: 2px;
-    }
-
-    .tab{
-      padding: 10px 15px;
-      color: #ffffff;
-      background-color: #434343;
-      border-top-left-radius: 5px;
-      border-top-right-radius: 5px;
-      cursor: pointer;
-    }
-  </style>
 
   <body>
     <div class="timebar">
-      <div class="item">
-        <div class="name" style="font-size: 1.25rem; color: rgb(61, 255, 245)">
-          Neneko Koromiko
-        </div>
+      <div class="name" style="font-size: 1.25rem; color: rgb(61, 255, 245)">
+        Neneko Koromiko
       </div>
       <div class="datetime" style="margin-right: 30px"></div>
     </div>
@@ -403,21 +446,28 @@
               <span class="name">Tetris the Grand Master 4</span>
               <p>
                 Marathon: <span class="marathonscr"></span>
-                <span class="small"> <br>
-                  Sprint: <span class="sprinttime"></span> <br>
+                <span class="small">
+                  <br />
+                  Sprint: <span class="sprinttime"></span> <br />
                   Ultra: <span class="ultrascr"></span>
-                </span> <br />Normal: <span class="normalgrade"></span> <br />
+                </span>
+                <br />Normal: <span class="normalgrade"></span> <br />
                 <span class="small"
-                  >Normal 1.1: <span class="normal11grade"></span> <br />Normal 2.1: <span class="normal21grade"></span>
-                  <br />Normal 3.1: <span class="normal31grade"></span>
+                  >Normal 1.1: <span class="normal11grade"></span> <br />Normal
+                  2.1: <span class="normal21grade"></span> <br />Normal 3.1:
+                  <span class="normal31grade"></span>
                 </span>
                 <br />Asuka: <span class="asukagrade"></span><br />
-                <span class="small">Asuka Easy: <span class="aegrade"></span></span> <br /><span
-                  class="small"
-                  >Asuka Hard: <span class="ahgrade"></span></span
-                >
-                <br />Master: <span class="mastergrade"></span> <br />Konoha: <span class="konohagrade"></span>
-                <br />Shiranui: <span class="shiranuigrade"></span>
+                <span class="small"
+                  >Asuka Easy: Ae <span class="aegrade"></span
+                ></span>
+                <br /><span class="small"
+                  >Asuka Hard: <span class="ahgrade"></span
+                ></span>
+                <br />Master: <span class="mastergrade"></span> <br />Konoha:
+                <span class="konohagrade"></span> /
+                <span class="konohahard"></span> <br />Shiranui:
+                <span class="shiranuigrade"></span>
               </p>
             </div>
           </div>
@@ -441,25 +491,28 @@
               <span class="name">CHUNITHM</span>
               <p>
                 Yep. I mostly play arcade rhythm games now and this is one of
-                those. <br />I got a 16.42 rating pre-Verse, and my best ever rating was
-                16.64. <br />My highest rated song is a 1008892 on
+                those. <br />I got a 16.42 rating pre-Verse, and my best ever
+                rating was 16.64. <br />My highest rated song is a 1008892 on
                 FREEDOM DiVE↓ (Lv.15). <br />
-                <span class="curchunirating"></span> <br>
-                <img
-                  src=""
-                  alt=""
-                  style="max-width: 400px"
-                />
+                Current rating: <span class="curchunirating"></span> <br />
+
+                <a href="" class="chuniboardlink"
+                  ><img
+                    src=""
+                    alt="CHUNITHM rating board"
+                    style="max-width: 100%"
+                    class="chuniimg"
+                /></a>
               </p>
             </div>
             <div class="section3">
               <span class="name">Maimai</span>
               <p>
                 Every new update is a struggle. I am currently having a rating
-                of 13874 (personal best!)
-                <br />My playstyle is a bit different from most people, as I
-                tend to focus on stamina conservation by hitting the buttons
-                with only the tips of my fingers instead of the entire hand.
+                of <span class="maimairating"></span> <br />My playstyle is a
+                bit different from most people, as I tend to focus on stamina
+                conservation by hitting the buttons with only the tips of my
+                fingers instead of the entire hand.
                 <span class="small"
                   >(Is this why my presses are so quiet compared to
                   others?)</span
@@ -467,12 +520,15 @@
                 <br />
                 unfortunately, I don't have any screenshots of my plays yet,
                 just this. <br />
-                <span class="curmaimairating"><span>
-                  <br><img
-                  src=""
-                  alt=""
-                  style="max-width: 800px"
-                />
+                Current rating: <span class="curmaimairating"></span> <br /><a
+                  href=""
+                  class="maimaiboardlink"
+                  ><img
+                    src=""
+                    alt="Maimai rating board"
+                    class="maiimg"
+                    style="max-width: 100%"
+                /></a>
                 <br />
                 I hate how the rating system is based on grade instead of score,
                 but oh well, drastic changes in score calculation (compared to
@@ -493,6 +549,22 @@
                 score, as harder songs give more Pumpbility points, even with
                 much lower scores. <br />I can play well up to Single Lv.17 and
                 Double Lv.15, but I rarely play Double.
+              </p>
+            </div>
+            <div class="section3">
+              <span class="name">Pianista</span>
+              <p>
+                One of the oldest rhythm games I have ever played. <br />I
+                started playing in 2nd grade(?) with pretty limited head start
+                (constantly 3-staring the charts in Technical.) <br /><br />
+                Over the years, I climbed the ladder and slowly but surely
+                clearing Master charts (If you don't know they all have a high
+                score requirement and must be less than 2 miss to clear) and
+                finally reached somewhat a high position on the leaderboards.
+              </p>
+              <p>
+                Now, I am able to get only a few Excellents on most charts
+                (except for certain Lv.? charts).
               </p>
             </div>
           </div>
@@ -518,6 +590,8 @@
             <li>The Good Doctor</li>
             <li>Grey's Anatomy</li>
             <li>House M.D.</li>
+            <li>The Pitt</li>
+            <li>ER</li>
           </ul>
           <br />
           <div class="sectionmini">
@@ -603,15 +677,87 @@
           <p>
             I hate my clasmates. They are noisy and annoying and I just want to
             study in peace. <br />
-            I still have to deal with them for another 8 months... See yall in
+            I still have to deal with them for another few months... See yall in
             June.
           </p>
         </div>
-        <div class="sensitive"></div>
+      </div>
+      <div class="sensitive">
+        <h2>The darker side of me...</h2>
+        <button class="sensitiveclick">Click to reveal</button>
+        <div class="sencontent">
+          <p>I am somewhat a nymphomaniac.</p>
+          <p>
+            Depending on my mood I jerk myself off several times a day. <br />
+            I mostly beat it to mpreg (male pregnancy) artworks.
+          </p>
+          <p>
+            I have a fetish for balloons (mostly big ones). Yes, I beat myself
+            to it too.
+          </p>
+          <p>
+            I have been diagnosed with depression since I was 14 years old and
+            have had several suicide attempts. Currently, I'm alive and well,
+            and the episodes have eased.
+          </p>
+          <p>
+            I have 5+ sex partners. The first at the age of 14 (with my
+            boyfriend) <br />
+            Also I prefer being naked and suggestive to my partners or when I'm
+            alone. <br />
+            I have a 16cm penis.
+          </p>
+          <p>
+            I constantly get into fights with other classmates. The reason:
+            Simply, <i>conflict of interest.</i>
+          </p>
+          <p>
+            And of course I am uncomfortable with my current body and get really
+            jealous of femboys.
+          </p>
+          <br />
+          <span style="color: red"
+            >Traumatized? Not my fault. Shouldn't have clicked that
+            button.</span
+          >
+        </div>
       </div>
     </div>
-    <div class="tab2"></div>
+    <div class="tab2">
+      <div class="hobby">
+        <h2>So you clicked on this tab. Neat!</h2>
+        <p>
+          Well... if you really wanted genuine advice, you would have been
+          better off Googling. <br />But I guess I can also give you some tips
+          on the games I have played.
+        </p>
+        <div class="section3">
+          <span class="name">Rhythm games / Piano Tiles</span> <br />
+          <p>
+            For Piano Tiles... Depends on the mode: <br />Classic? Just hit fast
+            while being careful. <br />Endless? Learn how to look at high scroll
+            speed. The mode has a non-linear learning curve, so it may take
+            several years just to get past the 11 tiles/s barrier.
+          </p>
+          <br />
+          <p>
+            For other rhythm games: 
+            <br>The general rule-of-thumb is to take it one
+            step at a time. Push for higher and higher difficulties but only
+            within a limit, as playing charts way out of your abilities does
+            nothing helpful.
+            <br>On an another note, accuracy is important too: Try to find the right visual/audio offset for you to ensure your reactions aren't too off-sync with the monitor/screen. You should also rely on audio in order to time your hits, as most charts are often tied accurately to it.
+            <br><br>
+            If you are an accuracy extremist however, you should get input devices with high polling rate, a PC that can run rhythm games at a high frame rate, and a very good hand-to-eye coordination.
+          </p>
+        </div>
+        <div class="section3">
+          <span class="name">Tetris</span>
+        </div>
+      </div>
+    </div>
     <div class="tab3"></div>
+    <div class="tab4"></div>
     <div class="endnotes">
       <h2>So yea, that's pretty much it.</h2>
       <p>Thanks for reading all the way to the end!</p>
@@ -680,7 +826,7 @@
     const age = document.querySelector(".age");
     const now = new Date();
     const birthDate = new Date("2008-05-06");
-    let ageInYears = now.getYear() - birthDate.getYear();
+    let ageInYears = now.getFullYear() - birthDate.getFullYear();
     if (
       now.getMonth() < birthDate.getMonth() ||
       (now.getMonth() === birthDate.getMonth() &&
@@ -691,35 +837,154 @@
     if (ageInYears > 25) {
       ageInYears = `${ageInYears} (damn i'm old)`;
     }
-    age.innerHTML = ageInYears;
+    if (age) age.innerHTML = ageInYears;
     document.addEventListener("DOMContentLoaded", () => {
       updateDateTime();
       setInterval(updateDateTime, 1000);
     });
   </script>
   <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
-     import {
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+    import {
       getFirestore,
-      collection,
-      getDocs,
+      getDoc,
       doc,
-      query,
-      where,
     } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
 
+    const firebaseConfig = {
+      apiKey: "AIzaSyBZFoX2Y1Vvr2lObJyVTz-4ymeMdG4tpNU",
+      authDomain: "milfish-4eda2.firebaseapp.com",
+      projectId: "milfish-4eda2",
+      storageBucket: "milfish-4eda2.firebasestorage.app",
+      messagingSenderId: "598214329916",
+      appId: "1:598214329916:web:cde4617e0b0a3bbb89e539",
+      measurementId: "G-M8B06PHB64",
+    };
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyBZFoX2Y1Vvr2lObJyVTz-4ymeMdG4tpNU",
-    authDomain: "milfish-4eda2.firebaseapp.com",
-    projectId: "milfish-4eda2",
-    storageBucket: "milfish-4eda2.firebasestorage.app",
-    messagingSenderId: "598214329916",
-    appId: "1:598214329916:web:cde4617e0b0a3bbb89e539",
-    measurementId: "G-M8B06PHB64"
-  };
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
 
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-</script>
+    // now for the hard part: fetching data from firestore
+    async function fetchRatings() {
+      // helper utilities
+      const setIfExists = (selector, value) => {
+        const el = document.querySelector(selector);
+        if (el) el.innerHTML = value ?? "";
+      };
+      const setBoardImg = (selector, url) => {
+        const el = document.querySelector(selector);
+        if (el) el.src = url ?? "";
+      };
+
+      // TGM4 ratings
+      try {
+        const tgm4Doc = doc(db, "gamestats", "40xEznyQGbsYttfxL56r");
+        const tgm4Snap = await getDoc(tgm4Doc);
+        if (tgm4Snap.exists()) {
+          const data = tgm4Snap.data();
+          setIfExists(".marathonscr", data.marathon);
+          setIfExists(".sprinttime", data.sprint);
+          setIfExists(".ultrascr", data.ultra);
+          setIfExists(".normalgrade", data.normal);
+          setIfExists(".normal11grade", data.normal11);
+          setIfExists(".normal21grade", data.normal21);
+          setIfExists(".normal31grade", data.normal31);
+          setIfExists(".asukagrade", data.asuka);
+          setIfExists(".aegrade", data.asukaeasy);
+          setIfExists(".ahgrade", data.asukahard);
+          setIfExists(".mastergrade", data.master);
+          setIfExists(".konohagrade", data.konoha);
+          setIfExists(".konohahard", data.konohahard);
+          setIfExists(".shiranuigrade", data.shiranui);
+        } else {
+          console.log("No such document (TGM4)!");
+        }
+      } catch (error) {
+        console.error("Error fetching TGM4 ratings:", error);
+      }
+
+      // CHUNITHM + Maimai rating
+      try {
+        const chuniDoc = doc(db, "gamestats", "3iq39aFIDDO9oe4w91KK");
+        const chuniSnap = await getDoc(chuniDoc);
+        if (chuniSnap.exists()) {
+          const data = chuniSnap.data();
+          setIfExists(".curchunirating", data.chunirating);
+          setIfExists(".curmaimairating", data.maimairating);
+          setBoardImg(".chuniimg", data.chuniratingboard);
+          setBoardImg(".maiimg", data.maimairatingboard);
+          const chuniBoardLink = document.querySelector(".chuniboardlink");
+          const maimaiBoardLink = document.querySelector(".maimaiboardlink");
+          if (chuniBoardLink) chuniBoardLink.href = data.chuniratingboard ?? "";
+          if (maimaiBoardLink)
+            maimaiBoardLink.href = data.maimairatingboard ?? "";
+          console.log(document.querySelector(".maiimg").innerHTML);
+        } else {
+          console.log("No such document (CHUNITHM)!");
+        }
+      } catch (error) {
+        console.error("Error fetching CHUNITHM rating:", error);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      fetchRatings();
+    });
+  </script>
+  <script>
+    const tab1 = document.querySelector(".tab1disp");
+    const tab2 = document.querySelector(".tab2disp");
+    const tab3 = document.querySelector(".tab3disp");
+    const tab4 = document.querySelector(".tab4disp");
+    const tab1content = document.querySelector(".tab1");
+    const tab2content = document.querySelector(".tab2");
+    const tab3content = document.querySelector(".tab3");
+    const tab4content = document.querySelector(".tab4");
+
+    document.querySelectorAll(".tab").forEach((tab) => {
+      tab.addEventListener("click", () => {
+        if (tab1content) tab1content.style.display = "none";
+        if (tab2content) tab2content.style.display = "none";
+        if (tab3content) tab3content.style.display = "none";
+        if (tab4content) tab4content.style.display = "none";
+
+        if (tab1) tab1.classList.remove("tabdisp");
+        if (tab2) tab2.classList.remove("tabdisp");
+        if (tab3) tab3.classList.remove("tabdisp");
+        if (tab4) tab4.classList.remove("tabdisp");
+
+        if (tab === tab1) {
+          if (tab1content) tab1content.style.display = "block";
+          if (tab1) tab1.classList.add("tabdisp");
+        } else if (tab === tab2) {
+          if (tab2content) tab2content.style.display = "block";
+          if (tab2) tab2.classList.add("tabdisp");
+        } else if (tab === tab3) {
+          if (tab3content) tab3content.style.display = "block";
+          if (tab3) tab3.classList.add("tabdisp");
+        } else if (tab === tab4) {
+          if (tab4content) tab4content.style.display = "block";
+          if (tab4) tab4.classList.add("tabdisp");
+        }
+      });
+    });
+    const senbutton = document.querySelector(".sensitiveclick");
+    const sencontent = document.querySelector(".sencontent");
+    if (senbutton && sencontent) {
+      senbutton.addEventListener("click", () => {
+        if (sencontent.style.display === "block") {
+          sencontent.style.display = "none";
+          senbutton.innerText = "Click to reveal";
+        } else {
+          sencontent.style.display = "block";
+          senbutton.innerText = "Click to hide";
+        }
+      });
+    }
+    document.addEventListener("DOMContentLoaded", () => {
+      // Show tab 1 content by default
+      if (tab1content) tab1content.style.display = "block";
+      if (tab1) tab1.classList.add("tabdisp");
+    });
+  </script>
 </html>

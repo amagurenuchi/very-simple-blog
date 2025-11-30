@@ -280,6 +280,54 @@
     const chuniboardlinkSpan = document.querySelector(".chuniboardlink");
     const maimaiboardlinkSpan = document.querySelector(".maimaiboardlink");
 
+    // fetch on load
+    document.addEventListener("DOMContentLoaded", async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "gamestats"));
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          if (doc.id === "40xEznyQGbsYttfxL56r") {
+            marathonInput.value = data.marathon || "";
+            sprintInput.value = data.sprint || "";
+            ultraInput.value = data.ultra || "";
+            normalInput.value = data.normal || "";
+            normal11Input.value = data.normal11 || "";
+            normal21Input.value = data.normal21 || "";
+            normal31Input.value = data.normal31 || "";
+            asukaInput.value = data.asuka || "";
+            asukaeasyInput.value = data.asukaeasy || "";
+            asukahardInput.value = data.asukahard || "";
+            masterInput.value = data.master || "";
+            konohaInput.value = data.konoha || "";
+            konohahardInput.value = data.konohahard || "";
+            shiranuiInput.value = data.shiranui || "";
+          } else if (doc.id === "chunimai") {
+            chuniratingInput.value = data.chunirating || "";
+            maimairatingInput.value = data.maimairating || "";
+          }
+        });
+      } catch (error) {
+        console.error("Error loading stats: ", error);
+      }
+      try {
+        const querySnapshot = await getDocs(collection(db, "gamestats"));
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          if (doc.id === "3iq39aFIDDO9oe4w91KK") {
+            if (data.chuniratingboard && data.chuniratingboard !== "No image uploaded") {
+              chuniratingInput.value = data.chunirating || "";
+              chuniboardlinkSpan.innerHTML = `<a href="${data.chuniratingboard}" target="_blank">View uploaded Chunithm rating board image</a>`;
+            }
+            if (data.maimairatingboard && data.maimairatingboard !== "No image uploaded") {
+              maimairatingInput.value = data.maimairating || "";
+              maimaiboardlinkSpan.innerHTML = `<a href="${data.maimairatingboard}" target="_blank">View uploaded Maimai rating board image</a>`;
+            }
+          }
+        });
+      } catch (error) {
+        console.error("Error loading images: ", error);
+      }
+    });
     tohomeBtn.addEventListener("click", () => {
       window.location.href = "index.html";
     });

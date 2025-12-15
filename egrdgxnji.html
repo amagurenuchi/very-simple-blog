@@ -229,6 +229,7 @@
                     <button class="format-btn img"><i class="fa-solid fa-image"></i></button>
                     <button class="format-btn link"><i class="fa-solid fa-link"></i></button>
                 </div>
+                <input type="file" id="imageUpload" accept="image/*" style="display:none;">
                 <select name="importantTags" id="importantTags" class="important-tags" onchange="previewBtn.click()">
                     <option value="">Select an important tag</option>
                     <option value="delta force">Delta Force</option>
@@ -296,6 +297,7 @@
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
     const blogRef = collection(db, "blog");
+    const imgbbApiKey = 'a1d6e103eaa46f78288fc2c5aa56f3bd';
 
     // Secure HTML sanitizer function (same as in index.html)
     function sanitizeHTML(html) {
@@ -595,11 +597,7 @@
                 moveCursor(textarea, 14);
             },
             img: (textarea) => {
-                const url = prompt("Enter image URL:");
-                if (url) {
-                    insertAtCursor(textarea, `<img src="${url}" alt="">`);
-                    moveCursor(textarea, - url.length); // Move cursor onto the end of the tag
-                }
+                document.getElementById('imageUpload').click();
             },
             link: (textarea) => {
                 const url = prompt("Enter URL:");
@@ -627,6 +625,31 @@
                     buttonActions[action](contentInput);
                 }
             });
+        });
+        document.getElementById('imageUpload').addEventListener('change', async (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const formData = new FormData();
+                formData.append('image', file);
+                try {
+                    const response = await fetch(`https://api.imgbb.com/1/upload?key=${imgbbApiKey}`, {
+                        method: 'POST',
+                        body: formData
+                    });
+                    const data = await response.json();
+                    if (data.success) {
+                        const url = data.data.url;
+                        insertAtCursor(contentInput, `<img src="${url}" alt="">`);
+                        moveCursor(contentInput, -url.length);
+                        previewBtn.click();
+                    } else {
+                        alert('Upload failed: ' + data.error.message);
+                    }
+                } catch (error) {
+                    alert('Upload error: ' + error.message);
+                }
+            }
+            e.target.value = '';
         });
         function insertAtCursor(textarea, text) {
             const start = textarea.selectionStart;

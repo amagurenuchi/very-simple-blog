@@ -743,67 +743,108 @@
   const db = getFirestore(app);
   const blogRef = collection(db, "blog");
 
-  async function incrementDailyVisitCount() {
+
+  async function getIP() {
     try {
-      // Get today's date in YYYY-MM-DD format using UTC+7 timezone
-      const today = new Date();
-      // Convert to UTC+7 by adding 7 hours (7 * 60 * 60 * 1000 milliseconds)
-      const utc7Time = new Date(today.getTime() + (7 * 60 * 60 * 1000));
-      // Format as YYYY-MM-DD in UTC+7
-      const year = utc7Time.getUTCFullYear();
-      const month = String(utc7Time.getUTCMonth() + 1).padStart(2, '0');
-      const day = String(utc7Time.getUTCDate()).padStart(2, '0');
-      const dateKey = `${year}-${month}-${day}`; // e.g., "2024-01-15"
-      const dailyDocRef = doc(db, "counters", `dailyVisits-${dateKey}`);
-      const dailyDocSnap = await getDoc(dailyDocRef);
-
-      let dailyCount = 1;
-      if (dailyDocSnap.exists()) {
-        dailyCount = (dailyDocSnap.data().count || 0) + 1;
-        await updateDoc(dailyDocRef, { count: dailyCount, date: dateKey });
-      } else {
-        await setDoc(dailyDocRef, { count: 1, date: dateKey });
-      }
-
-      // Update the daily views display
-      const dailyViewsElem = document.querySelector(".dailyviews");
-      if (dailyViewsElem) {
-        dailyViewsElem.textContent = dailyCount;
-        // Use a different color formula for daily views
-        const dr = (dailyCount * 13) % 360;
-        dailyViewsElem.style.color = `hsl(${dr}, 100%, 73.2%)`;
-      }
+      const response = await fetch('https://api.ipify.org?format=json');
+      const data = await response.json();
+      return data.ip;
     } catch (e) {
-      console.error("Error incrementing daily visit count:", e);
+      console.error('Error fetching IP:', e);
+      return null;
     }
+  }
+
+  async function hashIP(ip) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(ip);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    return hashHex;
   }
 
   async function incrementViewCount() {
     try {
-      const viewDocRef = doc(db, "counters", "blogViews");
-      const viewDocSnap = await getDoc(viewDocRef);
-      if (viewDocSnap.exists()) {
-        const currentViews = viewDocSnap.data().count || 0;
-        await updateDoc(viewDocRef, { count: currentViews + 1 });
-        document.querySelector(".views").textContent = currentViews + 1;
-        // Use a more visually distinct color formula for the view count
-        function randomMultiplier(min = 3, max = 13) {
-          return Math.random() * (max - min) + min;
+      const ip = await getIP();
+      if (!ip) return;
+      const hash = await hashIP(ip);
+      // For total unique
+      const uniqueDocRef = doc(db, "uniqueViews", hash);
+      const uniqueSnap = await getDoc(uniqueDocRef);
+      let incrementTotal = false;
+      if (!uniqueSnap.exists()) {
+        await setDoc(uniqueDocRef, {timestamp: new Date()});
+        incrementTotal = true;
+      }
+      // For daily
+      const today = new Date();
+      const utc7Time = new Date(today.getTime() + (7 * 60 * 60 * 1000));
+      const year = utc7Time.getUTCFullYear();
+      const month = String(utc7Time.getUTCMonth() + 1).padStart(2, '0');
+      const day = String(utc7Time.getUTCDate()).padStart(2, '0');
+      const dateKey = `${year}-${month}-${day}`;
+      const dailyUniqueRef = doc(db, "uniqueDaily", `${dateKey}-${hash}`);
+      const dailyUniqueSnap = await getDoc(dailyUniqueRef);
+      let incrementDaily = false;
+      if (!dailyUniqueSnap.exists()) {
+        await setDoc(dailyUniqueRef, {date: dateKey, timestamp: new Date()});
+        incrementDaily = true;
+      }
+      // Now increment counters
+      if (incrementTotal) {
+        const viewDocRef = doc(db, "counters", "blogViews");
+        const viewDocSnap = await getDoc(viewDocRef);
+        if (viewDocSnap.exists()) {
+          const currentViews = viewDocSnap.data().count || 0;
+          await updateDoc(viewDocRef, { count: currentViews + 1 });
+        } else {
+          await setDoc(viewDocRef, { count: 1 });
         }
-        const mulR = randomMultiplier(5, 15);
-        const mulG = randomMultiplier(4, 12);
-        const mulB = randomMultiplier(1, 8);
-        const r = Math.floor((currentViews * mulR) % 255);
-        const g = Math.floor((currentViews * mulG) % 255);
-        const b = Math.floor((currentViews * mulB) % 255);
+      }
+      if (incrementDaily) {
+        const dailyDocRef = doc(db, "counters", `dailyVisits-${dateKey}`);
+        const dailyDocSnap = await getDoc(dailyDocRef);
+        let dailyCount = 1;
+        if (dailyDocSnap.exists()) {
+          dailyCount = (dailyDocSnap.data().count || 0) + 1;
+          await updateDoc(dailyDocRef, { count: dailyCount, date: dateKey });
+        } else {
+          await setDoc(dailyDocRef, { count: 1, date: dateKey });
+        }
+      }
+      // Always update displays
+      const finalViewDocRef = doc(db, "counters", "blogViews");
+      const finalViewDocSnap = await getDoc(finalViewDocRef);
+      if (finalViewDocSnap.exists()) {
+        const finalViews = finalViewDocSnap.data().count || 0;
+        document.querySelector(".views").textContent = finalViews;
+        const mulR = Math.random() * (15 - 5) + 5;
+        const mulG = Math.random() * (12 - 4) + 4;
+        const mulB = Math.random() * (8 - 1) + 1;
+        const r = Math.floor((finalViews * mulR) % 255);
+        const g = Math.floor((finalViews * mulG) % 255);
+        const b = Math.floor((finalViews * mulB) % 255);
         document.querySelector(".views").style.color = `rgb(${r}, ${g}, ${b})`;
       } else {
-        await setDoc(viewDocRef, { count: 1 });
-        document.querySelector(".views").textContent = 1;
+        document.querySelector(".views").textContent = 0;
       }
-
-      // Also increment daily visit count
-      await incrementDailyVisitCount();
+      const finalDailyDocRef = doc(db, "counters", `dailyVisits-${dateKey}`);
+      const finalDailyDocSnap = await getDoc(finalDailyDocRef);
+      if (finalDailyDocSnap.exists()) {
+        const finalDaily = finalDailyDocSnap.data().count || 0;
+        const dailyViewsElem = document.querySelector(".dailyviews");
+        if (dailyViewsElem) {
+          dailyViewsElem.textContent = finalDaily;
+          const dr = (finalDaily * 13) % 360;
+          dailyViewsElem.style.color = `hsl(${dr}, 100%, 73.2%)`;
+        }
+      } else {
+        const dailyViewsElem = document.querySelector(".dailyviews");
+        if (dailyViewsElem) {
+          dailyViewsElem.textContent = 0;
+        }
+      }
     } catch (e) {
       console.error("Error incrementing view count:", e);
     }

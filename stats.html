@@ -637,6 +637,14 @@
           }
         });
       }
+
+      // Fast creator shortcut: Ctrl+Shift+W or Alt+W to open Writer Studio
+      document.addEventListener("keydown", (e) => {
+        if ((e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "w") || (e.altKey && e.key.toLowerCase() === "w")) {
+          e.preventDefault();
+          window.location.href = "egrdgxnji.html";
+        }
+      });
     });
   </script>
 </body>

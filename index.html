@@ -490,7 +490,8 @@
       <div class="filt">
         <select name="blogfilter" id="blogfilter">
           <option value="">All blogs</option>
-          <option value="delta force">Delta Force</option>
+          <option value="extraction shooter">Extraction Shooter</option>
+          <option value="delta force">Extraction Shooter (Legacy)</option>
           <option value="other games">Other Games</option>
           <option value="development">Development</option>
           <option value="life">Life</option>
@@ -1048,7 +1049,8 @@
         let dateString = "";
         const imptags = blog.importantValue;
         const importantText = {
-          "delta force": "Delta Force",
+          "extraction shooter": "Extraction Shooter",
+          "delta force": "Extraction Shooter",
           "other games": "Other games",
           development: "Development",
           life: "Life",
@@ -1089,6 +1091,7 @@
         let bordercolor = "";
         if (typeof timestampMs === "number" && !Number.isNaN(timestampMs)) {
           switch (imptags) {
+            case "extraction shooter":
             case "delta force":
               luminous =
                 ((Number(new Date()) - Number(timestampMs)) /
@@ -1784,6 +1787,14 @@
     }
 
     setInterval(updateDateTime, 1000);
+
+    // Fast creator shortcut: Ctrl+Shift+W or Alt+W to open Writer Studio
+    document.addEventListener("keydown", (e) => {
+      if ((e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "w") || (e.altKey && e.key.toLowerCase() === "w")) {
+        e.preventDefault();
+        window.location.href = "egrdgxnji.html";
+      }
+    });
   });
 </script>
 

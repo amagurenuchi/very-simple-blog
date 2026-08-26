@@ -119,6 +119,7 @@
   </style>
   <body>
     <button class="tohome">< Home</button>
+    <button class="tohome" style="left: 130px;" onclick="window.location.href='egrdgxnji.html'"><i class="fa-solid fa-pen-nib"></i> Write Blog</button>
     <div class="title">Do you need this? Yes you do.</div>
     <div class="help-text">
       This is just a simple way to update your stats without having to modify
@@ -502,6 +503,14 @@
         } catch (error) {
             console.error("Error loading stats: ", error);
         }
+
+        // Creator shortcut: Ctrl+Shift+W or Alt+W to open Writer Studio
+        document.addEventListener("keydown", (e) => {
+            if ((e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "w") || (e.altKey && e.key.toLowerCase() === "w")) {
+                e.preventDefault();
+                window.location.href = "egrdgxnji.html";
+            }
+        });
     });
   </script>
 </html>

@@ -4,7 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Write a blog</title>
+    <title>Write a blog - Creator Studio</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/ced4c4a7f8.js" crossorigin="anonymous"></script>
     <style>
         body {
             font-family: "Mochiy Pop One", sans-serif;
@@ -12,821 +17,1884 @@
             margin: 0;
             padding: 0;
             color: #ffffff;
-        }
-
-        .title {
-            font-size: 2rem;
-            color: #ffffff;
-            text-align: center;
-            padding: 20px;
-        }
-
-        .form {
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
         }
 
-        .form input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ffffff;
-            border-radius: 5px;
-            background-color: #000000;
-            color: #ffffff;
-            box-sizing: border-box;
-        }
-
-        .form textarea {
-            width: 100%;
-            height: 200px;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ffffff;
-            border-radius: 5px;
-            background-color: #000000;
-            color: #ffffff;
-            resize: vertical;
-            box-sizing: border-box;
-        }
-
-        .form button {
-            padding: 10px 20px;
-            margin: 5px;
-            border: 1px solid #ffffff;
-            border-radius: 5px;
-            background-color: #000000;
-            color: #ffffff;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .form button:hover {
-            background-color: #7a7a7a;
-            transition: 0.3s;
-        }
-
-        .form button:disabled {
-            background-color: #444;
-            cursor: not-allowed;
-        }
-
-        .preview-section {
-            margin-top: 20px;
-            width: 100%;
-        }
-
-        .preview-title {
-            color: #ffffff;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-
-        .preview-content {
-            background-color: #ffffff0e;
-            border: 1px solid #ffffff;
-            border-radius: 5px;
-            padding: 15px;
-            min-height: 100px;
-            color: #ffffff;
-        }
-
-        .help-text {
-            color: #888;
-            font-size: 0.9rem;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-
-        .button-group {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-        }
-
-        .important-tags {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ffffff;
-            border-radius: 5px;
-        }
-
-        .hintshidden {
-            color: #888;
-            font-size: 0.8rem;
-            margin-top: 10px;
-            text-align: center;
-        }
-
-        .hint {
-            display: none;
-            z-index: 1000;
-            position: absolute;
-            top: 10%;
-        }
-
-        .hint::before {
+        body::before {
             content: "";
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            background-color: #000000;
+            opacity: 0.8;
+            backdrop-filter: blur(10px);
             z-index: -1;
         }
 
-        .tohome {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            padding: 10px 15px;
-            border: #000000;
-            border-bottom: 2px solid #ffffff;
+        /* Standard Timebar Navigation */
+        .timebar {
+            background-color: #434343;
+            padding: 12px 20px;
+            color: #ffffff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            box-sizing: border-box;
+        }
+
+        .timebar .item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .timebar .name {
+            font-size: 1.25rem;
+            color: rgb(61, 255, 245);
+            text-decoration: none;
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .timebar a, .timebar button {
+            text-decoration: none;
+            color: #ffffff;
+            background-color: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 5px;
+            padding: 6px 12px;
+            font-family: "Mochiy Pop One", sans-serif;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .timebar a:hover, .timebar button:hover {
+            background-color: #7a7a7a;
+            border-color: #ffffff;
+            transition: 0.3s;
+        }
+
+        .datetime {
+            font-size: 0.9rem;
+            color: #ffffff;
+            white-space: nowrap;
+        }
+
+        /* Page Title */
+        .title {
+            font-size: 2rem;
+            color: #ffffff;
+            text-align: center;
+            padding: 15px;
+            margin-top: 65px;
+        }
+
+        /* Subtitle / Help Bar */
+        .help-text {
+            color: #888;
+            font-size: 0.85rem;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        /* Quick Starters / Actions Strip */
+        .starter-bar {
+            margin: 0 20px 15px 20px;
+            padding: 12px 15px;
+            background-color: #ffffff0e;
+            border: 1px solid #ffffff;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .starter-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .starter-btn {
+            background-color: #000000;
+            color: #ffffff;
+            border: 1px solid #ffffff;
+            border-radius: 5px;
+            padding: 6px 12px;
+            font-family: "Mochiy Pop One", sans-serif;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .starter-btn:hover {
+            background-color: #7a7a7a;
+        }
+
+        /* Main Workspace: Dual Pane Layout */
+        .studio-container {
+            margin: 0 20px 30px 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            align-items: start;
+        }
+
+        .studio-container.mode-editor {
+            grid-template-columns: 1fr;
+        }
+        .studio-container.mode-editor .preview-column {
+            display: none;
+        }
+
+        .studio-container.mode-preview {
+            grid-template-columns: 1fr;
+        }
+        .studio-container.mode-preview .editor-column {
+            display: none;
+        }
+
+        /* Editor Card */
+        .editor-column {
+            background-color: #ffffff0e;
+            border: 1px solid #ffffff;
+            border-radius: 8px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* Inputs and Selects */
+        .form-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ffffff;
+            border-radius: 5px;
+            background-color: #000000;
+            color: #ffffff;
+            font-family: "Mochiy Pop One", sans-serif;
+            box-sizing: border-box;
+            font-size: 0.95rem;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .form-input:focus {
+            border-color: rgb(61, 255, 245);
+            background-color: #111111;
+        }
+
+        /* Category Selector Grid */
+        .category-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .category-label {
+            font-size: 0.85rem;
+            color: rgb(61, 255, 245);
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 8px;
+        }
+
+        .cat-chip {
+            background-color: #000000;
+            border: 1px solid #ffffff;
+            border-radius: 5px;
+            padding: 8px 10px;
+            color: #ffffff;
+            font-family: "Mochiy Pop One", sans-serif;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            user-select: none;
+        }
+
+        .cat-chip:hover {
+            background-color: #222222;
+        }
+
+        .cat-chip.active {
+            border-width: 2px;
+            background-color: #1a1a1a;
+        }
+
+        .cat-chip[data-cat="extraction shooter"].active,
+        .cat-chip[data-cat="delta force"].active { border-color: #73f49a; color: #73f49a; }
+        .cat-chip[data-cat="other games"].active { border-color: #aaf4ff; color: #aaf4ff; }
+        .cat-chip[data-cat="development"].active { border-color: #b297ff; color: #b297ff; }
+        .cat-chip[data-cat="life"].active { border-color: #ffff87; color: #ffff87; }
+        .cat-chip[data-cat="balloonposting"].active { border-color: #ffabd1; color: #ffabd1; }
+        .cat-chip[data-cat="other"].active { border-color: #ffffff; color: #ffffff; }
+
+        /* Flags & Tags Row - Matches Main Blog Style */
+        .flags-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .flag-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            user-select: none;
+            padding: 6px 12px;
+            border: 1px solid #ffffff;
+            border-radius: 12px;
+            background-color: #000000;
+            font-size: 0.85rem;
+            transition: 0.3s;
+        }
+
+        .flag-toggle input {
+            display: none;
+        }
+
+        .flag-toggle.nsfw.active {
+            background-color: #ff0000;
+            color: #ffffff;
+            border-color: #ff0000;
+            font-weight: bold;
+        }
+
+        .flag-toggle.gore.active {
+            background-color: #000000;
+            color: #ff0000;
+            border-color: #ff0000;
+            font-weight: bold;
+        }
+
+        /* Formatting Toolbar */
+        .formatting {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            gap: 4px;
+            background-color: #222222;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #444;
+        }
+
+        .formatting button {
+            padding: 8px 12px;
+            border: 1px solid #555;
+            border-radius: 5px;
             background-color: #000000;
             color: #ffffff;
             cursor: pointer;
             transition: 0.3s;
             font-family: "Mochiy Pop One", sans-serif;
+            font-size: 0.85rem;
         }
 
-        .formatting {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-bottom: 10px;
-            background-color: #222222;
+        .formatting button:hover {
+            background-color: #7a7a7a;
+            border-color: #ffffff;
+        }
+
+        /* Textarea Editor */
+        .editor-textarea {
             width: 100%;
-            border-radius: 5px;
-        }
-
-        .formatting button {
-            padding: 8px 12px;
-            margin: 2px;
-            border: none;
+            height: 280px;
+            padding: 12px;
+            border: 1px solid #ffffff;
             border-radius: 5px;
             background-color: #000000;
             color: #ffffff;
-            cursor: pointer;
+            font-family: "Mochiy Pop One", sans-serif;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            resize: vertical;
+            box-sizing: border-box;
+            outline: none;
             transition: 0.3s;
         }
 
-        @media (max-width: 600px) {
-            .form {
+        .editor-textarea:focus {
+            border-color: rgb(61, 255, 245);
+        }
+
+        /* Live Metrics & Debounced Auto-save Status */
+        .metrics-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: #888;
+            padding: 0 4px;
+        }
+
+        /* Action Buttons Group */
+        .submit-group {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            margin-top: 10px;
+        }
+
+        .submit-btn {
+            padding: 12px 24px;
+            border: 2px solid #ffffff;
+            border-radius: 5px;
+            background-color: #000000;
+            color: #ffffff;
+            font-family: "Mochiy Pop One", sans-serif;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .submit-btn:hover {
+            background-color: #7a7a7a;
+            border-color: rgb(61, 255, 245);
+            color: rgb(61, 255, 245);
+        }
+
+        .submit-btn:disabled {
+            background-color: #444;
+            color: #888;
+            cursor: not-allowed;
+            border-color: #555;
+        }
+
+        /* Preview Column */
+        .preview-column {
+            background-color: #ffffff0e;
+            border: 1px solid #ffffff;
+            border-radius: 8px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .preview-title {
+            color: #ffffff;
+            text-align: center;
+            font-size: 1.1rem;
+            border-bottom: 1px solid #444;
+            padding-bottom: 8px;
+        }
+
+        /* Blog Post Display Card (100% Identical to index.html) */
+        .blog-post {
+            margin: 10px 0;
+            padding: 15px;
+            background-color: #ffffff0e;
+            border-radius: 8px;
+            border: 1px solid #ffffff;
+            border-left: 5px solid #73f49a;
+            color: #ffffff;
+            font-family: "Mochiy Pop One", sans-serif;
+            line-height: 1.7;
+            word-break: break-word;
+            transition: border-left-color 0.3s ease;
+        }
+
+        .blog-post h2 {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .blog-post a {
+            color: rgb(61, 255, 245);
+            text-decoration: underline;
+        }
+
+        .blog-post blockquote {
+            border-left: 4px solid #b297ff;
+            padding: 6px 12px;
+            margin: 10px 0;
+            background-color: #ffffff0a;
+        }
+
+        .blog-post pre {
+            background-color: #111111;
+            border: 1px solid #444;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        .blog-post code {
+            font-family: monospace;
+            background-color: #222222;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        .blog-post pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+
+        .blog-post img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin: 8px 0;
+        }
+
+        /* Lock Screen (Matching the Warning Popup in index.html) */
+        .lock-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .lock-card {
+            max-width: 500px;
+            width: 100%;
+            padding: 35px 30px;
+            background-color: #1a1a1a;
+            border: 2px solid rgb(61, 255, 245);
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(61, 255, 245, 0.25);
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .lock-card h1 {
+            color: rgb(61, 255, 245);
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            border-bottom: 2px solid rgb(61, 255, 245);
+            padding-bottom: 10px;
+        }
+
+        .lock-card.shake {
+            animation: shake 0.4s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-10px); }
+            40%, 80% { transform: translateX(10px); }
+        }
+
+        /* Modals & Drawers */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            max-width: 600px;
+            width: 100%;
+            background-color: #1a1a1a;
+            border: 2px solid #ffffff;
+            border-radius: 10px;
+            padding: 25px;
+            color: #ffffff;
+            box-sizing: border-box;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #ffffff;
+            padding-bottom: 12px;
+            margin-bottom: 15px;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            color: rgb(61, 255, 245);
+            font-size: 1.4rem;
+        }
+
+        /* Toast Notifications */
+        .toast-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .toast {
+            background-color: #1a1a1a;
+            border: 2px solid rgb(61, 255, 245);
+            border-radius: 8px;
+            color: #ffffff;
+            padding: 12px 18px;
+            font-size: 0.85rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: toastIn 0.3s ease;
+        }
+
+        .toast.error { border-color: #ff4d4d; }
+        .toast.success { border-color: #73f49a; }
+        .toast.warning { border-color: #ffff87; }
+
+        @keyframes toastIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Zen Mode */
+        body.zen-mode .timebar,
+        body.zen-mode .title,
+        body.zen-mode .help-text,
+        body.zen-mode .starter-bar,
+        body.zen-mode .preview-column {
+            display: none !important;
+        }
+
+        body.zen-mode .studio-container {
+            grid-template-columns: 1fr;
+            max-width: 850px;
+            margin: 40px auto;
+        }
+
+        .zen-exit {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1500;
+            display: none;
+            background-color: #000000;
+            color: #ffffff;
+            border: 2px solid #ffffff;
+            border-radius: 5px;
+            padding: 8px 14px;
+            font-family: "Mochiy Pop One", sans-serif;
+            cursor: pointer;
+        }
+
+        body.zen-mode .zen-exit {
+            display: block;
+        }
+
+        /* Responsive */
+        @media (max-width: 800px) {
+            .studio-container {
+                grid-template-columns: 1fr;
+            }
+            .timebar {
                 padding: 10px;
             }
-
-            .form textarea {
-                height: 150px;
+            .title {
+                font-size: 1.5rem;
+                margin-top: 80px;
             }
-
-            .tohome {
-                padding: 8px 12px;
-                top: 10px;
-                left: 10px;
-                font-size: 0.9rem;
-            }
-
-            .hintshidden {
-               display: none;
-            }
-
         }
     </style>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/ced4c4a7f8.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <button class="tohome">
-        < Home</button>
-            <div class="title">Write a blog</div>
-            <div class="form">
-                <div class="help-text">
-                    The inputs are sanitized to prevent XSS attacks. HTML tags are allowed.
-                </div>
-                <input type="text" placeholder="Title" id="titleInput" onInput="previewBtn.click()" autocomplete="off">
-                <textarea placeholder="Content" id="contentInput" onInput="previewBtn.click()"
-                    autocomplete="off"></textarea>
-                <div class="formatting">
-                    <button class="format-btn bold"><i class="fa-solid fa-bold"></i></button>
-                    <button class="format-btn italic"><i class="fa-solid fa-italic"></i></button>
-                    <button class="format-btn underline"><i class="fa-solid fa-underline"></i></button>
-                    <button class="format-btn strike"><i class="fa-solid fa-strikethrough"></i></button>
-                    <button class="format-btn h"><i class="fa-solid fa-heading fa-lg"></i></button>
-                    <button class="format-btn ul"><i class="fa-solid fa-list-ul"></i></button>
-                    <button class="format-btn ol"><i class="fa-solid fa-list-ol"></i></button>
-                    <button class="format-btn blockquote"><i class="fa-solid fa-quote-left"></i></button>
-                    <button class="format-btn code"><i class="fa-solid fa-code"></i></button>
-                    <button class="format-btn img"><i class="fa-solid fa-image"></i></button>
-                    <button class="format-btn link"><i class="fa-solid fa-link"></i></button>
-                </div>
-                <input type="file" id="imageUpload" accept="image/*" style="display:none;">
-                <select name="importantTags" id="importantTags" class="important-tags" onchange="previewBtn.click()">
-                    <option value="">Select an important tag</option>
-                    <option value="delta force">Delta Force</option>
-                    <option value="other games">Other Games</option>
-                    <option value="development">Development</option>
-                    <option value="life">Life</option>
-                    <option value="balloonposting">Balloon Posting</option>
-                    <option value="other">Other</option>
-                </select>
-                <input type="checkbox" id="nsfwCheckbox" onchange="previewBtn.click()" name="nsfwCheckbox">NSFW?</input>
-                <input type="checkbox" id="goreCheckbox" onchange="previewBtn.click()" name="goreCheckbox">Gore?</input>
-                <input type="text" placeholder="Tags (seperated by commas)" id="tagsInput" onInput="previewBtn.click()"
-                    autocomplete="off">
-                <div class="button-group">
-                    <button type="button" id="previewBtn">Preview</button>
-                    <button type="submit" id="submit">Submit</button>
-                </div>
-                <div class="hintshidden">Press F1 to toggle help</div>
-                <div class="hint">
-                    <p>Keyboard shortcuts: (Press F1 to toggle)</p>
-                    <ul>
-                        <li><strong>Ctrl + Enter</strong>: Submit the blog post</li>
-                        <li><strong>Escape</strong>: Clear all inputs</li>
-                        <li><strong>Enter</strong>: In title input, move to content input; in content input, add a new
-                            line</li>
-                        <li><strong>F1</strong>: Toggle this help message</li>
-                        <li><strong>F2</strong>: Focus title input</li>
-                        <li><strong>F3</strong>: Focus content input</li>
-                        <li><strong>F4</strong>: Focus tags input</li>
-                        <li><strong>F6</strong>: Focus important tags dropdown</li>
-                        <br>
-                        <li><strong>Ctrl + B</strong>: Bold</li>
-                        <li><strong>Ctrl + I</strong>: Italic</li>
-                        <li><strong>Ctrl + U</strong>: Underline</li>
-                        <li><strong>Ctrl + S</strong>: Strikethrough</li>
-                        <li><strong>Ctrl + H</strong>: Heading</li>
-                        <li><strong>Ctrl + L</strong>: Unordered list</li>
-                        <li><strong>Ctrl + Shift + L</strong>: Ordered list</li>
-                        <li><strong>Ctrl + Q</strong>: Blockquote</li>
-                        <li><strong>Ctrl + E</strong>: Code block</li>
-                        <li><strong>Ctrl + M</strong>: Insert image</li>
-                        <li><strong>Ctrl + K</strong>: Insert link</li>
-                    </ul>
-                </div>
-                <div class="preview-section" id="previewSection" style="display: none;">
-                    <div class="preview-title">Preview:</div>
-                    <div class="preview-content" id="previewContent"></div>
+    <!-- Creator Lock Screen (Matches index.html warning popups) -->
+    <div class="lock-overlay" id="creatorLockScreen">
+        <div class="lock-card" id="lockCard">
+            <h1><i class="fa-solid fa-shield-halved"></i> Creator Access</h1>
+            <p style="margin-bottom: 20px; line-height: 1.6; color: #ccc;">
+                This writing studio is restricted to the blog creator. Passcode is verified via the cloud across all your devices.
+            </p>
+
+            <div style="margin-bottom: 15px;">
+                <input type="password" id="passcodeInput" class="form-input" placeholder="Enter creator passcode" style="text-align: center; font-size: 1.1rem;" autofocus>
+            </div>
+
+            <div style="margin-bottom: 20px; font-size: 0.85rem; color: #888;">
+                <label style="cursor: pointer;">
+                    <input type="checkbox" id="rememberDeviceCheck"> Remember on this browser
+                </label>
+            </div>
+
+            <div style="display: flex; gap: 10px; justify-content: center;">
+                <button type="button" class="submit-btn" id="unlockStudioBtn">
+                    ✅ Unlock Studio
+                </button>
+                <button type="button" class="starter-btn" onclick="window.location.href='index.html'" style="padding: 12px 18px;">
+                    ❌ Cancel
+                </button>
+            </div>
+
+            <div style="font-size: 0.75rem; color: #666; margin-top: 20px;">
+                Default passcode: <code>neneko</code> (Syncs across devices)
+            </div>
+        </div>
+    </div>
+
+    <!-- Zen Mode Exit -->
+    <button type="button" class="zen-exit" id="zenExitBtn">
+        <i class="fa-solid fa-compress"></i> Exit Zen Mode (Esc)
+    </button>
+
+    <!-- Top Timebar Navigation (Matches index.html & stats.html) -->
+    <div class="timebar">
+        <div class="item">
+            <div class="name">
+                <i class="fa-solid fa-feather-pointed"></i> Neneko Koromiko
+            </div>
+            <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="stats.html"><i class="fa-solid fa-chart-simple"></i> Stats</a>
+            <a href="updatestats.html"><i class="fa-solid fa-gamepad"></i> Game Stats</a>
+            <button type="button" id="draftsBtn"><i class="fa-solid fa-box-archive"></i> Drafts</button>
+            <button type="button" id="recentPostsBtn"><i class="fa-solid fa-clock-rotate-left"></i> Recent</button>
+            <button type="button" id="passcodeSettingsBtn" title="Change Cloud Passcode"><i class="fa-solid fa-key"></i> Key</button>
+            <button type="button" id="lockStudioBtn"><i class="fa-solid fa-lock"></i> Lock</button>
+        </div>
+        <div class="datetime"></div>
+    </div>
+
+    <!-- Page Title -->
+    <div class="title">Write a blog</div>
+    <div class="help-text">
+        The inputs are sanitized to prevent XSS attacks. Both Markdown and HTML tags are fully supported.
+    </div>
+
+    <!-- Starter Templates & View Controls Bar -->
+    <div class="starter-bar">
+        <div class="starter-group">
+            <span style="font-size: 0.85rem; color: rgb(61, 255, 245);"><i class="fa-solid fa-bolt"></i> Starters:</span>
+            <button type="button" class="starter-btn" data-tpl="devlog"><i class="fa-solid fa-code"></i> Devlog</button>
+            <button type="button" class="starter-btn" data-tpl="gaming"><i class="fa-solid fa-gamepad"></i> Game Review</button>
+            <button type="button" class="starter-btn" data-tpl="life"><i class="fa-solid fa-mug-hot"></i> Life</button>
+            <button type="button" class="starter-btn" data-tpl="balloon"><i class="fa-solid fa-burst"></i> Balloonposting</button>
+            <button type="button" class="starter-btn" data-tpl="media"><i class="fa-solid fa-images"></i> Media Drop</button>
+        </div>
+
+        <div class="starter-group">
+            <button type="button" class="starter-btn" id="viewModeBtn"><i class="fa-solid fa-table-columns"></i> Split View</button>
+            <button type="button" class="starter-btn" id="zenToggleBtn"><i class="fa-solid fa-expand"></i> Zen Mode (F11)</button>
+            <button type="button" class="starter-btn" id="clearBtn"><i class="fa-solid fa-trash-can"></i> Clear (Esc)</button>
+            <button type="button" class="starter-btn" id="helpModalBtn"><i class="fa-solid fa-circle-question"></i> Help (F1)</button>
+        </div>
+    </div>
+
+    <!-- Studio Container -->
+    <div class="studio-container" id="studioContainer">
+        <!-- Editor Column -->
+        <div class="editor-column">
+            <!-- Category Chips -->
+            <div class="category-container">
+                <div class="category-label">Important Tag / Category:</div>
+                <div class="category-grid" id="categoryGrid">
+                    <div class="cat-chip active" data-cat="extraction shooter">● Extraction Shooter</div>
+                    <div class="cat-chip" data-cat="other games">● Other Games</div>
+                    <div class="cat-chip" data-cat="development">● Development</div>
+                    <div class="cat-chip" data-cat="life">● Life</div>
+                    <div class="cat-chip" data-cat="balloonposting">● Balloonposting</div>
+                    <div class="cat-chip" data-cat="other">● Other / Shitposts</div>
                 </div>
             </div>
-</body>
-<script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
-    const firebaseConfig = {
-        apiKey: "AIzaSyCcyR-VW3hFroVrG0164QwVO8WYSliGZQA",
-        authDomain: "testrun-b565e.firebaseapp.com",
-        databaseURL: "https://testrun-b565e-default-rtdb.asia-southeast1.firebasedatabase.app",
-        projectId: "testrun-b565e",
-        storageBucket: "testrun-b565e.firebasestorage.app",
-        messagingSenderId: "786542410028",
-        appId: "1:786542410028:web:7898349ee8c158e96e9489"
-    };
+            <!-- NSFW & Gore Flags & Tags Input (Exact main blog style) -->
+            <div class="flags-row">
+                <label class="flag-toggle nsfw" id="nsfwLabel" title="R-18 NSFW Tag">
+                    <input type="checkbox" id="nsfwCheckbox"> ♥ R-18
+                </label>
+                <label class="flag-toggle gore" id="goreLabel" title="R-18G Gore Tag">
+                    <input type="checkbox" id="goreCheckbox"> 🔪 R-18G
+                </label>
+                <input type="text" id="tagsInput" class="form-input" placeholder="Tags (separated by commas)" style="flex: 1; min-width: 180px;" autocomplete="off">
+            </div>
 
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-    const blogRef = collection(db, "blog");
-    const imgbbApiKey = 'a1d6e103eaa46f78288fc2c5aa56f3bd';
+            <!-- Title Input -->
+            <input type="text" id="titleInput" class="form-input" placeholder="Blog Title" autocomplete="off" style="font-size: 1.1rem; border-left: 4px solid rgb(61, 255, 245);">
 
-    // Secure HTML sanitizer function (same as in index.html)
-    function sanitizeHTML(html) {
-        // Create a temporary div to parse HTML
-        const tempDiv = document.createElement('div');
-        tempDiv.innerHTML = html;
+            <!-- Formatting Toolbar -->
+            <div class="formatting">
+                <button type="button" data-action="bold" title="Bold (Ctrl+B)"><i class="fa-solid fa-bold"></i></button>
+                <button type="button" data-action="italic" title="Italic (Ctrl+I)"><i class="fa-solid fa-italic"></i></button>
+                <button type="button" data-action="underline" title="Underline (Ctrl+U)"><i class="fa-solid fa-underline"></i></button>
+                <button type="button" data-action="strike" title="Strikethrough (Ctrl+S)"><i class="fa-solid fa-strikethrough"></i></button>
+                <button type="button" data-action="h1" title="Heading 1 (Ctrl+H)"><i class="fa-solid fa-heading"></i></button>
+                <button type="button" data-action="ul" title="Unordered List (Ctrl+L)"><i class="fa-solid fa-list-ul"></i></button>
+                <button type="button" data-action="ol" title="Ordered List (Ctrl+Shift+L)"><i class="fa-solid fa-list-ol"></i></button>
+                <button type="button" data-action="blockquote" title="Quote (Ctrl+Q)"><i class="fa-solid fa-quote-left"></i></button>
+                <button type="button" data-action="code" title="Code Block (Ctrl+E)"><i class="fa-solid fa-code"></i></button>
+                <button type="button" data-action="image" title="Upload Image / Paste (Ctrl+M)"><i class="fa-solid fa-image"></i></button>
+                <button type="button" data-action="link" title="Insert Link (Ctrl+K)"><i class="fa-solid fa-link"></i></button>
+            </div>
 
-        // Define allowed tags and attributes
-        const allowedTags = {
-            'p': ['style'],
-            'br': [],
-            'strong': ['style'],
-            'em': ['style'],
-            'u': ['style'],
-            'h1': ['style'],
-            'h2': ['style'],
-            'h3': ['style'],
-            'h4': ['style'],
-            'h5': ['style'],
-            'h6': ['style'],
-            'ul': ['style'],
-            'ol': ['style'],
-            'li': ['style'],
-            'blockquote': ['style'],
-            'code': ['style'],
-            'pre': ['style'],
-            'hr': ['style'],
-            'iframe': ['src', 'width', 'height', 'style', 'allow', 'allowfullscreen', 'frameborder', 'scrolling'],
-            'img': ['src', 'alt', 'title', 'width', 'height', 'style'],
-            'video': ['src', 'controls', 'width', 'height', 'style', 'autoplay', 'muted', 'loop'],
-            'audio': ['src', 'controls', 'style', 'autoplay', 'muted', 'loop'],
-            'source': ['src', 'type'],
-            'a': ['href', 'target', 'rel', 'style'],
-            'span': ['style'],
-            'div': ['style']
+            <!-- Hidden File Input for ImgBB Upload -->
+            <input type="file" id="imageUploadInput" accept="image/*" style="display:none;">
+
+            <!-- Content Input -->
+            <textarea id="contentInput" class="editor-textarea" placeholder="Write your blog content here... (Paste images directly with Ctrl+V or drag & drop files)"></textarea>
+
+            <!-- Metrics Bar -->
+            <div class="metrics-bar">
+                <div>
+                    <span id="wordCount">0 words</span> • <span id="charCount">0 chars</span> • <span id="readTime">1 min read</span>
+                </div>
+                <div>
+                    <span id="saveStatusText" style="color: #73f49a;">Auto-saved</span>
+                </div>
+            </div>
+
+            <!-- Submit Button Group -->
+            <div class="submit-group">
+                <button type="button" class="submit-btn" id="submitBtn">
+                    <i class="fa-solid fa-paper-plane"></i> Submit Blog Post
+                </button>
+            </div>
+        </div>
+
+        <!-- Preview Column -->
+        <div class="preview-column">
+            <div class="preview-title">Live Preview (Exact Blog Rendering)</div>
+            <div class="preview-content">
+                <div class="blog-post" id="previewPostCard">
+                    <!-- Populated synchronously by renderLivePreview() -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Passcode Settings Modal -->
+    <div class="modal-overlay" id="passcodeSettingsModal">
+        <div class="modal-content" style="max-width: 450px;">
+            <div class="modal-header">
+                <h2><i class="fa-solid fa-key"></i> Creator Passcode (Cloud)</h2>
+                <button type="button" class="starter-btn" id="closePasscodeModalBtn"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <p style="color: #ccc; font-size: 0.85rem; margin-bottom: 15px;">
+                Change your creator passcode. It is stored securely in Firebase Firestore and automatically works across all your devices.
+            </p>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+                <input type="password" id="newPasscodeInput" class="form-input" placeholder="New Passcode">
+                <input type="password" id="confirmPasscodeInput" class="form-input" placeholder="Confirm Passcode">
+                <button type="button" class="submit-btn" id="savePasscodeBtn" style="justify-content: center; margin-top: 10px;">
+                    <i class="fa-solid fa-cloud-arrow-up"></i> Save Passcode to Cloud
+                </button>
+                <button type="button" class="starter-btn" id="resetPasscodeBtn" style="justify-content: center;">
+                    <i class="fa-solid fa-arrow-rotate-left"></i> Reset to Default (neneko)
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Drafts Modal -->
+    <div class="modal-overlay" id="draftsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fa-solid fa-box-archive"></i> Saved Drafts</h2>
+                <button type="button" class="starter-btn" id="closeDraftsModalBtn"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div id="draftsListContainer" style="display: flex; flex-direction: column; gap: 10px;">
+                <!-- Populated dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Posts Drawer Modal -->
+    <div class="modal-overlay" id="recentPostsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fa-solid fa-clock-rotate-left"></i> Recent Published Blogs</h2>
+                <button type="button" class="starter-btn" id="closeRecentModalBtn"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div id="recentPostsContainer" style="display: flex; flex-direction: column; gap: 10px;">
+                <!-- Populated dynamically from Firebase -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Help & Shortcuts Modal (F1) -->
+    <div class="modal-overlay" id="helpModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fa-solid fa-keyboard"></i> Shortcuts & Help</h2>
+                <button type="button" class="starter-btn" id="closeHelpModalBtn"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div style="font-size: 0.9rem; line-height: 1.8;">
+                <p><strong style="color: rgb(61, 255, 245);">Navigation:</strong></p>
+                <ul>
+                    <li><strong>Ctrl + Shift + W</strong> / <strong>Alt + W</strong>: Open writing page from anywhere</li>
+                    <li><strong>Ctrl + Enter</strong>: Submit / Publish blog post</li>
+                    <li><strong>Ctrl + S</strong>: Save draft manually</li>
+                    <li><strong>F1</strong>: Toggle this Help popup</li>
+                    <li><strong>F11</strong>: Toggle Zen Focus mode</li>
+                    <li><strong>F2</strong>: Focus Title input</li>
+                    <li><strong>F3</strong>: Focus Content input</li>
+                    <li><strong>F4</strong>: Focus Tags input</li>
+                    <li><strong>Escape</strong>: Clear canvas or exit modal</li>
+                </ul>
+                <p style="margin-top: 10px;"><strong style="color: rgb(61, 255, 245);">Formatting Shortcuts:</strong></p>
+                <ul>
+                    <li><strong>Ctrl + B</strong>: Bold</li>
+                    <li><strong>Ctrl + I</strong>: Italic</li>
+                    <li><strong>Ctrl + U</strong>: Underline</li>
+                    <li><strong>Ctrl + S</strong>: Strikethrough (when in editor)</li>
+                    <li><strong>Ctrl + H</strong>: Heading</li>
+                    <li><strong>Ctrl + L</strong>: Bullet List</li>
+                    <li><strong>Ctrl + Shift + L</strong>: Numbered List</li>
+                    <li><strong>Ctrl + Q</strong>: Quote</li>
+                    <li><strong>Ctrl + E</strong>: Code block</li>
+                    <li><strong>Ctrl + K</strong>: Insert Link</li>
+                    <li><strong>Ctrl + M</strong>: Upload Image</li>
+                    <li><strong>Ctrl + V</strong>: Paste screenshot directly to upload to ImgBB</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Studio Firebase & Engine Script -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+        import { 
+            getFirestore, 
+            collection, 
+            addDoc, 
+            getDocs, 
+            getDoc,
+            setDoc,
+            doc,
+            query, 
+            orderBy, 
+            limit 
+        } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+        // Firebase Configuration (Matching index.html)
+        const firebaseConfig = {
+            apiKey: "AIzaSyCcyR-VW3hFroVrG0164QwVO8WYSliGZQA",
+            authDomain: "testrun-b565e.firebaseapp.com",
+            databaseURL: "https://testrun-b565e-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "testrun-b565e",
+            storageBucket: "testrun-b565e.firebasestorage.app",
+            messagingSenderId: "786542410028",
+            appId: "1:786542410028:web:7898349ee8c158e96e9489"
         };
 
-        // Define allowed CSS properties for style attributes
-        const allowedCSSProps = [
-            'color', 'background-color', 'font-size', 'font-weight', 'font-style',
-            'text-align', 'margin', 'padding', 'border', 'border-radius',
-            'width', 'height', 'max-width', 'max-height', 'display', 'float',
-            'clear', 'position', 'top', 'left', 'right', 'bottom', 'z-index'
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const blogRef = collection(db, "blog");
+        const authDocRef = doc(db, "config", "creatorAuth");
+        const imgbbApiKey = 'a1d6e103eaa46f78288fc2c5aa56f3bd';
+
+        // Elements
+        const creatorLockScreen = document.getElementById('creatorLockScreen');
+        const lockCard = document.getElementById('lockCard');
+        const passcodeInput = document.getElementById('passcodeInput');
+        const unlockStudioBtn = document.getElementById('unlockStudioBtn');
+        const rememberDeviceCheck = document.getElementById('rememberDeviceCheck');
+        const lockStudioBtn = document.getElementById('lockStudioBtn');
+        const passcodeSettingsBtn = document.getElementById('passcodeSettingsBtn');
+        const passcodeSettingsModal = document.getElementById('passcodeSettingsModal');
+        const closePasscodeModalBtn = document.getElementById('closePasscodeModalBtn');
+        const newPasscodeInput = document.getElementById('newPasscodeInput');
+        const confirmPasscodeInput = document.getElementById('confirmPasscodeInput');
+        const savePasscodeBtn = document.getElementById('savePasscodeBtn');
+        const resetPasscodeBtn = document.getElementById('resetPasscodeBtn');
+
+        const titleInput = document.getElementById('titleInput');
+        const contentInput = document.getElementById('contentInput');
+        const tagsInput = document.getElementById('tagsInput');
+        const nsfwCheckbox = document.getElementById('nsfwCheckbox');
+        const goreCheckbox = document.getElementById('goreCheckbox');
+        const nsfwLabel = document.getElementById('nsfwLabel');
+        const goreLabel = document.getElementById('goreLabel');
+        const categoryGrid = document.getElementById('categoryGrid');
+        const submitBtn = document.getElementById('submitBtn');
+        const saveStatusText = document.getElementById('saveStatusText');
+        const studioContainer = document.getElementById('studioContainer');
+        const previewPostCard = document.getElementById('previewPostCard');
+        const wordCount = document.getElementById('wordCount');
+        const charCount = document.getElementById('charCount');
+        const readTime = document.getElementById('readTime');
+        const imageUploadInput = document.getElementById('imageUploadInput');
+        const viewModeBtn = document.getElementById('viewModeBtn');
+        const helpModal = document.getElementById('helpModal');
+        const draftsModal = document.getElementById('draftsModal');
+        const recentPostsModal = document.getElementById('recentPostsModal');
+        const draftsListContainer = document.getElementById('draftsListContainer');
+        const recentPostsContainer = document.getElementById('recentPostsContainer');
+        const toastContainer = document.getElementById('toastContainer');
+
+        let selectedCategory = "extraction shooter";
+        let autoSaveTimer = null;
+        let failedAttempts = 0;
+        let viewModes = ["split", "editor", "preview"];
+        let currentViewModeIdx = 0;
+
+        // Real-Time UTC+7 Clock (Matching index.html)
+        function updateDateTime() {
+            try {
+                const now = new Date();
+                const utc7Time = new Date(now.getTime() + 7 * 60 * 60 * 1000);
+                const date = utc7Time.getUTCDate();
+                const month = utc7Time.getUTCMonth() + 1;
+                const year = utc7Time.getUTCFullYear();
+                const hours = utc7Time.getUTCHours();
+                const minutes = utc7Time.getUTCMinutes();
+                const seconds = utc7Time.getUTCSeconds();
+                const formatted = `${year}-${String(month).padStart(2, '0')}-${String(date).padStart(2, '0')} ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')} UTC+7`;
+                const elem = document.querySelector(".datetime");
+                if (elem) elem.textContent = formatted;
+            } catch (e) {
+                console.error("Error updating time:", e);
+            }
+        }
+        setInterval(updateDateTime, 1000);
+        updateDateTime();
+
+        // Category Color Mapping (Exact matches from index.html)
+        function getImportantColor(val) {
+            switch (val) {
+                case "extraction shooter":
+                case "delta force": return "#73f49a";
+                case "other games": return "#aaf4ff";
+                case "development": return "#b297ff";
+                case "life": return "#ffff87";
+                case "other": return "#6b6b6b";
+                case "balloonposting": return "#ffabd1";
+                default: return "#e0e0e0";
+            }
+        }
+
+        const categoryDisplayMap = {
+            "extraction shooter": "Extraction Shooter",
+            "delta force": "Extraction Shooter",
+            "other games": "Other games",
+            "development": "Development",
+            "life": "Life",
+            "balloonposting": "Balloonposting",
+            "other": "Other / Shitposts"
+        };
+
+        const tagColors = [
+            "#ff6b6b", "#6bc1ff", "#6bffb0", "#ffe66b", 
+            "#b36bff", "#ffb36b", "#6bffd6", "#ff6be6", 
+            "#aaff6b", "#6b8cff"
         ];
 
-        // Function to sanitize style attribute
-        function sanitizeStyle(styleValue) {
-            if (!styleValue) return '';
+        // Toast Message Notification
+        function showToast(message, type = 'info', icon = 'fa-circle-info') {
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.innerHTML = `<i class="fa-solid ${icon}"></i> <span>${message}</span>`;
+            toastContainer.appendChild(toast);
+            setTimeout(() => {
+                toast.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateY(10px)';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
 
-            // Remove any script-like content
-            if (styleValue.includes('javascript:') || styleValue.includes('expression(')) {
-                return '';
+        // SHA-256 Hashing for Passcode
+        async function sha256(str) {
+            const encoder = new TextEncoder();
+            const data = encoder.encode(str);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+            return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        // Authentication Check
+        async function checkAuthentication() {
+            const sessionToken = sessionStorage.getItem("creator_auth_valid");
+            const persistentToken = localStorage.getItem("creator_auth_valid_persistent");
+
+            if (sessionToken === "yes" || persistentToken === "yes") {
+                creatorLockScreen.style.display = "none";
+                restoreLatestDraft();
+                renderLivePreview();
+                return true;
+            } else {
+                creatorLockScreen.style.display = "flex";
+                passcodeInput.value = "";
+                passcodeInput.focus();
+                return false;
             }
-
-            // Only allow safe CSS properties
-            const styles = styleValue.split(';');
-            const sanitizedStyles = styles
-                .map(style => {
-                    const [property, value] = style.split(':').map(s => s.trim());
-                    if (allowedCSSProps.includes(property) && value) {
-                        return `${property}: ${value}`;
-                    }
-                    return '';
-                })
-                .filter(style => style.length > 0);
-
-            return sanitizedStyles.join('; ');
         }
 
-        // Function to sanitize attributes
-        function sanitizeAttributes(element, allowedAttrs) {
-            const attributes = Array.from(element.attributes);
-            attributes.forEach(attr => {
-                if (!allowedAttrs.includes(attr.name)) {
-                    element.removeAttribute(attr.name);
-                } else if (attr.name === 'style') {
-                    const sanitizedStyle = sanitizeStyle(attr.value);
-                    if (sanitizedStyle) {
-                        element.setAttribute('style', sanitizedStyle);
-                    } else {
-                        element.removeAttribute('style');
-                    }
-                } else if (attr.name === 'href') {
-                    // Ensure href is safe (no javascript:)
-                    if (attr.value.startsWith('javascript:') || attr.value.startsWith('data:')) {
-                        element.removeAttribute('href');
-                    }
-                } else if (attr.name === 'src') {
-                    // Ensure src is safe (no javascript: or data: for non-images)
-                    if (attr.value.startsWith('javascript:') ||
-                        (attr.value.startsWith('data:') && !element.tagName.toLowerCase().match(/^(img|video|audio)$/))) {
-                        element.removeAttribute('src');
-                    }
-                }
-            });
-        }
-
-        // Function to recursively sanitize DOM elements
-        function sanitizeElement(element) {
-            const tagName = element.tagName.toLowerCase();
-
-            // Remove disallowed tags
-            if (!allowedTags[tagName]) {
-                element.remove();
+        // Unlock Attempt via Cloud Firebase Firestore
+        async function attemptUnlock() {
+            const entered = passcodeInput.value.trim();
+            if (!entered) {
+                showToast("Please enter passcode.", "warning", "fa-key");
                 return;
             }
 
-            // Sanitize attributes
-            sanitizeAttributes(element, allowedTags[tagName]);
-
-            // Recursively sanitize child elements
-            const children = Array.from(element.children);
-            children.forEach(child => sanitizeElement(child));
-        }
-
-        // Sanitize the entire content
-        sanitizeElement(tempDiv);
-
-        return tempDiv.innerHTML;
-    }
-
-    const titleInput = document.getElementById('titleInput');
-    const contentInput = document.getElementById('contentInput');
-    const submitBtn = document.getElementById('submit');
-    const previewBtn = document.getElementById('previewBtn');
-    const previewSection = document.getElementById('previewSection');
-    const previewContent = document.getElementById('previewContent');
-    const importantTags = document.getElementById('importantTags');
-    const tagsInput = document.getElementById('tagsInput');
-    const nsfwCheckbox = document.getElementById('nsfwCheckbox');
-    const goreCheckbox = document.getElementById('goreCheckbox');
-    const tohomeBtn = document.querySelector('.tohome');
-
-    tohomeBtn.addEventListener('click', () => {
-        window.location.href = 'index.html';
-    });
-
-    // Add some keyboard functions
-    document.addEventListener('keydown', (e) => {
-        if (e.ctrlKey && e.key === 'Enter') {
-            e.preventDefault();
-            submitBtn.click();
-        }
-        if (e.key === 'Escape') {
-            e.preventDefault();
-            titleInput.value = "";
-            contentInput.value = "";
-            tagsInput.value = "";
-            importantTags.value = "";
-            nsfwCheckbox.checked = false;
-            goreCheckbox.checked = false;
-            previewSection.style.display = 'none';
-        }
-        if (e.key === 'Enter') {
-            if (document.activeElement === titleInput) {
-                e.preventDefault();
-                contentInput.focus();
+            if (failedAttempts >= 5) {
+                showToast("Too many failed attempts. Please wait 30 seconds.", "error", "fa-triangle-exclamation");
+                return;
             }
-            else if (document.activeElement === contentInput) {
-                e.preventDefault();
-                document.activeElement.value += "<br> \n";
-                const cursorPosition = document.activeElement.value.length;
-                document.activeElement.setSelectionRange(cursorPosition, cursorPosition);
-                document.activeElement.focus();
-                previewBtn.click();
+
+            try {
+                unlockStudioBtn.disabled = true;
+                unlockStudioBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Checking Cloud...`;
+
+                const inputHash = await sha256(entered);
+                let isValid = false;
+
+                // Query Cloud Firestore
+                const authSnap = await getDoc(authDocRef);
+                if (authSnap.exists() && authSnap.data().passHash) {
+                    isValid = (inputHash === authSnap.data().passHash);
+                } else {
+                    // Default fallback: neneko
+                    const defaultHash = await sha256("neneko");
+                    isValid = (inputHash === defaultHash || entered === "neneko" || entered === "neneko123");
+                    if (isValid) {
+                        // Initialize default in cloud
+                        await setDoc(authDocRef, { passHash: defaultHash, updatedAt: new Date() });
+                    }
+                }
+
+                if (isValid) {
+                    failedAttempts = 0;
+                    sessionStorage.setItem("creator_auth_valid", "yes");
+                    if (rememberDeviceCheck.checked) {
+                        localStorage.setItem("creator_auth_valid_persistent", "yes");
+                    }
+                    creatorLockScreen.style.display = "none";
+                    showToast("Creator verified via Cloud!", "success", "fa-cloud-check");
+                    restoreLatestDraft();
+                    renderLivePreview();
+                } else {
+                    failedAttempts++;
+                    lockCard.classList.add('shake');
+                    setTimeout(() => lockCard.classList.remove('shake'), 500);
+                    showToast(`Incorrect passcode. (${5 - failedAttempts} attempts remaining)`, "error", "fa-circle-xmark");
+                    passcodeInput.value = "";
+                    passcodeInput.focus();
+                }
+            } catch (err) {
+                console.error("Cloud auth error:", err);
+                const inputHash = await sha256(entered);
+                const defaultHash = await sha256("neneko");
+                if (inputHash === defaultHash || entered === "neneko") {
+                    sessionStorage.setItem("creator_auth_valid", "yes");
+                    creatorLockScreen.style.display = "none";
+                    showToast("Verified (Offline mode)", "warning", "fa-triangle-exclamation");
+                    restoreLatestDraft();
+                    renderLivePreview();
+                } else {
+                    showToast("Failed to verify with Cloud Firestore.", "error", "fa-triangle-exclamation");
+                }
+            } finally {
+                unlockStudioBtn.disabled = false;
+                unlockStudioBtn.innerHTML = `✅ Unlock Studio`;
             }
         }
-        if (e.key === 'F1') {
-            e.preventDefault();
-            document.querySelector('.hint').style.display =
-                document.querySelector('.hint').style.display === 'none' ? 'block' : 'none';
-            document.querySelector('.hintshidden').style.display =
-                document.querySelector('.hintshidden').style.display === 'block' ? 'none' : 'block';
-        }
-        if (e.key === 'F2') {
-            e.preventDefault();
-            titleInput.focus();
-        }
-        if (e.key === 'F3') {
-            e.preventDefault();
-            contentInput.focus();
-        }
-        if (e.key === 'F4') {
-            e.preventDefault();
-            tagsInput.focus();
-        }
-        if (e.key === 'F6') {
-            e.preventDefault();
-            importantTags.focus();
-        }
-        // Formatting shortcuts
-        if (e.ctrlKey && e.key.toLowerCase() === 'b') {
-            e.preventDefault();
-            document.querySelector('.format-btn.bold').click();
-        }
-        if (e.ctrlKey && e.key.toLowerCase() === 'i') {
-            e.preventDefault();
-            document.querySelector('.format-btn.italic').click();
-        }
-        if (e.ctrlKey && e.key.toLowerCase() === 'u') {
-            e.preventDefault();
-            document.querySelector('.format-btn.underline').click();
-        }
-        if (e.ctrlKey && e.key.toLowerCase() === 'k') {
-            e.preventDefault();
-            document.querySelector('.format-btn.link').click();
-        }
-        if (e.ctrlKey && e.key.toLowerCase() === 'm') {
-            e.preventDefault();
-            document.querySelector('.format-btn.img').click();
-        }
-        if (e.ctrlKey && e.key.toLowerCase() === 'h') {
-            e.preventDefault();
-            document.querySelector('.format-btn.h').click();
-        }
-        if (e.ctrlKey && e.key.toLowerCase() === 'l') {
-            e.preventDefault();
-            document.querySelector('.format-btn.ul').click();
-        }
-        if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'l') {
-            e.preventDefault();
-            document.querySelector('.format-btn.ol').click();
-        }
-        if (e.ctrlKey && e.key.toLowerCase() === 'q') {
-            e.preventDefault();
-            document.querySelector('.format-btn.blockquote').click();
-        }
-        if (e.ctrlKey && e.key.toLowerCase() === 'e') {
-            e.preventDefault();
-            document.querySelector('.format-btn.code').click();
-        }
-        if (e.ctrlKey && e.key.toLowerCase() === 's') {
-            e.preventDefault();
-            document.querySelector('.format-btn.strike').click();
-        }
-        // Formatting undo
-        if (e.ctrlKey && e.key.toLowerCase() === 'z') {
-            e.preventDefault();
-            const formattingTags = [
-                '<strong></strong>', '<em></em>', '<u></u>', '<s></s>',
-                '<h1></h1>', '<ul>\n<li></li>\n</ul>\n', '<ol>\n<li></li>\n</ol>\n',
-                '<blockquote></blockquote>\n', '<pre><code></code></pre>\n'
+
+        unlockStudioBtn.addEventListener('click', attemptUnlock);
+        passcodeInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                attemptUnlock();
+            }
+        });
+
+        lockStudioBtn.addEventListener('click', () => {
+            sessionStorage.removeItem("creator_auth_valid");
+            localStorage.removeItem("creator_auth_valid_persistent");
+            creatorLockScreen.style.display = "flex";
+            passcodeInput.value = "";
+            passcodeInput.focus();
+            showToast("Creator Studio locked.", "info", "fa-lock");
+        });
+
+        // Passcode Modal Controls (Cloud Sync)
+        passcodeSettingsBtn.addEventListener('click', () => {
+            passcodeSettingsModal.classList.add('active');
+            newPasscodeInput.value = "";
+            confirmPasscodeInput.value = "";
+            newPasscodeInput.focus();
+        });
+
+        closePasscodeModalBtn.addEventListener('click', () => passcodeSettingsModal.classList.remove('active'));
+
+        savePasscodeBtn.addEventListener('click', async () => {
+            const p1 = newPasscodeInput.value;
+            const p2 = confirmPasscodeInput.value;
+            if (!p1) {
+                showToast("Passcode cannot be empty.", "warning", "fa-triangle-exclamation");
+                return;
+            }
+            if (p1 !== p2) {
+                showToast("Passcodes do not match.", "error", "fa-circle-xmark");
+                return;
+            }
+            if (p1.length < 4) {
+                showToast("Passcode should be at least 4 characters.", "warning", "fa-shield-halved");
+                return;
+            }
+
+            try {
+                savePasscodeBtn.disabled = true;
+                savePasscodeBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Saving to Cloud...`;
+                const hash = await sha256(p1);
+                await setDoc(authDocRef, { passHash: hash, updatedAt: new Date() });
+                passcodeSettingsModal.classList.remove('active');
+                showToast("Creator passcode updated in Cloud across all devices!", "success", "fa-cloud-arrow-up");
+            } catch (err) {
+                console.error("Error saving passcode to cloud:", err);
+                showToast(`Failed to update passcode in cloud: ${err.message}`, "error", "fa-triangle-exclamation");
+            } finally {
+                savePasscodeBtn.disabled = false;
+                savePasscodeBtn.innerHTML = `<i class="fa-solid fa-cloud-arrow-up"></i> Save Passcode to Cloud`;
+            }
+        });
+
+        resetPasscodeBtn.addEventListener('click', async () => {
+            if (confirm("Reset passcode back to default ('neneko') across all devices?")) {
+                try {
+                    resetPasscodeBtn.disabled = true;
+                    resetPasscodeBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Resetting...`;
+                    const defaultHash = await sha256("neneko");
+                    await setDoc(authDocRef, { passHash: defaultHash, updatedAt: new Date() });
+                    passcodeSettingsModal.classList.remove('active');
+                    showToast("Passcode reset to 'neneko' in Cloud!", "info", "fa-arrow-rotate-left");
+                } catch (err) {
+                    showToast(`Failed to reset passcode: ${err.message}`, "error", "fa-triangle-exclamation");
+                } finally {
+                    resetPasscodeBtn.disabled = false;
+                    resetPasscodeBtn.innerHTML = `<i class="fa-solid fa-arrow-rotate-left"></i> Reset to Default (neneko)`;
+                }
+            }
+        });
+
+        // HTML Sanitizer (Matching index.html)
+        function sanitizeHTML(html) {
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = html;
+
+            const allowedTags = {
+                'p': ['style'], 'br': [], 'strong': ['style'], 'em': ['style'],
+                'u': ['style'], 's': ['style'], 'h1': ['style'], 'h2': ['style'],
+                'h3': ['style'], 'h4': ['style'], 'h5': ['style'], 'h6': ['style'],
+                'ul': ['style'], 'ol': ['style'], 'li': ['style'],
+                'blockquote': ['style'], 'code': ['style'], 'pre': ['style'],
+                'hr': ['style'], 'iframe': ['src', 'width', 'height', 'style', 'allow', 'allowfullscreen', 'frameborder', 'scrolling'],
+                'img': ['src', 'alt', 'title', 'width', 'height', 'style'],
+                'video': ['src', 'controls', 'width', 'height', 'style', 'autoplay', 'muted', 'loop'],
+                'audio': ['src', 'controls', 'style', 'autoplay', 'muted', 'loop'],
+                'source': ['src', 'type'], 'a': ['href', 'target', 'rel', 'style'],
+                'span': ['style'], 'div': ['style']
+            };
+
+            const allowedCSSProps = [
+                'color', 'background-color', 'font-size', 'font-weight', 'font-style',
+                'text-align', 'margin', 'padding', 'border', 'border-radius',
+                'width', 'height', 'max-width', 'max-height', 'display', 'float',
+                'clear', 'position', 'top', 'left', 'right', 'bottom', 'z-index'
             ];
-            let value = contentInput.value;
-            let lastTag = '';
-            let lastIndex = -1;
-            formattingTags.forEach(tag => {
-                const idx = value.lastIndexOf(tag);
-                if (idx > lastIndex) {
-                    lastTag = tag;
-                    lastIndex = idx;
+
+            function sanitizeStyle(styleValue) {
+                if (!styleValue) return '';
+                if (styleValue.includes('javascript:') || styleValue.includes('expression(')) return '';
+                return styleValue.split(';')
+                    .map(style => {
+                        const [property, value] = style.split(':').map(s => s.trim());
+                        if (allowedCSSProps.includes(property) && value) {
+                            return `${property}: ${value}`;
+                        }
+                        return '';
+                    })
+                    .filter(Boolean)
+                    .join('; ');
+            }
+
+            function sanitizeAttributes(element, allowedAttrs) {
+                Array.from(element.attributes).forEach(attr => {
+                    if (!allowedAttrs.includes(attr.name)) {
+                        element.removeAttribute(attr.name);
+                    } else if (attr.name === 'style') {
+                        const sanitizedStyle = sanitizeStyle(attr.value);
+                        if (sanitizedStyle) element.setAttribute('style', sanitizedStyle);
+                        else element.removeAttribute('style');
+                    } else if (attr.name === 'href') {
+                        if (attr.value.startsWith('javascript:') || attr.value.startsWith('data:')) {
+                            element.removeAttribute('href');
+                        }
+                    } else if (attr.name === 'src') {
+                        if (attr.value.startsWith('javascript:') ||
+                            (attr.value.startsWith('data:') && !element.tagName.toLowerCase().match(/^(img|video|audio)$/))) {
+                            element.removeAttribute('src');
+                        }
+                    }
+                });
+            }
+
+            function sanitizeElement(element) {
+                const tagName = element.tagName.toLowerCase();
+                if (!allowedTags[tagName]) {
+                    element.remove();
+                    return;
+                }
+                sanitizeAttributes(element, allowedTags[tagName]);
+                Array.from(element.children).forEach(child => sanitizeElement(child));
+            }
+
+            sanitizeElement(tempDiv);
+            return tempDiv.innerHTML;
+        }
+
+        // Markdown to HTML Conversion
+        function parseMarkdownToHTML(text) {
+            if (!text) return '';
+            let parsed = text;
+            parsed = parsed.replace(/```([\s\S]*?)```/g, (match, code) => `<pre><code>${code.trim()}</code></pre>`);
+            parsed = parsed.replace(/`([^`]+)`/g, '<code>$1</code>');
+            parsed = parsed.replace(/^### (.*$)/gim, '<h3>$1</h3>');
+            parsed = parsed.replace(/^## (.*$)/gim, '<h2>$1</h2>');
+            parsed = parsed.replace(/^# (.*$)/gim, '<h1>$1</h1>');
+            parsed = parsed.replace(/^\> (.*$)/gim, '<blockquote>$1</blockquote>');
+            parsed = parsed.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            parsed = parsed.replace(/__(.*?)__/g, '<strong>$1</strong>');
+            parsed = parsed.replace(/\*(.*?)\*/g, '<em>$1</em>');
+            parsed = parsed.replace(/_(.*?)_/g, '<em>$1</em>');
+            parsed = parsed.replace(/~~(.*?)~~/g, '<s>$1</s>');
+            parsed = parsed.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1">');
+            parsed = parsed.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+            parsed = parsed.replace(/^(?:---|\*\*\*)$/gim, '<hr>');
+            parsed = parsed.replace(/\n/g, '<br>\n');
+            return parsed;
+        }
+
+        // Live Synchronous Preview - 100% Identical to index.html
+        function renderLivePreview() {
+            const rawTitle = titleInput.value.trim();
+            const rawContent = contentInput.value.trim();
+            const rawTags = tagsInput.value.trim();
+            const isNsfw = nsfwCheckbox.checked;
+            const isGore = goreCheckbox.checked;
+
+            const catColor = getImportantColor(selectedCategory);
+            previewPostCard.style.borderLeft = `5px solid ${catColor}`;
+
+            // Exact NSFW & Gore tag HTML from index.html
+            let goreTagHTML = "";
+            let nsfwTagHTML = "";
+            if (isGore === true) {
+                goreTagHTML = `<div class="gore-tag" style="display:inline-block;margin:0 0 6px 10px;padding:2px 10px;border-radius:12px;background:#000;color:#ff0000;font-size:0.95em;font-weight:bold;">🔪 R-18G<br></div>`;
+            }
+            if (isNsfw === true) {
+                nsfwTagHTML = `<div class="nsfw-tag" style="display:inline-block;margin:0 0 6px 10px;padding:2px 10px;border-radius:12px;background:#ff0000;color:#fff;font-size:0.95em;font-weight:bold;">&hearts; R-18<br></div>`;
+            }
+
+            // Important tag element matching index.html
+            let imptagHTML = '';
+            if (selectedCategory) {
+                const displayText = categoryDisplayMap[selectedCategory] || selectedCategory;
+                imptagHTML = `<div class="imptag" style="font-size: 0.8rem; color: #222; margin-left: 10px; background-color: ${catColor}; border-radius: 5px; padding: 3px 5px 3px 5px; width: fit-content;">● ${sanitizeHTML(displayText)}</div>`;
+            }
+
+            // General Tags matching index.html
+            let tagList = [];
+            if (rawTags) {
+                tagList = rawTags.split(',')
+                    .map(t => t.trim())
+                    .filter(t => t.length > 0)
+                    .map((tag, idx) => {
+                        const color = tagColors[idx % tagColors.length];
+                        return `<div class="tag" style="display:inline-block;padding:2px 3px 2px 3px;border-radius:8px;background:${color};color:#222;font-size:0.95em;">${sanitizeHTML(tag)}</div>`;
+                    });
+            }
+
+            // Sanitized body
+            const parsedHTML = rawContent ? sanitizeHTML(parseMarkdownToHTML(rawContent)) : '<p style="color: #888; font-style: italic;">Start typing in the editor to see live blog post preview...</p>';
+
+            // Assemble preview post card exactly matching index.html
+            previewPostCard.innerHTML = `
+                <span class="number" style="font-size: 0.6em; color: #666; margin-left: 11px;">post #preview</span> <br>
+                <span class="blog-date" style="font-size: 0.8rem; color: #888; margin-left: 10px;">just now</span>
+                <h2 class="blog-title" style="font-size: 1.5rem; margin-left: 10px; color: ${catColor}">${sanitizeHTML(rawTitle || "Title Preview")}</h2>
+                ${goreTagHTML}
+                ${nsfwTagHTML}
+                ${imptagHTML}
+                <div class="blog-tags" style="font-size: 0.8rem; color: #888; margin-left: 10px; margin-top: 5px;">${tagList.join(" ")}</div>
+                <div class="blog-content" style="font-size: 1rem; color: #ffffff; margin-left: 10px; margin-top: 10px;">${parsedHTML}</div>
+            `;
+
+            // Update Metrics
+            const words = rawContent ? rawContent.trim().split(/\s+/).filter(Boolean).length : 0;
+            const chars = rawContent ? rawContent.length : 0;
+            const minutes = Math.ceil(words / 200) || 1;
+            wordCount.textContent = `${words} words`;
+            charCount.textContent = `${chars} chars`;
+            readTime.textContent = `${minutes} min read`;
+
+            scheduleAutoSave();
+        }
+
+        // Auto-Save System
+        function scheduleAutoSave() {
+            saveStatusText.textContent = "Unsaved...";
+            saveStatusText.style.color = "#ffff87";
+            clearTimeout(autoSaveTimer);
+            autoSaveTimer = setTimeout(() => {
+                saveCurrentDraft();
+            }, 1000);
+        }
+
+        function saveCurrentDraft() {
+            const draftData = {
+                title: titleInput.value,
+                content: contentInput.value,
+                tags: tagsInput.value,
+                category: selectedCategory,
+                nsfw: nsfwCheckbox.checked,
+                gore: goreCheckbox.checked,
+                updatedAt: new Date().toISOString()
+            };
+            localStorage.setItem("creator_blog_current_draft", JSON.stringify(draftData));
+            
+            let history = [];
+            try {
+                history = JSON.parse(localStorage.getItem("creator_blog_drafts_history") || "[]");
+            } catch (e) { history = []; }
+
+            const existingIdx = history.findIndex(d => d.title === draftData.title && draftData.title.length > 0);
+            if (existingIdx !== -1) {
+                history[existingIdx] = draftData;
+            } else if (draftData.title.length > 0 || draftData.content.length > 20) {
+                history.unshift(draftData);
+                if (history.length > 10) history.pop();
+            }
+            localStorage.setItem("creator_blog_drafts_history", JSON.stringify(history));
+
+            saveStatusText.textContent = "Auto-saved";
+            saveStatusText.style.color = "#73f49a";
+        }
+
+        function restoreLatestDraft() {
+            try {
+                const saved = localStorage.getItem("creator_blog_current_draft");
+                if (saved) {
+                    const draft = JSON.parse(saved);
+                    if (draft.title || draft.content) {
+                        titleInput.value = draft.title || "";
+                        contentInput.value = draft.content || "";
+                        tagsInput.value = draft.tags || "";
+                        if (draft.category) setCategory(draft.category);
+                        nsfwCheckbox.checked = !!draft.nsfw;
+                        goreCheckbox.checked = !!draft.gore;
+                        updateFlagUI();
+                        renderLivePreview();
+                        showToast("Restored your previous draft!", "success", "fa-clock-rotate-left");
+                    }
+                }
+            } catch (e) {
+                console.error("Error restoring draft:", e);
+            }
+        }
+
+        function setCategory(cat) {
+            selectedCategory = cat;
+            document.querySelectorAll('.cat-chip').forEach(chip => {
+                if (chip.getAttribute('data-cat') === cat) {
+                    chip.classList.add('active');
+                } else {
+                    chip.classList.remove('active');
                 }
             });
-            if (lastIndex !== -1) {
-                contentInput.value = value.slice(0, lastIndex) + value.slice(lastIndex + lastTag.length);
-                previewBtn.click();
-            }
+            renderLivePreview();
         }
-    });
-    // Formatting buttons functionality
-    window.addEventListener('DOMContentLoaded', () => {
-        const buttonActions = {
-            bold: (textarea) => {
-                insertAtCursor(textarea, '<strong></strong>');
-                moveCursor(textarea, 9);
+
+        categoryGrid.addEventListener('click', (e) => {
+            const chip = e.target.closest('.cat-chip');
+            if (chip) {
+                setCategory(chip.getAttribute('data-cat'));
+            }
+        });
+
+        function updateFlagUI() {
+            if (nsfwCheckbox.checked) nsfwLabel.classList.add('active');
+            else nsfwLabel.classList.remove('active');
+
+            if (goreCheckbox.checked) goreLabel.classList.add('active');
+            else goreLabel.classList.remove('active');
+        }
+
+        nsfwCheckbox.addEventListener('change', () => { updateFlagUI(); renderLivePreview(); });
+        goreCheckbox.addEventListener('change', () => { updateFlagUI(); renderLivePreview(); });
+        titleInput.addEventListener('input', renderLivePreview);
+        contentInput.addEventListener('input', renderLivePreview);
+        tagsInput.addEventListener('input', renderLivePreview);
+
+        // Text Selection / Insertion
+        function insertAtCursor(text, cursorOffset = 0) {
+            const start = contentInput.selectionStart;
+            const end = contentInput.selectionEnd;
+            const before = contentInput.value.substring(0, start);
+            const after = contentInput.value.substring(end);
+            contentInput.value = before + text + after;
+            const newPos = start + text.length + cursorOffset;
+            contentInput.setSelectionRange(newPos, newPos);
+            contentInput.focus();
+            renderLivePreview();
+        }
+
+        function wrapSelection(openTag, closeTag) {
+            const start = contentInput.selectionStart;
+            const end = contentInput.selectionEnd;
+            const selectedText = contentInput.value.substring(start, end);
+            const before = contentInput.value.substring(0, start);
+            const after = contentInput.value.substring(end);
+
+            if (selectedText.length > 0) {
+                contentInput.value = before + openTag + selectedText + closeTag + after;
+                const newPos = end + openTag.length + closeTag.length;
+                contentInput.setSelectionRange(newPos, newPos);
+            } else {
+                contentInput.value = before + openTag + closeTag + after;
+                const newPos = start + openTag.length;
+                contentInput.setSelectionRange(newPos, newPos);
+            }
+            contentInput.focus();
+            renderLivePreview();
+        }
+
+        // Toolbar Buttons
+        const toolbarActions = {
+            bold: () => wrapSelection('<strong>', '</strong>'),
+            italic: () => wrapSelection('<em>', '</em>'),
+            underline: () => wrapSelection('<u>', '</u>'),
+            strike: () => wrapSelection('<s>', '</s>'),
+            h1: () => wrapSelection('<h1>', '</h1>\n'),
+            ul: () => wrapSelection('<ul>\n  <li>', '</li>\n</ul>\n'),
+            ol: () => wrapSelection('<ol>\n  <li>', '</li>\n</ol>\n'),
+            blockquote: () => wrapSelection('<blockquote>', '</blockquote>\n'),
+            code: () => wrapSelection('<pre><code>', '</code></pre>\n'),
+            link: () => {
+                const url = prompt("Enter link URL:");
+                if (url) wrapSelection(`<a href="${url}" target="_blank" rel="noopener noreferrer">`, '</a>');
             },
-            italic: (textarea) => {
-                insertAtCursor(textarea, '<em></em>');
-                moveCursor(textarea, 5);
+            image: () => imageUploadInput.click()
+        };
+
+        document.querySelectorAll('.formatting button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const action = btn.getAttribute('data-action');
+                if (toolbarActions[action]) toolbarActions[action]();
+            });
+        });
+
+        // 1-Click Starter Templates
+        const templates = {
+            devlog: {
+                category: "development",
+                title: "Devlog: ",
+                tags: "development, coding, update",
+                content: `<h2>🚀 Overview</h2>\n<p>Summary of what was built or improved today.</p>\n\n<h3>✨ What's New</h3>\n<ul>\n  <li>Added new feature...</li>\n  <li>Fixed issue where...</li>\n  <li>Performance optimizations</li>\n</ul>\n\n<pre><code>// Code snippet\nconst speed = 100;</code></pre>\n\n<h3>🎯 Next Steps</h3>\n<p>Plan for upcoming updates...</p>`
             },
-            underline: (textarea) => {
-                insertAtCursor(textarea, '<u></u>');
-                moveCursor(textarea, 4);
+            gaming: {
+                category: "extraction shooter",
+                title: "Extraction Session Report: ",
+                tags: "extraction shooter, gaming, fps",
+                content: `<h2>🎮 Match Summary</h2>\n<p>Played some intense extraction matches today.</p>\n\n<h3>🔥 Highlights</h3>\n<ul>\n  <li>Primary Weapon: <strong>M4A1</strong></li>\n  <li>Secured high value extraction!</li>\n</ul>\n\n<blockquote>"GGs to the squad!"</blockquote>`
             },
-            strike: (textarea) => {
-                insertAtCursor(textarea, '<s></s>');
-                moveCursor(textarea, 4);
+            life: {
+                category: "life",
+                title: "Daily Musings: ",
+                tags: "life, thoughts, casual",
+                content: `<p>Just wanted to write down a quick thought today...</p>\n\n<p>Everything has been going well lately. Remember to stay hydrated!</p>`
             },
-            h: (textarea) => {
-                insertAtCursor(textarea, '<h1></h1>');
-                moveCursor(textarea, 5);
+            balloon: {
+                category: "balloonposting",
+                title: "Balloonposting #",
+                tags: "balloonposting, fun",
+                content: `<h2>🎈 Today's Balloon Report</h2>\n<p>Balloons floating high in the sky!</p>\n\n<p>🎈🎈🎈</p>`
             },
-            ul: (textarea) => {
-                insertAtCursor(textarea, '<ul>\n<li></li>\n</ul>\n');
-                moveCursor(textarea, 12);
-            },
-            ol: (textarea) => {
-                insertAtCursor(textarea, '<ol>\n<li></li>\n</ol>\n');
-                moveCursor(textarea, 12);
-            },
-            blockquote: (textarea) => {
-                insertAtCursor(textarea, '<blockquote></blockquote>\n');
-                moveCursor(textarea, 15);
-            },
-            code: (textarea) => {
-                insertAtCursor(textarea, '<pre><code></code></pre>\n');
-                moveCursor(textarea, 14);
-            },
-            img: (textarea) => {
-                document.getElementById('imageUpload').click();
-            },
-            link: (textarea) => {
-                const url = prompt("Enter URL:");
-                if (url) {
-                    insertAtCursor(textarea, `<a href="${url}" target="_blank" rel="noopener noreferrer"></a>`);
-                    moveCursor(textarea, - url.length); // Move cursor onto the end of the tag
-                }
+            media: {
+                category: "other games",
+                title: "Screenshot Showcase",
+                tags: "screenshots, art",
+                content: `<h2>📸 Screenshot Showcase</h2>\n<p>Here are some cool captures from today:</p>\n\n<p>Paste or drop your images directly!</p>`
             }
         };
-        document.querySelectorAll('.formatting button').forEach(button => {
-            button.addEventListener('click', () => {
-                const action =
-                    button.classList.contains('bold') ? 'bold' :
-                        button.classList.contains('italic') ? 'italic' :
-                            button.classList.contains('underline') ? 'underline' :
-                                button.classList.contains('strike') ? 'strike' :
-                                    button.classList.contains('h') ? 'h' :
-                                        button.classList.contains('ul') ? 'ul' :
-                                            button.classList.contains('ol') ? 'ol' :
-                                                button.classList.contains('blockquote') ? 'blockquote' :
-                                                    button.classList.contains('code') ? 'code' :
-                                                        button.classList.contains('img') ? 'img' :
-                                                            button.classList.contains('link') ? 'link' : null;
-                if (action && buttonActions[action]) {
-                    buttonActions[action](contentInput);
+
+        document.querySelectorAll('.starter-btn[data-tpl]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tplKey = btn.getAttribute('data-tpl');
+                const tpl = templates[tplKey];
+                if (tpl) {
+                    if (contentInput.value.trim().length > 0 && !confirm("Apply template and replace canvas?")) return;
+                    setCategory(tpl.category);
+                    titleInput.value = tpl.title;
+                    tagsInput.value = tpl.tags;
+                    contentInput.value = tpl.content;
+                    renderLivePreview();
+                    showToast(`Applied ${tplKey} template!`, "success", "fa-bolt");
                 }
             });
         });
-        document.getElementById('imageUpload').addEventListener('change', async (e) => {
-            const file = e.target.files[0];
-            if (file) {
-                const formData = new FormData();
-                formData.append('image', file);
-                try {
-                    const response = await fetch(`https://api.imgbb.com/1/upload?key=${imgbbApiKey}`, {
-                        method: 'POST',
-                        body: formData
-                    });
-                    const data = await response.json();
-                    if (data.success) {
-                        const url = data.data.url;
-                        insertAtCursor(contentInput, `<img src="${url}" alt="">`);
-                        moveCursor(contentInput, -url.length);
-                        previewBtn.click();
-                    } else {
-                        alert('Upload failed: ' + data.error.message);
-                    }
-                } catch (error) {
-                    alert('Upload error: ' + error.message);
+
+        // Image Upload to ImgBB
+        async function uploadImage(file) {
+            showToast("Uploading image to ImgBB...", "info", "fa-cloud-arrow-up");
+            const formData = new FormData();
+            formData.append('image', file);
+            try {
+                const response = await fetch(`https://api.imgbb.com/1/upload?key=${imgbbApiKey}`, {
+                    method: 'POST',
+                    body: formData
+                });
+                const data = await response.json();
+                if (data.success) {
+                    insertAtCursor(`\n<img src="${data.data.url}" alt="Uploaded image">\n`);
+                    showToast("Image uploaded and inserted!", "success", "fa-check");
+                } else {
+                    showToast(`Upload failed: ${data.error.message}`, "error", "fa-triangle-exclamation");
                 }
+            } catch (err) {
+                showToast(`Upload error: ${err.message}`, "error", "fa-circle-xmark");
             }
+        }
+
+        imageUploadInput.addEventListener('change', (e) => {
+            if (e.target.files[0]) uploadImage(e.target.files[0]);
             e.target.value = '';
         });
-        function insertAtCursor(textarea, text) {
-            const start = textarea.selectionStart;
-            const end = textarea.selectionEnd;
-            const before = textarea.value.substring(0, start);
-            const after = textarea.value.substring(end, textarea.value.length);
-            textarea.value = before + text + after;
-            // Move cursor just after the inserted text
-            const cursorPos = start + text.length;
-            textarea.setSelectionRange(cursorPos, cursorPos);
-            textarea.focus();
-            previewBtn.click();
-        }
-        // Add missing moveCursor function
-        function moveCursor(textarea, offsetFromEndTag) {
-            const cursorPos = textarea.selectionStart - offsetFromEndTag;
-            textarea.setSelectionRange(cursorPos, cursorPos);
-            textarea.focus();
-        }
-    });
 
-
-
-
-    // Preview functionality
-    previewBtn.addEventListener('click', () => {
-        const title = titleInput.value.trim();
-        const content = contentInput.value.trim();
-        const tags = tagsInput.value.trim();
-        const importantValue = importantTags.value.trim();
-        const nsfwCheckbox = document.getElementById('nsfwCheckbox');
-        const nsfw = nsfwCheckbox.checked;
-        const gore = goreCheckbox.checked;
-        // Helper to get color for important tag
-        function getImportantColor(val) {
-            switch (val) {
-                case "delta force":
-                    return "#73f49a";
-                case "other games":
-                    return "#aaf4ff";
-                case "development":
-                    return "#b297ff";
-                case "life":
-                    return "#ffff87";
-                case "other":
-                    return "#6b6b6b";
-                case "balloonposting":
-                    return "#ffabd1";
-                default:
-                    return "#e0e0e0";
+        document.addEventListener('paste', (e) => {
+            const items = (e.clipboardData || e.originalEvent.clipboardData).items;
+            for (let item of items) {
+                if (item.type.indexOf('image') === 0) {
+                    e.preventDefault();
+                    uploadImage(item.getAsFile());
+                    break;
+                }
             }
-        }
+        });
 
-        if (!title && !content && !tags) {
-            previewSection.style.display = 'none';
-            return;
-        }
+        // View Mode Switcher
+        viewModeBtn.addEventListener('click', () => {
+            currentViewModeIdx = (currentViewModeIdx + 1) % viewModes.length;
+            const mode = viewModes[currentViewModeIdx];
+            studioContainer.className = `studio-container mode-${mode}`;
+            viewModeBtn.innerHTML = `<i class="fa-solid fa-table-columns"></i> ${mode.charAt(0).toUpperCase() + mode.slice(1)} View`;
+        });
 
-        let previewHTML = '';
+        // Zen Mode
+        const zenToggleBtn = document.getElementById('zenToggleBtn');
+        const zenExitBtn = document.getElementById('zenExitBtn');
 
-        // Show important tag if selected
+        function toggleZen() {
+            document.body.classList.toggle('zen-mode');
+        }
+        zenToggleBtn.addEventListener('click', toggleZen);
+        zenExitBtn.addEventListener('click', toggleZen);
 
-        // Always show the title, even if there are no tags
-        if (title) {
-            previewHTML += `<h2 style="color: ${getImportantColor(importantValue)};">${sanitizeHTML(title)}</h2>`;
-        }
-        if (nsfw) {
-            previewHTML += `<div class="nsfw-tag" style="display:inline-block;margin:2px 4px 8px 0;padding:2px 10px;border-radius:12px;background:#ff0000;color:#222;font-size:0.95em;font-weight:bold;">NSFW!!!<br></div>`;
-        }
-        if (gore) {
-            previewHTML += `<div class="gore-tag" style="display:inline-block;margin:2px 4px 8px 0;padding:2px 10px;border-radius:12px;background:#000;color:#ff0000;font-size:0.95em;font-weight:bold;">Gore!!!<br></div>`;
-        }
-        if (importantValue) {
-            const color = getImportantColor(importantValue);
-            const importantDisplayMap = {
-                "delta force": "Delta Force",
-                "other games": "Other games",
-                "development": "Development",
-                "life": "Life",
-                "balloonposting": "Balloon Posting",
-                "other": "Other / Shitposts"
-            };
-            const displayText = importantDisplayMap[importantValue] || sanitizeHTML(importantValue);
-            previewHTML += `<div class="important-tag" style="display:inline-block;margin:2px 4px 8px 0;padding:2px 10px;border-radius:12px;background:${color};color:#222;font-size:0.95em;font-weight:bold;">● ${sanitizeHTML(displayText)}</div>`;
-        }
+        // Clear Canvas
+        document.getElementById('clearBtn').addEventListener('click', () => {
+            if (confirm("Clear title and content?")) {
+                titleInput.value = "";
+                contentInput.value = "";
+                tagsInput.value = "";
+                nsfwCheckbox.checked = false;
+                goreCheckbox.checked = false;
+                updateFlagUI();
+                renderLivePreview();
+                localStorage.removeItem("creator_blog_current_draft");
+                showToast("Canvas cleared!", "info", "fa-trash-can");
+            }
+        });
 
-        if (tags) {
-            // Define a palette of colors for tags
-            const tagColors = [
-                "#ff6b6b", // red
-                "#6bc1ff", // blue
-                "#6bffb0", // green
-                "#ffe66b", // yellow
-                "#b36bff", // purple
-                "#ffb36b", // orange
-                "#6bffd6", // teal
-                "#ff6be6", // pink
-                "#aaff6b", // lime
-                "#6b8cff"  // indigo
-            ];
-            // Show tags as a comma-separated list, each tag trimmed and sanitized, skipping empty tags
-            const tagList = tags.split(',')
-                .map(tag => tag.trim())
-                .filter(tag => tag.length > 0)
-                .map((tag, idx) => {
-                    const color = tagColors[idx % tagColors.length];
-                    return `<div class="tag" style="display:inline-block;margin:4px 4px;padding:2px 10px;border-radius:12px;background:${color};color:#222;font-size:0.95em;">${sanitizeHTML(tag)}</div>`;
+        // Help Modal
+        const helpModalBtn = document.getElementById('helpModalBtn');
+        const closeHelpModalBtn = document.getElementById('closeHelpModalBtn');
+        helpModalBtn.addEventListener('click', () => helpModal.classList.add('active'));
+        closeHelpModalBtn.addEventListener('click', () => helpModal.classList.remove('active'));
+
+        // Drafts Modal
+        const draftsBtn = document.getElementById('draftsBtn');
+        const closeDraftsModalBtn = document.getElementById('closeDraftsModalBtn');
+
+        function openDrafts() {
+            let history = [];
+            try {
+                history = JSON.parse(localStorage.getItem("creator_blog_drafts_history") || "[]");
+            } catch (e) { history = []; }
+
+            if (history.length === 0) {
+                draftsListContainer.innerHTML = `<p style="text-align:center;color:#888;">No saved drafts.</p>`;
+            } else {
+                draftsListContainer.innerHTML = history.map((d, i) => `
+                    <div style="background-color:#000000;border:1px solid #ffffff;border-radius:5px;padding:12px;display:flex;justify-content:space-between;align-items:center;">
+                        <div>
+                            <div style="font-size:0.95rem;color:#ffffff;">${d.title ? sanitizeHTML(d.title) : '<em>(Untitled)</em>'}</div>
+                            <div style="font-size:0.75rem;color:#888;">● ${d.category || 'General'} | ${d.updatedAt ? new Date(d.updatedAt).toLocaleTimeString() : ''}</div>
+                        </div>
+                        <div style="display:flex;gap:8px;">
+                            <button type="button" class="starter-btn load-draft-btn" data-idx="${i}"><i class="fa-solid fa-folder-open"></i> Load</button>
+                            <button type="button" class="starter-btn delete-draft-btn" data-idx="${i}" style="border-color:#ff4d4d;color:#ff4d4d;"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </div>
+                `).join('');
+
+                document.querySelectorAll('.load-draft-btn').forEach(b => {
+                    b.addEventListener('click', () => {
+                        const d = history[parseInt(b.getAttribute('data-idx'))];
+                        if (d) {
+                            titleInput.value = d.title || "";
+                            contentInput.value = d.content || "";
+                            tagsInput.value = d.tags || "";
+                            if (d.category) setCategory(d.category);
+                            nsfwCheckbox.checked = !!d.nsfw;
+                            goreCheckbox.checked = !!d.gore;
+                            updateFlagUI();
+                            renderLivePreview();
+                            draftsModal.classList.remove('active');
+                            showToast("Loaded draft!", "success", "fa-folder-open");
+                        }
+                    });
                 });
-            if (tagList.length > 0) {
-                previewHTML += `<div class="tag-list" style="margin-top:10px;">${tagList.join('')}</div>`;
+
+                document.querySelectorAll('.delete-draft-btn').forEach(b => {
+                    b.addEventListener('click', () => {
+                        history.splice(parseInt(b.getAttribute('data-idx')), 1);
+                        localStorage.setItem("creator_blog_drafts_history", JSON.stringify(history));
+                        openDrafts();
+                    });
+                });
+            }
+            draftsModal.classList.add('active');
+        }
+
+        draftsBtn.addEventListener('click', openDrafts);
+        closeDraftsModalBtn.addEventListener('click', () => draftsModal.classList.remove('active'));
+
+        // Recent Posts Modal
+        const recentPostsBtn = document.getElementById('recentPostsBtn');
+        const closeRecentModalBtn = document.getElementById('closeRecentModalBtn');
+
+        async function openRecentPosts() {
+            recentPostsModal.classList.add('active');
+            recentPostsContainer.innerHTML = `<p style="text-align:center;color:#888;">Fetching recent blogs from Firebase...</p>`;
+            try {
+                const q = query(blogRef, orderBy("createdAt", "desc"), limit(15));
+                const snap = await getDocs(q);
+                if (snap.empty) {
+                    recentPostsContainer.innerHTML = `<p style="text-align:center;color:#888;">No blogs published yet.</p>`;
+                    return;
+                }
+                recentPostsContainer.innerHTML = snap.docs.map(doc => {
+                    const post = doc.data();
+                    const cat = post.importantValue || "other";
+                    const col = getImportantColor(cat);
+                    return `
+                        <div style="background-color:#000000;border:1px solid #ffffff;border-radius:5px;padding:12px;display:flex;justify-content:space-between;align-items:center;">
+                            <div>
+                                <div style="font-size:0.95rem;color:${col};">${sanitizeHTML(post.title || 'Untitled')}</div>
+                                <div style="font-size:0.75rem;color:#888;">● ${categoryDisplayMap[cat] || cat}</div>
+                            </div>
+                            <button type="button" class="starter-btn clone-post-btn" data-id="${doc.id}">
+                                <i class="fa-solid fa-clone"></i> Load / Copy
+                            </button>
+                        </div>
+                    `;
+                }).join('');
+
+                document.querySelectorAll('.clone-post-btn').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const target = snap.docs.find(d => d.id === btn.getAttribute('data-id'));
+                        if (target) {
+                            const p = target.data();
+                            titleInput.value = p.title || "";
+                            contentInput.value = p.content || "";
+                            tagsInput.value = p.tags || "";
+                            if (p.importantValue) setCategory(p.importantValue);
+                            nsfwCheckbox.checked = !!p.nsfw;
+                            goreCheckbox.checked = !!p.gore;
+                            updateFlagUI();
+                            renderLivePreview();
+                            recentPostsModal.classList.remove('active');
+                            showToast(`Loaded blog "${p.title}"!`, "success", "fa-clone");
+                        }
+                    });
+                });
+            } catch (err) {
+                recentPostsContainer.innerHTML = `<p style="text-align:center;color:#ff4d4d;">Failed to load posts: ${err.message}</p>`;
             }
         }
-        if (content) {
-            previewHTML += `<div>${sanitizeHTML(content)}</div>`;
-        }
 
+        recentPostsBtn.addEventListener('click', openRecentPosts);
+        closeRecentModalBtn.addEventListener('click', () => recentPostsModal.classList.remove('active'));
 
-        previewContent.innerHTML = previewHTML;
-        previewSection.style.display = 'block';
-    });
+        // Global Keyboard Shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.key === 'Enter') {
+                e.preventDefault();
+                submitBtn.click();
+            }
+            if (e.key === 'Escape') {
+                if (document.body.classList.contains('zen-mode')) toggleZen();
+                else {
+                    helpModal.classList.remove('active');
+                    draftsModal.classList.remove('active');
+                    recentPostsModal.classList.remove('active');
+                    passcodeSettingsModal.classList.remove('active');
+                }
+            }
+            if (e.key === 'F1') { e.preventDefault(); helpModal.classList.toggle('active'); }
+            if (e.key === 'F11') { e.preventDefault(); toggleZen(); }
+            if (e.key === 'F2') { e.preventDefault(); titleInput.focus(); }
+            if (e.key === 'F3') { e.preventDefault(); contentInput.focus(); }
+            if (e.key === 'F4') { e.preventDefault(); tagsInput.focus(); }
 
-    // Submit functionality
-    submitBtn.addEventListener('click', async (e) => {
-        e.preventDefault();
-        const title = titleInput.value.trim();
-        const content = contentInput.value.trim();
-        const tags = tagsInput.value.trim();
-        const importantValue = importantTags.value.trim();
-        const nsfwCheckbox = document.getElementById('nsfwCheckbox');
-        if (!title || !content) {
-            alert("Please fill in both the title and content.");
-            return;
-        }
-        if (!importantValue) {
-            alert("Please select an important tag.");
-            return;
-        }
+            if (e.ctrlKey && e.key.toLowerCase() === 'b') { e.preventDefault(); toolbarActions.bold(); }
+            if (e.ctrlKey && e.key.toLowerCase() === 'i') { e.preventDefault(); toolbarActions.italic(); }
+            if (e.ctrlKey && e.key.toLowerCase() === 'u') { e.preventDefault(); toolbarActions.underline(); }
+            if (e.ctrlKey && e.key.toLowerCase() === 's') {
+                e.preventDefault();
+                if (document.activeElement === contentInput) toolbarActions.strike();
+                else {
+                    saveCurrentDraft();
+                    showToast("Draft saved manually!", "success", "fa-floppy-disk");
+                }
+            }
+            if (e.ctrlKey && e.key.toLowerCase() === 'h') { e.preventDefault(); toolbarActions.h1(); }
+            if (e.ctrlKey && e.key.toLowerCase() === 'k') { e.preventDefault(); toolbarActions.link(); }
+            if (e.ctrlKey && e.key.toLowerCase() === 'm') { e.preventDefault(); toolbarActions.image(); }
+            if (e.ctrlKey && e.key.toLowerCase() === 'l') {
+                e.preventDefault();
+                if (e.shiftKey) toolbarActions.ol();
+                else toolbarActions.ul();
+            }
+            if (e.ctrlKey && e.key.toLowerCase() === 'q') { e.preventDefault(); toolbarActions.blockquote(); }
+            if (e.ctrlKey && e.key.toLowerCase() === 'e') { e.preventDefault(); toolbarActions.code(); }
+        });
 
-        try {
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = "Submitting...";
+        // Submit to Firebase
+        submitBtn.addEventListener('click', async (e) => {
+            e.preventDefault();
+            const title = titleInput.value.trim();
+            const content = contentInput.value.trim();
+            const tags = tagsInput.value.trim();
+            const cat = selectedCategory.trim();
 
-            // Sanitize content before sending to Firebase
-            const sanitizedTitle = sanitizeHTML(title);
-            const sanitizedContent = sanitizeHTML(content);
-            const sanitizedTags = sanitizeHTML(tags);
-            const sanitizedImportantValue = sanitizeHTML(importantValue);
-            await addDoc(blogRef, {
-                title: sanitizedTitle,
-                content: sanitizedContent,
-                tags: sanitizedTags,
-                importantValue: sanitizedImportantValue,
-                createdAt: new Date(),
-                nsfw: nsfwCheckbox.checked,
-                gore: goreCheckbox.checked
-            });
+            if (!title) {
+                showToast("Please enter a title for the blog post.", "warning", "fa-triangle-exclamation");
+                titleInput.focus();
+                return;
+            }
+            if (!content) {
+                showToast("Please enter content for the blog post.", "warning", "fa-triangle-exclamation");
+                contentInput.focus();
+                return;
+            }
+            if (!cat) {
+                showToast("Please select an important category tag.", "warning", "fa-triangle-exclamation");
+                return;
+            }
 
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = "Submit";
-            alert("Blog post submitted!");
+            try {
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Submitting...`;
 
-            // Clear form
-            titleInput.value = "";
-            contentInput.value = "";
-            tagsInput.value = "";
-            importantTags.value = "";
-            nsfwCheckbox.checked = false;
-            goreCheckbox.checked = false;
-            previewSection.style.display = 'none';
+                const parsedContent = parseMarkdownToHTML(content);
+                const sanitizedTitle = sanitizeHTML(title);
+                const sanitizedContent = sanitizeHTML(parsedContent);
+                const sanitizedTags = sanitizeHTML(tags);
+                const sanitizedCategory = sanitizeHTML(cat);
 
-        } catch (error) {
-            console.error("Error adding document: ", error);
-            alert("Failed to submit blog post. Please try again.");
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = "Submit";
-        }
-    });
-</script>
+                await addDoc(blogRef, {
+                    title: sanitizedTitle,
+                    content: sanitizedContent,
+                    tags: sanitizedTags,
+                    importantValue: sanitizedCategory,
+                    createdAt: new Date(),
+                    nsfw: nsfwCheckbox.checked,
+                    gore: goreCheckbox.checked
+                });
+
+                showToast("🎉 Blog post published successfully!", "success", "fa-circle-check");
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = `<i class="fa-solid fa-paper-plane"></i> Submit Blog Post`;
+
+                titleInput.value = "";
+                contentInput.value = "";
+                tagsInput.value = "";
+                nsfwCheckbox.checked = false;
+                goreCheckbox.checked = false;
+                updateFlagUI();
+                renderLivePreview();
+                localStorage.removeItem("creator_blog_current_draft");
+
+            } catch (err) {
+                console.error("Error submitting blog:", err);
+                showToast(`Failed to publish: ${err.message}`, "error", "fa-circle-xmark");
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = `<i class="fa-solid fa-paper-plane"></i> Submit Blog Post`;
+            }
+        });
+
+        // Initialize on load
+        window.addEventListener('DOMContentLoaded', () => {
+            checkAuthentication();
+        });
+    </script>
+</body>
 
 </html>

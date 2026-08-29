@@ -393,6 +393,118 @@
       transition: all 0.3s ease;
       margin-top: 10px;
     }
+
+    .comment-section {
+      margin: 10px 10px 0 10px;
+      padding-top: 12px;
+      border-top: 1px solid #ffffff22;
+    }
+
+    .comment-form {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .comment-name-input,
+    .comment-text-input {
+      font-family: "Mochiy Pop One", sans-serif;
+      background-color: #000000;
+      color: #ffffff;
+      border: 1px solid #ffffff55;
+      border-radius: 5px;
+      padding: 8px;
+      font-size: 0.85rem;
+      resize: vertical;
+    }
+
+    .comment-form-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .comment-submit-btn {
+      background-color: transparent;
+      border: 1px solid #3dfff5;
+      color: #3dfff5;
+      font-family: "Mochiy Pop One", sans-serif;
+      padding: 8px 14px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: all 0.3s ease;
+    }
+
+    .comment-submit-btn:hover:not(:disabled) {
+      background-color: #3dfff5;
+      color: #000000;
+    }
+
+    .comment-submit-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .view-comments-link {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 0.85rem;
+      border-bottom: 1px dashed #ffffff88;
+      transition: 0.3s;
+    }
+
+    .view-comments-link:hover {
+      color: #3dfff5;
+      border-bottom-color: #3dfff5;
+    }
+
+    .comment-status {
+      font-size: 0.8rem;
+      min-height: 1em;
+    }
+
+    .comment-preview-list {
+      margin-bottom: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .comment-preview-loading,
+    .comment-preview-empty {
+      color: #888;
+      font-size: 0.8rem;
+    }
+
+    .comment-preview-item {
+      background-color: #ffffff0e;
+      border-radius: 6px;
+      padding: 8px 10px;
+      border-left: 2px solid #3dfff588;
+    }
+
+    .comment-preview-author {
+      font-size: 0.85rem;
+      color: #3dfff5;
+    }
+
+    .comment-preview-date {
+      font-size: 0.7rem;
+      color: #888;
+      margin-left: 6px;
+    }
+
+    .comment-preview-body {
+      margin-top: 4px;
+      font-size: 0.8rem;
+      color: #dddddd;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      font-family: sans-serif;
+    }
   </style>
   <title>Neneko's blog</title>
 </head>
@@ -692,7 +804,9 @@
     getDocs,
     getDoc,
     setDoc,
+    addDoc,
     query,
+    where,
     orderBy,
     doc,
     updateDoc,
@@ -743,6 +857,7 @@
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
   const blogRef = collection(db, "blog");
+  const commentsRef = collection(db, "comments");
 
 
   async function getIP() {
@@ -1023,6 +1138,59 @@
     return tempDiv.innerHTML;
   }
 
+  // Lightweight text escaper for inserting comment text safely (no HTML allowed)
+  function escapeHTML(str) {
+    const div = document.createElement("div");
+    div.textContent = str == null ? "" : String(str);
+    return div.innerHTML;
+  }
+
+  function commentToDate(value) {
+    if (value && typeof value.toDate === "function") return value.toDate();
+    if (value instanceof Date) return value;
+    if (typeof value === "number") return new Date(value);
+    if (typeof value === "string") {
+      const parsed = Date.parse(value);
+      if (!Number.isNaN(parsed)) return new Date(parsed);
+    }
+    return null;
+  }
+
+  function renderCommentPreview(commentDocs) {
+    const comments = commentDocs.map((d) => d.data());
+    comments.sort((a, b) => {
+      const ta = commentToDate(a.createdAt);
+      const tb = commentToDate(b.createdAt);
+      return (tb ? tb.getTime() : 0) - (ta ? ta.getTime() : 0);
+    });
+    const top = comments.slice(0, 3);
+    if (top.length === 0) {
+      return '<div class="comment-preview-empty">No comments yet.</div>';
+    }
+    return top
+      .map((c) => {
+        const created = commentToDate(c.createdAt);
+        const dateStr = created
+          ? created.toLocaleString("en-GB", {
+              year: "numeric",
+              month: "2-digit",
+              day: "2-digit",
+              hour: "2-digit",
+              minute: "2-digit",
+              hour12: false,
+            })
+          : "";
+        return `
+          <div class="comment-preview-item">
+            <span class="comment-preview-author">${escapeHTML(c.name || "Anonymous")}</span>
+            <span class="comment-preview-date">${escapeHTML(dateStr)}</span>
+            <div class="comment-preview-body">${escapeHTML(c.comment || "")}</div>
+          </div>
+        `;
+      })
+      .join("");
+  }
+
   async function loadBlogs() {
     try {
       const blogContainer = document.querySelector(".blogcontainer");
@@ -1046,6 +1214,7 @@
       blogList.forEach((blog) => {
         const blogElement = document.createElement("div");
         blogElement.className = "blog-post";
+        const postId = blogSnapshot.docs[blogList.indexOf(blog)].id;
         let dateString = "";
         const imptags = blog.importantValue;
         const importantText = {
@@ -1559,6 +1728,86 @@
           });
         }, 0);
 
+        setTimeout(async () => {
+          const commentNameInput = blogElement.querySelector(".comment-name-input");
+          const commentTextInput = blogElement.querySelector(".comment-text-input");
+          const commentSubmitBtn = blogElement.querySelector(".comment-submit-btn");
+          const commentStatus = blogElement.querySelector(".comment-status");
+          const commentCountElem = blogElement.querySelector(".comment-count");
+
+          // Load the current comment count for this post, and show a preview
+          try {
+            const commentsQuery = query(commentsRef, where("postId", "==", postId));
+            const commentsSnap = await getDocs(commentsQuery);
+            if (commentCountElem) commentCountElem.textContent = commentsSnap.size;
+            const previewElem = blogElement.querySelector(".comment-preview-list");
+            if (previewElem) {
+              previewElem.innerHTML = renderCommentPreview(commentsSnap.docs);
+            }
+          } catch (err) {
+            console.error("Error loading comment count:", err);
+            if (commentCountElem) commentCountElem.textContent = "?";
+            const previewElem = blogElement.querySelector(".comment-preview-list");
+            if (previewElem) {
+              previewElem.innerHTML = '<div class="comment-preview-empty">Couldn\'t load comments.</div>';
+            }
+          }
+
+          if (commentSubmitBtn) {
+            commentSubmitBtn.addEventListener("click", async () => {
+              const name = (commentNameInput.value || "").trim();
+              const text = (commentTextInput.value || "").trim();
+              if (!text) {
+                if (commentStatus) {
+                  commentStatus.textContent = "Please write something before posting.";
+                  commentStatus.style.color = "#ff4444";
+                }
+                return;
+              }
+              commentSubmitBtn.disabled = true;
+              if (commentStatus) {
+                commentStatus.textContent = "Posting...";
+                commentStatus.style.color = "#888";
+              }
+              try {
+                await addDoc(commentsRef, {
+                  postId: postId,
+                  name: (name || "Anonymous").slice(0, 40),
+                  comment: text.slice(0, 500),
+                  createdAt: new Date(),
+                });
+                commentNameInput.value = "";
+                commentTextInput.value = "";
+                if (commentStatus) {
+                  commentStatus.textContent = "Comment posted!";
+                  commentStatus.style.color = "#6bffb0";
+                  setTimeout(() => {
+                    if (commentStatus) commentStatus.textContent = "";
+                  }, 3000);
+                }
+                if (commentCountElem) {
+                  commentCountElem.textContent =
+                    (parseInt(commentCountElem.textContent, 10) || 0) + 1;
+                }
+                const previewElem = blogElement.querySelector(".comment-preview-list");
+                if (previewElem) {
+                  const freshQuery = query(commentsRef, where("postId", "==", postId));
+                  const freshSnap = await getDocs(freshQuery);
+                  previewElem.innerHTML = renderCommentPreview(freshSnap.docs);
+                }
+              } catch (err) {
+                console.error("Error posting comment:", err);
+                if (commentStatus) {
+                  commentStatus.textContent = "Failed to post comment. Please try again.";
+                  commentStatus.style.color = "#ff4444";
+                }
+              } finally {
+                commentSubmitBtn.disabled = false;
+              }
+            });
+          }
+        }, 0);
+
         if ((nsfw === true || gore === true) && nsfwSetting !== "true") {
           return; // Skip rendering this blog post
         } else if (nsfwSetting === "true") {
@@ -1609,6 +1858,20 @@
           )}</div>
         <div class="blog-content" style="font-size: 1rem; color: #ffffff; margin-left: 10px;">${sanitizedContent}</div>
         <div class="like-container" style="margin-left: 10px; margin-top: 10px;">${likeButtonHTML} ${dislikeButtonHTML} </div>
+        <div class="comment-section">
+          <div class="comment-preview-list">
+            <div class="comment-preview-loading">Loading comments…</div>
+          </div>
+          <div class="comment-form">
+            <input type="text" class="comment-name-input" placeholder="Your name" maxlength="40" />
+            <textarea class="comment-text-input" placeholder="Write a comment..." maxlength="500" rows="2"></textarea>
+            <div class="comment-form-actions">
+              <button type="button" class="comment-submit-btn">Post comment</button>
+              <a href="comments.html?id=${postId}" class="view-comments-link">View all comments (<span class="comment-count">…</span>) &rarr;</a>
+            </div>
+            <div class="comment-status"></div>
+          </div>
+        </div>
       `;
         blogElement.style.borderLeft = `5px solid ${bordercolor}`;
         // Add mouseover event for blog-date inside the loop

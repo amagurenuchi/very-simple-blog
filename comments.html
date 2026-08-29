@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap" rel="stylesheet" />
+  <title>Comments - Neneko's blog</title>
+  <style>
+    body {
+      font-family: "Mochiy Pop One", sans-serif;
+      background-color: #000000;
+      margin: 0;
+      padding: 0;
+      color: #ffffff;
+    }
+
+    .timebar {
+      background-color: #434343;
+      padding: 15px;
+      color: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      box-sizing: border-box;
+    }
+
+    .timebar .name {
+      font-size: 1.25rem;
+      color: rgb(61, 255, 245);
+    }
+
+    .timebar a {
+      color: #ffffff;
+      text-decoration: none;
+      padding: 8px 12px;
+      border: 1px solid #ffffff88;
+      border-radius: 5px;
+      transition: 0.3s;
+      font-size: 0.85rem;
+    }
+
+    .timebar a:hover {
+      background-color: #7a7a7a;
+    }
+
+    .wrapper {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 100px 20px 60px 20px;
+    }
+
+    .blog-post {
+      margin: 0 0 30px 0;
+      padding: 15px;
+      background-color: #ffffff0e;
+      border-radius: 8px;
+      color: #ffffff;
+    }
+
+    .blog-post .blog-content {
+      margin-top: 10px;
+    }
+
+    .new-comment-box {
+      background-color: #ffffff0e;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 30px;
+    }
+
+    .new-comment-box h2 {
+      font-size: 1.1rem;
+      margin-top: 0;
+      color: #ffffff;
+    }
+
+    .comment-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .comment-name-input,
+    .comment-text-input {
+      font-family: "Mochiy Pop One", sans-serif;
+      background-color: #000000;
+      color: #ffffff;
+      border: 1px solid #ffffff55;
+      border-radius: 5px;
+      padding: 10px;
+      font-size: 0.9rem;
+      resize: vertical;
+    }
+
+    .comment-submit-btn {
+      align-self: flex-start;
+      background-color: transparent;
+      border: 1px solid #3dfff5;
+      color: #3dfff5;
+      font-family: "Mochiy Pop One", sans-serif;
+      padding: 10px 18px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+
+    .comment-submit-btn:hover:not(:disabled) {
+      background-color: #3dfff5;
+      color: #000000;
+    }
+
+    .comment-submit-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .comment-status {
+      font-size: 0.85rem;
+      min-height: 1em;
+    }
+
+    .comments-heading {
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+      border-bottom: 1px solid #ffffff22;
+      padding-bottom: 10px;
+    }
+
+    .comment-item {
+      background-color: #ffffff0e;
+      border-radius: 8px;
+      padding: 12px 15px;
+      margin-bottom: 12px;
+      border-left: 3px solid #3dfff5;
+    }
+
+    .comment-author {
+      font-size: 0.95rem;
+      color: #3dfff5;
+    }
+
+    .comment-date {
+      font-size: 0.75rem;
+      color: #888;
+      margin-left: 8px;
+    }
+
+    .comment-body {
+      margin-top: 6px;
+      font-size: 0.9rem;
+      color: #ffffff;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      font-family: sans-serif;
+    }
+
+    .empty-state,
+    .error-state {
+      color: #888;
+      font-size: 0.9rem;
+    }
+
+    .error-state {
+      color: #ff4444;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="timebar">
+    <div class="name">Neneko Koromiko</div>
+    <a href="index.html">&larr; Back to blog</a>
+  </div>
+
+  <div class="wrapper">
+    <div id="postCard">
+      <p class="empty-state">Loading post…</p>
+    </div>
+
+    <div class="new-comment-box">
+      <h2>Leave a comment</h2>
+      <div class="comment-form">
+        <input type="text" class="comment-name-input" id="commentName" placeholder="Your name" maxlength="40" />
+        <textarea class="comment-text-input" id="commentText" placeholder="Write a comment..." maxlength="500" rows="3"></textarea>
+        <button type="button" class="comment-submit-btn" id="commentSubmitBtn">Post comment</button>
+        <div class="comment-status" id="commentStatus"></div>
+      </div>
+    </div>
+
+    <div class="comments-heading" id="commentsHeading">Comments</div>
+    <div id="commentsList">
+      <p class="empty-state">Loading comments...</p>
+    </div>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+    import {
+      getFirestore,
+      collection,
+      getDocs,
+      getDoc,
+      addDoc,
+      query,
+      where,
+      orderBy,
+      doc,
+    } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCcyR-VW3hFroVrG0164QwVO8WYSliGZQA",
+      authDomain: "testrun-b565e.firebaseapp.com",
+      databaseURL:
+        "https://testrun-b565e-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "testrun-b565e",
+      storageBucket: "testrun-b565e.firebasestorage.app",
+      messagingSenderId: "786542410028",
+      appId: "1:786542410028:web:7898349ee8c158e96e9489",
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const commentsRef = collection(db, "comments");
+    const blogRef = collection(db, "blog");
+
+    const params = new URLSearchParams(window.location.search);
+    const postId = params.get("id");
+
+    const postCardElem = document.getElementById("postCard");
+    const commentsHeading = document.getElementById("commentsHeading");
+    const commentsListElem = document.getElementById("commentsList");
+    const commentNameInput = document.getElementById("commentName");
+    const commentTextInput = document.getElementById("commentText");
+    const commentSubmitBtn = document.getElementById("commentSubmitBtn");
+    const commentStatus = document.getElementById("commentStatus");
+
+    // Basic escaping so comment text can never inject HTML
+    function escapeHTML(str) {
+      const div = document.createElement("div");
+      div.textContent = str == null ? "" : String(str);
+      return div.innerHTML;
+    }
+
+    // Secure HTML sanitizer function to avoid XSS attacks (mirrors index.html,
+    // used for rendering the post's own rich-text content)
+    function sanitizeHTML(html) {
+      // Create a temporary div to parse HTML
+      const tempDiv = document.createElement("div");
+      tempDiv.innerHTML = html;
+
+      // Define allowed tags and attributes
+      const allowedTags = {
+        p: ["style"],
+        br: [],
+        strong: ["style"],
+        em: ["style"],
+        u: ["style"],
+        h1: ["style"],
+        h2: ["style"],
+        h3: ["style"],
+        h4: ["style"],
+        h5: ["style"],
+        h6: ["style"],
+        ul: ["style"],
+        ol: ["style"],
+        li: ["style"],
+        blockquote: ["style"],
+        code: ["style"],
+        pre: ["style"],
+        hr: ["style"],
+        iframe: [
+          "src",
+          "width",
+          "height",
+          "style",
+          "allow",
+          "allowfullscreen",
+          "frameborder",
+          "scrolling",
+        ],
+        img: ["src", "alt", "title", "width", "height", "style"],
+        video: [
+          "src",
+          "controls",
+          "width",
+          "height",
+          "style",
+          "autoplay",
+          "muted",
+          "loop",
+        ],
+        audio: ["src", "controls", "style", "autoplay", "muted", "loop"],
+        source: ["src", "type"],
+        a: ["href", "target", "rel", "style"],
+        span: ["style"],
+        div: ["style"],
+      };
+
+      // Define allowed CSS properties for style attributes to avoid CSS injection
+      const allowedCSSProps = [
+        "color",
+        "background-color",
+        "font-size",
+        "font-weight",
+        "font-style",
+        "text-align",
+        "margin",
+        "padding",
+        "border",
+        "border-radius",
+        "width",
+        "height",
+        "max-width",
+        "max-height",
+        "display",
+        "float",
+        "clear",
+        "position",
+        "top",
+        "left",
+        "right",
+        "bottom",
+        "z-index",
+      ];
+
+      // Function to sanitize style attribute to avoid CSS injection
+      function sanitizeStyle(styleValue) {
+        if (!styleValue) return "";
+
+        // Remove any script-like content
+        if (
+          styleValue.includes("javascript:") ||
+          styleValue.includes("expression(")
+        ) {
+          return "";
+        }
+
+        // Only allow safe CSS properties
+        const styles = styleValue.split(";");
+        const sanitizedStyles = styles
+          .map((style) => {
+            const [property, value] = style.split(":").map((s) => s.trim());
+            if (allowedCSSProps.includes(property) && value) {
+              return `${property}: ${value}`;
+            }
+            return "";
+          })
+          .filter((style) => style.length > 0);
+
+        return sanitizedStyles.join("; ");
+      }
+
+      // Function to sanitize attributes to avoid XSS attacks
+      function sanitizeAttributes(element, allowedAttrs) {
+        const attributes = Array.from(element.attributes);
+        attributes.forEach((attr) => {
+          if (!allowedAttrs.includes(attr.name)) {
+            element.removeAttribute(attr.name);
+          } else if (attr.name === "style") {
+            const sanitizedStyle = sanitizeStyle(attr.value);
+            if (sanitizedStyle) {
+              element.setAttribute("style", sanitizedStyle);
+            } else {
+              element.removeAttribute("style");
+            }
+          } else if (attr.name === "href") {
+            // Ensure href is safe (no javascript: or data:)
+            if (
+              attr.value.startsWith("javascript:") ||
+              attr.value.startsWith("data:")
+            ) {
+              element.removeAttribute("href");
+            }
+          } else if (attr.name === "src") {
+            // Ensure src is safe (no javascript: or data: for non-images to avoid XSS attacks)
+            if (
+              attr.value.startsWith("javascript:") ||
+              (attr.value.startsWith("data:") &&
+                !element.tagName.toLowerCase().match(/^(img|video|audio)$/))
+            ) {
+              element.removeAttribute("src");
+            }
+          }
+        });
+        // If opening in a new tab, ensure rel is safe
+        if (
+          element.tagName.toLowerCase() === "a" &&
+          element.getAttribute("target") === "_blank"
+        ) {
+          element.setAttribute("rel", "noopener noreferrer");
+        }
+      }
+
+      // Function to recursively sanitize DOM elements to avoid XSS attacks
+      function sanitizeElement(element) {
+        const tagName = element.tagName.toLowerCase();
+
+        // Remove disallowed tags
+        if (!allowedTags[tagName]) {
+          element.remove();
+          return;
+        }
+
+        // Sanitize attributes to avoid XSS attacks
+        sanitizeAttributes(element, allowedTags[tagName]);
+
+        // Recursively sanitize child elements
+        const children = Array.from(element.children);
+        children.forEach((child) => sanitizeElement(child));
+      }
+
+      // Sanitize the entire content
+      sanitizeElement(tempDiv);
+
+      return tempDiv.innerHTML;
+    }
+
+    function formatDate(date) {
+      try {
+        return date.toLocaleString("en-GB", {
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false,
+        });
+      } catch (e) {
+        return "";
+      }
+    }
+
+    function toDate(value) {
+      if (value && typeof value.toDate === "function") return value.toDate();
+      if (value instanceof Date) return value;
+      if (typeof value === "number") return new Date(value);
+      if (typeof value === "string") {
+        const parsed = Date.parse(value);
+        if (!Number.isNaN(parsed)) return new Date(parsed);
+      }
+      return null;
+    }
+
+    // Same relative-time formatter used on the main blog page, so dates read the same way
+    function formatDistanceToNow(date) {
+      const now = new Date();
+      const diffInMs = now - date;
+      const diffInSeconds = Math.floor(diffInMs / 1000);
+      const diffInMinutes = Math.floor(diffInSeconds / 60);
+      const diffInHours = Math.floor(diffInMinutes / 60);
+      const diffInDays = Math.floor(diffInHours / 24);
+      const diffInWeeks = Math.floor(diffInDays / 7);
+      const diffInMonths = Math.floor(diffInDays / 30);
+      const diffInYears = Math.floor(diffInDays / 365);
+      if (diffInSeconds < 60) {
+        return "less than a minute ago";
+      } else if (diffInMinutes < 60) {
+        return `${diffInMinutes} minute${diffInMinutes !== 1 ? "s" : ""} ago`;
+      } else if (diffInHours < 24) {
+        return `${diffInHours} hour${diffInHours !== 1 ? "s" : ""} ago`;
+      } else if (diffInDays < 7) {
+        return `${diffInDays} day${diffInDays !== 1 ? "s" : ""} ago`;
+      } else if (diffInWeeks < 4) {
+        return `${diffInWeeks} week${diffInWeeks !== 1 ? "s" : ""} ago`;
+      } else if (diffInMonths < 12) {
+        return `${diffInMonths} month${diffInMonths !== 1 ? "s" : ""} ago`;
+      } else {
+        return `${diffInYears} year${diffInYears !== 1 ? "s" : ""} ago`;
+      }
+    }
+
+    // Same category label map and tag palette used on the main blog page
+    const importantText = {
+      "extraction shooter": "Extraction Shooter",
+      "delta force": "Extraction Shooter",
+      "other games": "Other games",
+      development: "Development",
+      life: "Life",
+      other: "Other / Shitposts",
+      balloonposting: "Balloonposting",
+    };
+    const blogtagColors = [
+      "#ff6b6b", // red
+      "#6bc1ff", // blue
+      "#6bffb0", // green
+      "#ffe66b", // yellow
+      "#b36bff", // purple
+      "#ffb36b", // orange
+      "#6bffd6", // teal
+      "#ff6be6", // pink
+      "#aaff6b", // lime
+      "#6b8cff", // indigo
+    ];
+
+    // Same per-category glow color calculation used on the main blog page
+    function getCategoryColors(imptags, timestampMs) {
+      let color = "#3dfff5";
+      let bordercolor = "#3dfff5";
+      if (typeof timestampMs !== "number" || Number.isNaN(timestampMs)) {
+        return { color, bordercolor };
+      }
+      let luminous = 0;
+      let lightnessPercent = 0;
+      switch (imptags) {
+        case "extraction shooter":
+        case "delta force":
+          luminous = ((Number(new Date()) - Number(timestampMs)) / (1000 * 60 * 60 * 24 * 30)) * 30;
+          lightnessPercent = Math.max(0, Math.min(100, 70 + luminous));
+          color = `hsl(138,85%,${lightnessPercent}%)`;
+          bordercolor = `hsl(138,85%,70%)`;
+          break;
+        case "other games":
+          luminous = ((Number(new Date()) - Number(timestampMs)) / (1000 * 60 * 60 * 24 * 30)) * 17;
+          lightnessPercent = Math.max(0, Math.min(100, 83 + luminous));
+          color = `hsl(188, 100%, ${lightnessPercent}%)`;
+          bordercolor = `hsl(188, 100%, 83%)`;
+          break;
+        case "development":
+          luminous = ((Number(new Date()) - Number(timestampMs)) / (1000 * 60 * 60 * 24 * 30)) * 20;
+          lightnessPercent = Math.max(0, Math.min(100, 80 + luminous));
+          color = `hsl(256, 100%, ${lightnessPercent}%)`;
+          bordercolor = `hsl(256, 100%, 80%)`;
+          break;
+        case "life":
+          luminous = ((Number(new Date()) - Number(timestampMs)) / (1000 * 60 * 60 * 24 * 30)) * 23;
+          lightnessPercent = Math.max(0, Math.min(100, 77 + luminous));
+          color = `hsl(60, 100%, ${lightnessPercent}%)`;
+          bordercolor = `hsl(60, 100%, 77%)`;
+          break;
+        case "balloonposting":
+          luminous = ((Number(new Date()) - Number(timestampMs)) / (1000 * 60 * 60 * 24 * 30)) * 16;
+          lightnessPercent = Math.max(0, Math.min(100, 84 + luminous));
+          color = `hsl(333, 100%, ${lightnessPercent}%)`;
+          bordercolor = `hsl(333, 100%, 84%)`;
+          break;
+        case "other":
+          luminous = ((Number(new Date()) - Number(timestampMs)) / (1000 * 60 * 60 * 24 * 30)) * 50;
+          lightnessPercent = Math.max(0, Math.min(100, 50 + luminous));
+          color = `hsl(0, 0%, ${lightnessPercent}%)`;
+          bordercolor = `hsl(0, 0%, 50%)`;
+          break;
+      }
+      return { color, bordercolor };
+    }
+
+    async function loadPost() {
+      if (!postId) {
+        postCardElem.innerHTML = '<p class="error-state">Missing post id in the URL.</p>';
+        return;
+      }
+      try {
+        const postSnap = await getDoc(doc(db, "blog", postId));
+        if (!postSnap.exists()) {
+          postCardElem.innerHTML = '<p class="error-state">Post not found. It may have been removed.</p>';
+          return;
+        }
+        const data = postSnap.data();
+
+        const created = toDate(data.createdAt);
+        const dateString = created ? formatDistanceToNow(created) : "";
+        const fullDateString = created ? formatDate(created) : "";
+        const timestampMs = created ? created.getTime() : null;
+        const { color, bordercolor } = getCategoryColors(data.importantValue, timestampMs);
+
+        let nsfwTagHTML = "";
+        let goreTagHTML = "";
+        if (data.nsfw === true) {
+          nsfwTagHTML = `<div class="nsfw-tag" style="display:inline-block;margin:0 0 6px 10px;padding:2px 10px;border-radius:12px;background:#ff0000;color:#fff;font-size:0.95em;font-weight:bold;">&hearts; R-18<br></div>`;
+        }
+        if (data.gore === true) {
+          goreTagHTML = `<div class="gore-tag" style="display:inline-block;margin:0 0 6px 10px;padding:2px 10px;border-radius:12px;background:#000;color:#ff0000;font-size:0.95em;font-weight:bold;">🔪 R-18G<br></div>`;
+        }
+
+        const tagList = (data.tags || "")
+          .split(",")
+          .map((tag) => tag.trim())
+          .filter((tag) => tag.length > 0)
+          .map((tag, idx) => {
+            const tagColor = blogtagColors[idx % blogtagColors.length];
+            return `<div class="tag" style="display:inline-block;padding:2px 3px 2px 3px;border-radius:8px;background:${tagColor};color:#222;font-size:0.95em;">${escapeHTML(tag)}</div>`;
+          });
+
+        const importantLabel = importantText[data.importantValue] || data.importantValue || "Uncategorized";
+        const sanitizedContent = sanitizeHTML(data.content || "No content");
+
+        // Work out this post's number the same way the main page does (newest = highest number)
+        let postNumberHTML = "";
+        try {
+          const allPostsSnap = await getDocs(query(blogRef, orderBy("createdAt", "desc")));
+          const ids = allPostsSnap.docs.map((d) => d.id);
+          const idx = ids.indexOf(postId);
+          if (idx !== -1) {
+            const num = (ids.length - idx).toString().padStart(3, "0");
+            postNumberHTML = `<span class="number" style="font-size: 0.6em; color: #666; margin-left: 11px;">post #${num}</span> <br>`;
+          }
+        } catch (err) {
+          console.error("Error computing post number:", err);
+        }
+
+        postCardElem.className = "blog-post";
+        postCardElem.style.borderLeft = `5px solid ${bordercolor}`;
+        postCardElem.innerHTML = `
+          ${postNumberHTML}
+          <span class="blog-date" style="font-size: 0.8rem; color: #888; margin-left: 10px;">${escapeHTML(dateString)}</span>
+          <h2 class="blog-title" style="font-size: 1.5rem; margin-left: 10px; color: ${color}">${escapeHTML(data.title || "Untitled")}</h2>
+          ${goreTagHTML}
+          ${nsfwTagHTML}
+          <div class="imptag" style="font-size: 0.8rem; color: #222; margin-left: 10px; background-color: ${bordercolor}; border-radius: 5px; padding: 3px 5px 3px 5px; width: fit-content;">● ${escapeHTML(importantLabel)}</div>
+          <div class="blog-tags" style="font-size: 0.8rem; color: #888; margin-left: 10px; margin-top: 5px;">${tagList.join(" ")}</div>
+          <div class="blog-content" style="font-size: 1rem; color: #ffffff; margin-left: 10px;">${sanitizedContent}</div>
+        `;
+
+        const dateElem = postCardElem.querySelector(".blog-date");
+        if (dateElem) {
+          dateElem.addEventListener("mouseover", () => {
+            dateElem.textContent = fullDateString;
+          });
+          dateElem.addEventListener("mouseout", () => {
+            dateElem.textContent = dateString;
+          });
+        }
+      } catch (err) {
+        console.error("Error loading post info:", err);
+        postCardElem.innerHTML = '<p class="error-state">Failed to load this post. Please try again later.</p>';
+      }
+    }
+
+    async function loadComments() {
+      if (!postId) {
+        commentsListElem.innerHTML = '<p class="error-state">Missing post id in the URL.</p>';
+        commentsHeading.textContent = "Comments";
+        return;
+      }
+      try {
+        const commentsQuery = query(commentsRef, where("postId", "==", postId));
+        const snapshot = await getDocs(commentsQuery);
+        const comments = snapshot.docs.map((d) => d.data());
+
+        // Sort client-side (oldest first) to avoid needing a composite index
+        comments.sort((a, b) => {
+          const da = toDate(a.createdAt);
+          const db_ = toDate(b.createdAt);
+          const ta = da ? da.getTime() : 0;
+          const tb = db_ ? db_.getTime() : 0;
+          return ta - tb;
+        });
+
+        commentsHeading.textContent = `Comments (${comments.length})`;
+
+        if (comments.length === 0) {
+          commentsListElem.innerHTML = '<p class="empty-state">No comments yet. Be the first to say something!</p>';
+          return;
+        }
+
+        commentsListElem.innerHTML = comments
+          .map((c) => {
+            const created = toDate(c.createdAt);
+            const dateStr = created ? formatDate(created) : "";
+            return `
+              <div class="comment-item">
+                <span class="comment-author">${escapeHTML(c.name || "Anonymous")}</span>
+                <span class="comment-date">${escapeHTML(dateStr)}</span>
+                <div class="comment-body">${escapeHTML(c.comment || "")}</div>
+              </div>
+            `;
+          })
+          .join("");
+      } catch (err) {
+        console.error("Error loading comments:", err);
+        commentsListElem.innerHTML = '<p class="error-state">Failed to load comments. Please try again later.</p>';
+      }
+    }
+
+    commentSubmitBtn.addEventListener("click", async () => {
+      if (!postId) {
+        commentStatus.textContent = "Cannot post: missing post id.";
+        commentStatus.style.color = "#ff4444";
+        return;
+      }
+      const name = (commentNameInput.value || "").trim();
+      const text = (commentTextInput.value || "").trim();
+      if (!text) {
+        commentStatus.textContent = "Please write something before posting.";
+        commentStatus.style.color = "#ff4444";
+        return;
+      }
+      commentSubmitBtn.disabled = true;
+      commentStatus.textContent = "Posting...";
+      commentStatus.style.color = "#888";
+      try {
+        await addDoc(commentsRef, {
+          postId: postId,
+          name: (name || "Anonymous").slice(0, 40),
+          comment: text.slice(0, 500),
+          createdAt: new Date(),
+        });
+        commentNameInput.value = "";
+        commentTextInput.value = "";
+        commentStatus.textContent = "Comment posted!";
+        commentStatus.style.color = "#6bffb0";
+        setTimeout(() => {
+          commentStatus.textContent = "";
+        }, 3000);
+        await loadComments();
+      } catch (err) {
+        console.error("Error posting comment:", err);
+        commentStatus.textContent = "Failed to post comment. Please try again.";
+        commentStatus.style.color = "#ff4444";
+      } finally {
+        commentSubmitBtn.disabled = false;
+      }
+    });
+
+    loadPost();
+    loadComments();
+  </script>
+</body>
+
+</html>
